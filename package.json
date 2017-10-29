@@ -1,0 +1,35 @@
+{
+  "name": "engineering-thesis-lobby",
+  "version": "0.0.1",
+  "description": "Next.js & Koa based, system for matching students with thesis'",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "antd": "^2.13.8",
+    "babel-plugin-import": "^1.6.2",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "koa": "^2.3.0",
+    "koa-passport": "^4.0.1",
+    "next": "^4.1.4",
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "sequelize": "^4.19.0",
+    "sequelize-cli": "^3.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0"
+  },
+  "scripts": {
+    "build": "next build",
+    "start": "next start",
+    "dev": "concurrently --names \"BACKEND,POSTGRES\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm run dev-backend\" \"npm run dev-db\" --kill-others",
+    "dev-db": "docker-compose -f docker-compose-dev.yml up",
+    "dev-backend": "next"
+  },
+  "author": "Rafal Wilinski",
+  "license": "ISC"
+}

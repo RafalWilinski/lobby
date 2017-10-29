@@ -1,0 +1,10 @@
+# Alternative configuration for development in order to start Postgres service
+# docker-compose -f docker-compose-dev.yml up
+
+postgres:
+  image: postgres:9.6
+  ports:
+    - "5432:5432"
+  environment:
+    - POSTGRES_DB=lobby
+    - POSTGRES_USER=lobby
