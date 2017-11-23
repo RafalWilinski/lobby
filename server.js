@@ -1,6 +1,7 @@
 const Koa = require("koa");
 const next = require("next");
 const Router = require("koa-router");
+const API = require("./routes/api");
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
@@ -12,10 +13,11 @@ app.prepare().then(() => {
   const router = new Router();
 
   router.get("/login", async ctx => {
-    console.log("login");
     await app.render(ctx.req, ctx.res, "/login", ctx.query);
     ctx.respond = false;
   });
+
+  router.use("/api", API.routes(), API.allowedMethods());
 
   router.get("*", async ctx => {
     await handle(ctx.req, ctx.res);
@@ -28,6 +30,7 @@ app.prepare().then(() => {
   });
 
   server.use(router.routes());
+
   server.listen(port, err => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${port}`);

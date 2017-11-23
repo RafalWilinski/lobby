@@ -1,12 +1,12 @@
 import React from "react";
-import NormalLoginForm from "../components/NormalLoginForm";
+import LoginForm from "../components/LoginForm";
 import Head from "../components/Head.js";
 import HWCenterWrapper from "../components/HVCenterWrapper";
 
 export default () => (
   <Head>
     <HWCenterWrapper>
-      <NormalLoginForm />
+      <LoginForm />
     </HWCenterWrapper>
   </Head>
 );
