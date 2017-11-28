@@ -25,6 +25,8 @@ class RegistrationForm extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
+
+        this.props.register(values.email, values.password);
       }
     });
   };
@@ -58,11 +60,11 @@ class RegistrationForm extends React.Component {
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
-        sm: { span: 6 }
+        sm: { span: 8 }
       },
       wrapperCol: {
         xs: { span: 24 },
-        sm: { span: 14 }
+        sm: { span: 16 }
       }
     };
     const tailFormItemLayout = {
@@ -72,8 +74,8 @@ class RegistrationForm extends React.Component {
           offset: 0
         },
         sm: {
-          span: 14,
-          offset: 6
+          span: 16,
+          offset: 8
         }
       }
     };
@@ -85,21 +87,21 @@ class RegistrationForm extends React.Component {
             rules: [
               {
                 type: "email",
-                message: "The input is not valid E-mail!"
+                message: "Niepoprawny e-mail"
               },
               {
                 required: true,
-                message: "Please input your E-mail!"
+                message: "Proszę wprowadz email"
               }
             ]
           })(<Input />)}
         </FormItem>
-        <FormItem {...formItemLayout} label="Password" hasFeedback>
+        <FormItem {...formItemLayout} label="Hasło" hasFeedback>
           {getFieldDecorator("password", {
             rules: [
               {
                 required: true,
-                message: "Please input your password!"
+                message: "Wprowadz hasło"
               },
               {
                 validator: this.checkConfirm
@@ -107,12 +109,12 @@ class RegistrationForm extends React.Component {
             ]
           })(<Input type="password" />)}
         </FormItem>
-        <FormItem {...formItemLayout} label="Confirm Password" hasFeedback>
+        <FormItem {...formItemLayout} label="Potwierdz hasło" hasFeedback>
           {getFieldDecorator("confirm", {
             rules: [
               {
                 required: true,
-                message: "Please confirm your password!"
+                message: "Potwierdz hasło!"
               },
               {
                 validator: this.checkPassword
@@ -120,41 +122,19 @@ class RegistrationForm extends React.Component {
             ]
           })(<Input type="password" onBlur={this.handleConfirmBlur} />)}
         </FormItem>
-        <FormItem
-          {...formItemLayout}
-          label={
-            <span>
-              Nickname&nbsp;
-              <Tooltip title="What do you want other to call you?">
-                <Icon type="question-circle-o" />
-              </Tooltip>
-            </span>
-          }
-          hasFeedback
-        >
-          {getFieldDecorator("nickname", {
-            rules: [
-              {
-                required: true,
-                message: "Please input your nickname!",
-                whitespace: true
-              }
-            ]
-          })(<Input />)}
-        </FormItem>
 
         <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
           {getFieldDecorator("agreement", {
             valuePropName: "checked"
           })(
             <Checkbox>
-              I have read the <a href="">agreement</a>
+              Przeczytałem warunki umowy <a href="">umowy</a>
             </Checkbox>
           )}
         </FormItem>
         <FormItem {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Register
+            Zarejestruj
           </Button>
         </FormItem>
       </Form>

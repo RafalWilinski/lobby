@@ -1,19 +1,38 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8000/api";
+const BASE_URL = "http://localhost:3000/api";
 
-const LOGIN_URL = `${BASE_URL}/login`;
-const LOGIN_URL = `${BASE_URL}/register`;
+const client = axios.create({
+  baseURL: BASE_URL,
+  responseType: "json"
+});
 
-export const login = (email, password) =>
-  axios.post(LOGIN_URL, {
-    email,
-    password
-  });
+export default client;
 
-export const register = (email, name, password) =>
-  axios.post(REGISTER_URL, {
-    email,
-    name,
-    password
-  });
+export const login = (email, password) => ({
+  type: "LOGIN",
+  payload: {
+    request: {
+      method: "POST",
+      url: "/login",
+      data: {
+        email,
+        password
+      }
+    }
+  }
+});
+
+export const register = (email, password) => ({
+  type: "REGISTER",
+  payload: {
+    request: {
+      method: "POST",
+      url: "/register",
+      data: {
+        email,
+        password
+      }
+    }
+  }
+});

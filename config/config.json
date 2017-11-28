@@ -4,20 +4,23 @@
     "password": null,
     "database": "lobby",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "jwtSecret": "deadbeef"
   },
   "test": {
     "username": "lobby",
     "password": null,
     "database": "lobby",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "jwtSecret": "deadbeef"
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "jwtSecret": "deadbeef"
   }
 }

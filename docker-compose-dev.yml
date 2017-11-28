@@ -5,6 +5,8 @@ postgres:
   image: postgres:9.6
   ports:
     - "5432:5432"
+  volumes:
+    - ./data:/var/lib/postgresql:z
   environment:
     - POSTGRES_DB=lobby
     - POSTGRES_USER=lobby

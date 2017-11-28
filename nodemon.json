@@ -1,4 +1,4 @@
 {
   "verbose": true,
-  "ignore": [".next/*", ".next"]
+  "ignore": [".next/*", ".next", "node_modules"]
 }

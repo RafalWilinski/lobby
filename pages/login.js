@@ -1,12 +1,19 @@
 import React from "react";
+import withRedux from "next-redux-wrapper";
 import LoginForm from "../components/LoginForm";
 import Head from "../components/Head.js";
 import HWCenterWrapper from "../components/HVCenterWrapper";
+import { initStore } from "../store";
+import { login } from "../actions/user";
 
-export default () => (
+const mapDispatchToProps = dispatch => ({
+  login: (...args) => login(...args)
+});
+
+export default withRedux(initStore, null, mapDispatchToProps)(props => (
   <Head>
     <HWCenterWrapper>
-      <LoginForm />
+      <LoginForm {...props} />
     </HWCenterWrapper>
   </Head>
-);
+));
