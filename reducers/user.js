@@ -1,5 +1,3 @@
-import { LOGIN_START, LOGIN_FAIL, LOGIN_SUCCESS } from "../actions/user";
-
 const initialState = {
   userId: -1,
   accessToken: null,
@@ -10,26 +8,29 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN_START:
+    case "LOGIN_START":
+    case "REGISTER_START":
       return {
         ...state,
         isLoading: true,
         error: null
       };
-    case LOGIN_FAIL:
+    case "LOGIN_FAIL":
+    case "REGISTER_FAIL":
       return {
         ...state,
         isLoading: false,
-        error: action.data
+        error: action.error.response.data
       };
-    case LOGIN_SUCCESS:
+    case "LOGIN_SUCCESS":
+    case "REGISTER_SUCCESS":
       return {
         ...state,
         isLoading: false,
-        data: action.data,
+        data: action.payload.data,
         error: null,
-        userId: action.data.userId,
-        accessToken: action.data.accessToken
+        userId: action.payload.data.user.id,
+        accessToken: action.payload.data.token
       };
     default:
       return state;
