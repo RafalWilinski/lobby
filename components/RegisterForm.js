@@ -1,31 +1,18 @@
-import {
-  Form,
-  Input,
-  Tooltip,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Button,
-  AutoComplete
-} from "antd";
+import { Form, Input, Icon, Row, Col, Checkbox, Button, Alert } from "antd";
+import Link from "next/link";
+
 const FormItem = Form.Item;
-const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
 
 class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: []
   };
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
-
         this.props.register(values.email, values.password);
       }
     });
@@ -81,7 +68,7 @@ class RegistrationForm extends React.Component {
     };
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit} style={{ width: "350px" }}>
         <FormItem {...formItemLayout} label="E-mail" hasFeedback>
           {getFieldDecorator("email", {
             rules: [
@@ -133,10 +120,14 @@ class RegistrationForm extends React.Component {
           )}
         </FormItem>
         <FormItem {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
             Zarejestruj
           </Button>
+          <Link href="/login">Masz Konto? Zaloguj sie!</Link>
         </FormItem>
+        {this.props.error && (
+          <Alert message={this.props.error.message} type="error" showIcon />
+        )}
       </Form>
     );
   }
