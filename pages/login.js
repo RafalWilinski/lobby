@@ -4,16 +4,24 @@ import LoginForm from "../components/LoginForm";
 import Head from "../components/Head.js";
 import HWCenterWrapper from "../components/HVCenterWrapper";
 import { initStore } from "../store";
-import { login } from "../actions/user";
+import { login } from "../actions/api";
 
-const mapDispatchToProps = dispatch => ({
-  login: (...args) => login(...args)
+const mapStateToProps = state => ({
+  error: state.user.error,
+  isLoading: state.user.isLoading,
+  success: state.user.userId !== -1
 });
 
-export default withRedux(initStore, null, mapDispatchToProps)(props => (
-  <Head>
-    <HWCenterWrapper>
-      <LoginForm {...props} />
-    </HWCenterWrapper>
-  </Head>
-));
+const mapDispatchToProps = dispatch => ({
+  login: (...args) => dispatch(login(...args))
+});
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
+  props => (
+    <Head>
+      <HWCenterWrapper>
+        <LoginForm {...props} />
+      </HWCenterWrapper>
+    </Head>
+  )
+);
