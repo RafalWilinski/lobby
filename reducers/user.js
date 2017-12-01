@@ -24,6 +24,8 @@ export default (state = initialState, action) => {
       };
     case "LOGIN_SUCCESS":
     case "REGISTER_SUCCESS":
+      localStorage.setItem("user", action, payload.data);
+
       return {
         ...state,
         isLoading: false,
