@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { Form, Icon, Input, Button, Checkbox, Alert } from "antd";
+import Link from "next/link";
 import Head from "./Head.js";
 import HWCenterWrapper from "../components/HVCenterWrapper";
 
@@ -11,8 +12,6 @@ class LoginForm extends Component {
 
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
-
         this.props.login(values.email, values.password);
       }
     });
@@ -49,18 +48,22 @@ class LoginForm extends Component {
           )}
         </FormItem>
         <FormItem>
-          <a className="login-form-forgot" href="">
+          <a className="login-form-forgot" href="" style={{ float: "left" }}>
             Zapomniałam/em hasła
           </a>
           <Button
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            style={{ width: "100%" }}
           >
             Zaloguj
           </Button>
-          Lub <a href="">Zarejestruj sie!</a>
+          <Link href="/register">Zarejestruj sie!</Link>
         </FormItem>
+        {this.props.error && (
+          <Alert message={this.props.error.message} type="error" showIcon />
+        )}
       </Form>
     );
   }
