@@ -1,4 +1,4 @@
-const configFile = require("./config.json");
+const configFile = require("./config.js");
 
 module.exports = key => {
   const env = process.env.NODE_ENV || "development";
