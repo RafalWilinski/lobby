@@ -32,6 +32,11 @@ app.prepare().then(() => {
     ctx.respond = false;
   });
 
+  router.get("/dashboard", async ctx => {
+    await app.render(ctx.req, ctx.res, "/dashboard", ctx.query);
+    ctx.respond = false;
+  });
+
   router.use("/api", API.routes(), API.allowedMethods());
 
   router.get("*", async ctx => {

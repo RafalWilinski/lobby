@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Icon, Input, Button, Checkbox, Alert } from "antd";
 import Link from "next/link";
+import Router from "next/router";
 import Head from "./Head.js";
 import HWCenterWrapper from "../components/HVCenterWrapper";
 
@@ -19,6 +20,12 @@ class LoginForm extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+
+    if (this.props.success) {
+      Router.push({
+        pathname: "/dashboard"
+      });
+    }
 
     return (
       <Form
