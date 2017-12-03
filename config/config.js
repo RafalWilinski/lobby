@@ -16,10 +16,10 @@ module.exports = {
     jwtSecret: "deadbeef"
   },
   production: {
-    username: "uqxhoopnryjuzs",
+    username: "jztvkilo",
     password: process.env.DB_PASSWORD,
-    database: "d6s4o4522dokm5",
-    host: "ec2-54-75-226-64.eu-west-1.compute.amazonaws.com",
+    database: "jztvkilo",
+    host: "baasu.db.elephantsql.com",
     dialect: "postgres",
     jwtSecret: "deadbeef"
   }

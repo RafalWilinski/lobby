@@ -11,10 +11,6 @@ export default ({ children }) => (
         href="//cdnjs.cloudflare.com/ajax/libs/antd/2.9.3/antd.min.css"
       />
     </Head>
-    <style jsx global>{`
-      body {
-      }
-    `}</style>
     {children}
   </div>
 );

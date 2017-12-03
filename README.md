@@ -35,11 +35,10 @@ webserver (both frontend and backend).
 
 ### Creating new models
 
-This consists of three parts:
+This consists of two parts:
 
 1. Defining ORM model
-2. Declaring database migration plan file
-3. Creating seeds (example data)
+2. Creating seeds (example data)
 
 #### Defining ORM model
 
@@ -76,4 +75,10 @@ To apply seeds:
 
 ```bash
 node_modules/.bin/sequelize db:seed:all
+```
+
+## Deployment
+
+```bash
+now -e DB_PASSWORD=@db_password -t <ZEIT_TOKEN> --public
 ```
