@@ -33,7 +33,22 @@ app.prepare().then(() => {
   });
 
   router.get("/dashboard", async ctx => {
-    await app.render(ctx.req, ctx.res, "/dashboard", ctx.query);
+    await app.render(ctx.req, ctx.res, "/dashboard/index", ctx.query);
+    ctx.respond = false;
+  });
+
+  router.get("/dashboard/search", async ctx => {
+    await app.render(ctx.req, ctx.res, "/dashboard/search", ctx.query);
+    ctx.respond = false;
+  });
+
+  router.get("/dashboard/topic", async ctx => {
+    await app.render(ctx.req, ctx.res, "/dashboard/topic", ctx.query);
+    ctx.respond = false;
+  });
+
+  router.get("/dashboard/profile", async ctx => {
+    await app.render(ctx.req, ctx.res, "/dashboard/profile", ctx.query);
     ctx.respond = false;
   });
 
