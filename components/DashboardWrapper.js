@@ -1,7 +1,9 @@
 import { Layout, Menu, Icon } from "antd";
 import Link from "next/link";
 import Router from "next/router";
+import { BarLoader } from "react-spinners";
 
+import HVCenterWrapper from "./HVCenterWrapper";
 import Search from "../pages/dashboard/search";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -41,6 +43,17 @@ class Dashboard extends React.Component {
       icon: "logout"
     }
   ];
+
+  componentDidMount() {
+    Router.onRouteChangeStart = url => {
+      this.setState({
+        isLoading: true
+      });
+    };
+
+    Router.onRouteChangeComplete = () => this.setState({ isLoading: false });
+    Router.onRouteChangeError = () => this.setState({ isLoading: false });
+  }
 
   onCollapse = collapsed => {
     this.setState({ collapsed });
@@ -98,7 +111,13 @@ class Dashboard extends React.Component {
             {this.navItems.map(this.renderNavItem)}
           </Menu>
         </Sider>
-        {this.props.children}
+        {this.state.isLoading ? (
+          <HVCenterWrapper>
+            <BarLoader loading color={"#108ee9"} />
+          </HVCenterWrapper>
+        ) : (
+          this.props.children
+        )}
       </Layout>
     );
   }
