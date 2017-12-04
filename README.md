@@ -14,7 +14,7 @@ Engineering thesis - online system for matching students with topics.
 * Koa (backend)
 * PostgreSQL (database)
 * Sequelize (ORM)
-* Passport.js (Authentication)
+* JWT (Authentication)
 
 ### Setup
 
