@@ -34,6 +34,8 @@ export default (state = initialState, action) => {
         userId: action.payload.data.user.id,
         accessToken: action.payload.data.token
       };
+    case "LOGOUT":
+      return { ...initialState };
     default:
       return state;
   }

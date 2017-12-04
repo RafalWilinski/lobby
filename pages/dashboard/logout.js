@@ -1,3 +1,20 @@
 import React from "react";
+import withRedux from "next-redux-wrapper";
 
-export default props => <h1>Logout</h1>;
+import { initStore } from "../../store";
+import Logout from "../../components/Logout";
+
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.userId !== -1
+});
+
+const mapDispatchToProps = dispatch => ({
+  logout: () =>
+    dispatch({
+      type: "LOGOUT"
+    })
+});
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
+  props => <Logout {...props} />
+);
