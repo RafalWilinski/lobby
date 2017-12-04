@@ -79,6 +79,11 @@ node_modules/.bin/sequelize db:seed:all
 
 ## Deployment
 
+Deployments are performed automatically with each and every push to master
+branch.
+
+Still, you can (but shouldn't) perform them manually with following command:
+
 ```bash
 now -e DB_PASSWORD=@db_password -t <ZEIT_TOKEN> --public
 ```
