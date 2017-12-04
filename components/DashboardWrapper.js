@@ -86,6 +86,12 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    if (typeof localStorage === "object" && !localStorage.getItem("user")) {
+      Router.push({
+        pathname: "/login"
+      });
+    }
+
     return (
       <Layout style={{ minHeight: "100vh" }}>
         <Sider
