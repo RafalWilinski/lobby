@@ -11,6 +11,8 @@ import {
   Icon,
   Input
 } from "antd";
+import skills from "../../consts/skills";
+import topics from "../../consts/topics";
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioButton = Radio.Button;
@@ -75,14 +77,14 @@ class Topic extends React.Component {
       },
       wrapperCol: {
         xs: { span: 24 },
-        sm: { span: 12 }
+        sm: { span: 14 }
       }
     };
 
     const formItemLayoutWithOutLabel = {
       wrapperCol: {
         xs: { span: 24, offset: 0 },
-        sm: { span: 20, offset: 4 }
+        sm: { span: 14, offset: 4 }
       }
     };
 
@@ -91,36 +93,77 @@ class Topic extends React.Component {
 
     const formItems = keys.map((k, index) => {
       return (
-        <FormItem
-          {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-          label={index === 0 ? "Członkowie Druzyny" : ""}
-          required={false}
-          key={k}
-        >
-          {getFieldDecorator(`names-${k}`, {
-            validateTrigger: ["onChange", "onBlur"],
-            rules: [
-              {
-                required: true,
-                whitespace: true,
-                message: "Proszę podaj informacje o wakacie lub usuń tą pozycje"
-              }
-            ]
-          })(
-            <Input
-              placeholder="Nazwa Stanowiska"
-              style={{ width: "60%", marginRight: 8 }}
-            />
-          )}
-          {keys.length > 1 ? (
-            <Icon
-              className="dynamic-delete-button"
-              type="minus-circle-o"
-              disabled={keys.length === 1}
-              onClick={() => this.remove(k)}
-            />
-          ) : null}
-        </FormItem>
+        <div key={k}>
+          <FormItem
+            {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
+            label={index === 0 ? "Członkowie Druzyny" : ""}
+            required={true}
+          >
+            {getFieldDecorator(`names-${k}`, {
+              validateTrigger: ["onChange", "onBlur"],
+              rules: [
+                {
+                  required: true,
+                  whitespace: true,
+                  message: "Proszę podaj nazwe stanowiska"
+                }
+              ]
+            })(
+              <Input
+                placeholder="Nazwa Stanowiska"
+                style={{ width: "60%", marginRight: 8 }}
+              />
+            )}
+            {keys.length > 1 ? (
+              <Icon
+                className="dynamic-delete-button"
+                type="minus-circle-o"
+                disabled={keys.length === 1}
+                onClick={() => this.remove(k)}
+              />
+            ) : null}
+          </FormItem>
+          <FormItem
+            {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
+            label={index === 0 ? "Opis Stanowiska" : ""}
+            required={true}
+          >
+            {getFieldDecorator(`description-${k}`, {
+              validateTrigger: ["onChange", "onBlur"],
+              rules: [
+                {
+                  required: true,
+                  whitespace: true,
+                  message: "Proszę podaj opis stanowiska"
+                }
+              ]
+            })(
+              <TextArea
+                placeholder="Jako ... Twoja rola będzie polegała na..."
+                autosize={{ minRows: 3, maxRows: 7 }}
+                style={{ width: "60%", marginRight: 8 }}
+              />
+            )}
+          </FormItem>
+          <FormItem {...formItemLayout} label="Umiejętnosci">
+            {getFieldDecorator("select-multiple", {
+              rules: [
+                {
+                  required: true,
+                  message: "Wybierz potrzebne umiejętnosci",
+                  type: "array"
+                }
+              ]
+            })(
+              <Select
+                mode="multiple"
+                placeholder="Wybierz wymagane umiejetnosci"
+              >
+                {skills.map(skill => <Option value={skill}>{skill}</Option>}
+              </Select>
+            )}
+          </FormItem>
+        </div>
       );
     });
 
@@ -166,9 +209,7 @@ class Topic extends React.Component {
                   mode="multiple"
                   placeholder="Wybierz zagadnienia pokrewne"
                 >
-                  <Option value="red">Relacyjne Bazy Danych</Option>
-                  <Option value="green">Sztuczna Inteligencja</Option>
-                  <Option value="blue">Badania Operacyjne</Option>
+                  {topics.map(topic => <Option value={topic}>{topic}</Option>}
                 </Select>
               )}
             </FormItem>
@@ -185,11 +226,17 @@ class Topic extends React.Component {
 
             {formItems}
 
-            <FormItem {...formItemLayoutWithOutLabel}>
-              <Button type="dashed" onClick={this.add} style={{ width: "60%" }}>
-                <Icon type="plus" /> Dodaj wakat
-              </Button>
-            </FormItem>
+            {getFieldValue("keys").length < 5 && (
+              <FormItem {...formItemLayoutWithOutLabel}>
+                <Button
+                  type="dashed"
+                  onClick={this.add}
+                  style={{ width: "60%" }}
+                >
+                  <Icon type="plus" /> Dodaj wakat
+                </Button>
+              </FormItem>
+            )}
 
             <FormItem {...formItemLayout} label="Załączniki">
               <div className="dropbox">
