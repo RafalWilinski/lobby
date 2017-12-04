@@ -111,7 +111,7 @@ class Topic extends React.Component {
             })(
               <Input
                 placeholder="Nazwa Stanowiska"
-                style={{ width: "60%", marginRight: 8 }}
+                style={{ width: "80%", marginRight: 8 }}
               />
             )}
             {keys.length > 1 ? (
@@ -141,12 +141,16 @@ class Topic extends React.Component {
               <TextArea
                 placeholder="Jako ... Twoja rola będzie polegała na..."
                 autosize={{ minRows: 3, maxRows: 7 }}
-                style={{ width: "60%", marginRight: 8 }}
+                style={{ width: "80%", marginRight: 8 }}
               />
             )}
           </FormItem>
-          <FormItem {...formItemLayout} label="Umiejętnosci">
-            {getFieldDecorator("select-multiple", {
+          <FormItem
+            {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
+            label={index === 0 ? "Wymagane Umiejętnosci" : ""}
+            required={true}
+          >
+            {getFieldDecorator(`select-multiple-${k}`, {
               rules: [
                 {
                   required: true,
@@ -158,8 +162,9 @@ class Topic extends React.Component {
               <Select
                 mode="multiple"
                 placeholder="Wybierz wymagane umiejetnosci"
+                style={{ width: "80%", marginRight: 8 }}
               >
-                {skills.map(skill => <Option value={skill}>{skill}</Option>}
+                {skills.map(skill => <Option value={skill}>{skill}</Option>)}
               </Select>
             )}
           </FormItem>
@@ -209,7 +214,7 @@ class Topic extends React.Component {
                   mode="multiple"
                   placeholder="Wybierz zagadnienia pokrewne"
                 >
-                  {topics.map(topic => <Option value={topic}>{topic}</Option>}
+                  {topics.map(topic => <Option value={topic}>{topic}</Option>)}
                 </Select>
               )}
             </FormItem>
@@ -224,6 +229,12 @@ class Topic extends React.Component {
               )}
             </FormItem>
 
+            <FormItem {...formItemLayout} label="Stanowiska">
+              <span className="ant-form-text">
+                Napisz kogo potrzebujesz w zespole aby dobrze zrealizowac swoj
+                temat
+              </span>
+            </FormItem>
             {formItems}
 
             {getFieldValue("keys").length < 5 && (
@@ -231,7 +242,7 @@ class Topic extends React.Component {
                 <Button
                   type="dashed"
                   onClick={this.add}
-                  style={{ width: "60%" }}
+                  style={{ width: "80%" }}
                 >
                   <Icon type="plus" /> Dodaj wakat
                 </Button>
