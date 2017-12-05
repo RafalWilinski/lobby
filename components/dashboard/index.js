@@ -74,13 +74,8 @@ const topicsData = [
   },
   {
     key: "2",
-    name: "Przetwarzanie obrazów za pomocą biblioteki open CV",
+    name: "System dobierania studentów do prac inzynierskich",
     applicants: 12
-  },
-  {
-    key: "3",
-    name: "Przetwarzanie obrazów za pomocą biblioteki open CV",
-    applicants: 17
   }
 ];
 
