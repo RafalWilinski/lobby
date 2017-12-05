@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
       icon: "setting"
     },
     {
-      name: "Logout",
+      name: "Wyloguj",
       href: "/dashboard/logout",
       icon: "logout"
     }
