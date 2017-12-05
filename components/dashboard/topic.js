@@ -174,7 +174,7 @@ class Topic extends React.Component {
 
     return (
       <Layout>
-        <Header style={{ background: "#fff", marginLeft: "10px" }}>
+        <Header style={{ background: "#fff", paddingLeft: "20px" }}>
           <h1>Utwórz swój temat</h1>
         </Header>
         <Content style={{ marginTop: "20px" }}>

@@ -7,7 +7,9 @@ class Dashboard extends React.Component {
   render() {
     return (
       <Layout>
-        <Header style={{ background: "#fff", padding: 0 }} />
+        <Header style={{ background: "#fff", padding: 0, paddingLeft: "20px" }}>
+          <h1>Witaj!</h1>
+        </Header>
         <Content style={{ margin: "0 16px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>User</Breadcrumb.Item>
