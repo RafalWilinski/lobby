@@ -33,7 +33,8 @@
     "sequelize-cli": "^3.0.0"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0"
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.2.5"
   },
   "scripts": {
     "build": "next build",
