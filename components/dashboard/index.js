@@ -1,7 +1,7 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb, Icon, Table, Row, Col } from "antd";
+import { Layout, Menu, Icon, Table, Row, Col } from "antd";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content } = Layout;
 
 const topicColumns = [
   {
