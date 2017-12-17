@@ -2,11 +2,11 @@ CREATE TABLE application (
     status        VARCHAR(30) NOT NULL,
     description   VARCHAR(250),
     user_login    VARCHAR(30) NOT NULL,
-    vacancy_id    INTEGER NOT NULL
+    role_id       INTEGER NOT NULL
 );
 
 ALTER TABLE application ADD CONSTRAINT application_pk PRIMARY KEY ( user_login,
-vacancy_id );
+role_id );
 
 CREATE TABLE branch (
     name   VARCHAR(50) NOT NULL
@@ -53,7 +53,7 @@ ALTER TABLE skill ADD CONSTRAINT skill_pk PRIMARY KEY ( name );
 CREATE TABLE thesis (
     id                    INTEGER NOT NULL,
     name                  VARCHAR(150) NOT NULL,
-    number_of_vacancies   INTEGER NOT NULL,
+    number_of_roles       INTEGER NOT NULL,
     description           VARCHAR(250),
     photo                 BYTEA
 );
@@ -82,11 +82,11 @@ CREATE TABLE "User" (
     first_name   VARCHAR(30) NOT NULL,
     last_name    VARCHAR(30) NOT NULL,
     student_id   INTEGER NOT NULL,
-    vacancy_id   INTEGER
+    role_id      INTEGER
 );
 
 CREATE UNIQUE INDEX user__idx ON
-    "User" ( vacancy_id ASC );
+    "User" ( role_id ASC );
 
 ALTER TABLE "User" ADD CONSTRAINT user_pk PRIMARY KEY ( login );
 
@@ -107,7 +107,7 @@ CREATE TABLE user_skill (
 ALTER TABLE user_skill ADD CONSTRAINT user_skill_pk PRIMARY KEY ( user_login,
 skill_name );
 
-CREATE TABLE vacancy (
+CREATE TABLE role (
     id            INTEGER NOT NULL,
     capitan       BOOLEAN NOT NULL,
     description   VARCHAR(250),
@@ -115,26 +115,26 @@ CREATE TABLE vacancy (
     thesis_id      INTEGER NOT NULL
 );
 
-CREATE UNIQUE INDEX vacancy__idx ON
-    vacancy ( user_login ASC );
+CREATE UNIQUE INDEX role__idx ON
+    role ( user_login ASC );
 
-ALTER TABLE vacancy ADD CONSTRAINT vacancy_pk PRIMARY KEY ( id );
+ALTER TABLE role ADD CONSTRAINT role_pk PRIMARY KEY ( id );
 
-CREATE TABLE vacancy_skill (
+CREATE TABLE role_skill (
     skill_name   VARCHAR(50) NOT NULL,
-    vacancy_id   INTEGER NOT NULL
+    role_id   INTEGER NOT NULL
 );
 
-ALTER TABLE vacancy_skill ADD CONSTRAINT vacancy_skill_pk PRIMARY KEY ( skill_name,
-vacancy_id );
+ALTER TABLE role_skill ADD CONSTRAINT role_skill_pk PRIMARY KEY ( skill_name,
+role_id );
 
 ALTER TABLE application
     ADD CONSTRAINT application_user_fk FOREIGN KEY ( user_login )
         REFERENCES "User" ( login );
 
 ALTER TABLE application
-    ADD CONSTRAINT application_vacancy_fk FOREIGN KEY ( vacancy_id )
-        REFERENCES vacancy ( id );
+    ADD CONSTRAINT application_role_fk FOREIGN KEY ( role_id )
+        REFERENCES role ( id );
 
 ALTER TABLE promoter_branch
     ADD CONSTRAINT promoter_branch_branch_fk FOREIGN KEY ( branch_name )
@@ -189,21 +189,21 @@ ALTER TABLE user_skill
         REFERENCES "User" ( login );
 
 ALTER TABLE "User"
-    ADD CONSTRAINT user_vacancy_fk FOREIGN KEY ( vacancy_id )
-        REFERENCES vacancy ( id );
+    ADD CONSTRAINT user_role_fk FOREIGN KEY ( role_id )
+        REFERENCES role ( id );
 
-ALTER TABLE vacancy_skill
-    ADD CONSTRAINT vacancy_skill_skill_fk FOREIGN KEY ( skill_name )
+ALTER TABLE role_skill
+    ADD CONSTRAINT role_skill_skill_fk FOREIGN KEY ( skill_name )
         REFERENCES skill ( name );
 
-ALTER TABLE vacancy_skill
-    ADD CONSTRAINT vacancy_skill_vacancy_fk FOREIGN KEY ( vacancy_id )
-        REFERENCES vacancy ( id );
+ALTER TABLE role_skill
+    ADD CONSTRAINT role_skill_role_fk FOREIGN KEY ( role_id )
+        REFERENCES role ( id );
 
-ALTER TABLE vacancy
-    ADD CONSTRAINT vacancy_thesis_fk FOREIGN KEY ( thesis_id )
+ALTER TABLE role
+    ADD CONSTRAINT role_thesis_fk FOREIGN KEY ( thesis_id )
         REFERENCES thesis ( id );
 
-ALTER TABLE vacancy
-    ADD CONSTRAINT vacancy_user_fk FOREIGN KEY ( user_login )
+ALTER TABLE role
+    ADD CONSTRAINT role_user_fk FOREIGN KEY ( user_login )
         REFERENCES "User" ( login );
