@@ -76,7 +76,7 @@ CREATE TABLE thesis_skill (
 ALTER TABLE thesis_skill ADD CONSTRAINT thesis_skill_pk PRIMARY KEY ( thesis_id,
 skill_name );
 
-CREATE TABLE "User" (
+CREATE TABLE "user" (
     login        VARCHAR(30) NOT NULL,
     password     VARCHAR(30) NOT NULL,
     first_name   VARCHAR(30) NOT NULL,
@@ -86,9 +86,9 @@ CREATE TABLE "User" (
 );
 
 CREATE UNIQUE INDEX user__idx ON
-    "User" ( role_id ASC );
+    "user" ( role_id ASC );
 
-ALTER TABLE "User" ADD CONSTRAINT user_pk PRIMARY KEY ( login );
+ALTER TABLE "user" ADD CONSTRAINT user_pk PRIMARY KEY ( login );
 
 CREATE TABLE user_branch (
     user_login    VARCHAR(30) NOT NULL,
@@ -130,7 +130,7 @@ role_id );
 
 ALTER TABLE application
     ADD CONSTRAINT application_user_fk FOREIGN KEY ( user_login )
-        REFERENCES "User" ( login );
+        REFERENCES "user" ( login );
 
 ALTER TABLE application
     ADD CONSTRAINT application_role_fk FOREIGN KEY ( role_id )
@@ -178,7 +178,7 @@ ALTER TABLE user_branch
 
 ALTER TABLE user_branch
     ADD CONSTRAINT user_branch_user_fk FOREIGN KEY ( user_login )
-        REFERENCES "User" ( login );
+        REFERENCES "user" ( login );
 
 ALTER TABLE user_skill
     ADD CONSTRAINT user_skill_skill_fk FOREIGN KEY ( skill_name )
@@ -186,9 +186,9 @@ ALTER TABLE user_skill
 
 ALTER TABLE user_skill
     ADD CONSTRAINT user_skill_user_fk FOREIGN KEY ( user_login )
-        REFERENCES "User" ( login );
+        REFERENCES "user" ( login );
 
-ALTER TABLE "User"
+ALTER TABLE "user"
     ADD CONSTRAINT user_role_fk FOREIGN KEY ( role_id )
         REFERENCES role ( id );
 
@@ -206,4 +206,4 @@ ALTER TABLE role
 
 ALTER TABLE role
     ADD CONSTRAINT role_user_fk FOREIGN KEY ( user_login )
-        REFERENCES "User" ( login );
+        REFERENCES "user" ( login );
