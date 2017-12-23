@@ -1,49 +1,49 @@
 
-CREATE TABLE application
+CREATE TABLE applications
 (
     status VARCHAR(30) NOT NULL,
     description VARCHAR(250),
     login VARCHAR(30) NOT NULL,
     roleId INTEGER NOT NULL
 );
-ALTER TABLE application ADD CONSTRAINT applicationPk PRIMARY KEY ( login, roleId );
-CREATE TABLE branch
+ALTER TABLE applications ADD CONSTRAINT applicationPk PRIMARY KEY ( login, roleId );
+CREATE TABLE branches
 (
     name VARCHAR(50) NOT NULL
 );
-ALTER TABLE branch ADD CONSTRAINT branchPk PRIMARY KEY ( name );
-CREATE TABLE promoter
+ALTER TABLE branches ADD CONSTRAINT branchPk PRIMARY KEY ( name );
+CREATE TABLE promoters
 (
     firstName VARCHAR(30) NOT NULL,
     lastName VARCHAR(30) NOT NULL
 );
-ALTER TABLE promoter ADD CONSTRAINT promoterPk PRIMARY KEY (firstName, lastName);
-CREATE TABLE promoterBranch
+ALTER TABLE promoters ADD CONSTRAINT promoterPk PRIMARY KEY (firstName, lastName);
+CREATE TABLE promoterBranches
 (
     promoterFirstName VARCHAR(30) NOT NULL,
     promoterLastName VARCHAR(30) NOT NULL,
     branchName VARCHAR(50) NOT NULL
 );
-ALTER TABLE promoterBranch
+ALTER TABLE promoterBranches
     ADD CONSTRAINT promoterBranchPk PRIMARY KEY ( promoterFirstName,
     promoterLastName,
     branchName );
-CREATE TABLE promoterThesis
+CREATE TABLE promoterThesises
 (
     promoterFirstName VARCHAR(30) NOT NULL,
     promoterLastName VARCHAR(30) NOT NULL,
     thesisId INTEGER NOT NULL
 );
-ALTER TABLE promoterThesis
+ALTER TABLE promoterThesises
     ADD CONSTRAINT promoterThesisPk PRIMARY KEY ( promoterFirstName,
     promoterLastName,
     thesisId );
-CREATE TABLE skill
+CREATE TABLE skills
 (
     name VARCHAR(50) NOT NULL
 );
-ALTER TABLE skill ADD CONSTRAINT skillPk PRIMARY KEY ( name );
-CREATE TABLE thesis
+ALTER TABLE skills ADD CONSTRAINT skillPk PRIMARY KEY ( name );
+CREATE TABLE thesises
 (
     id SERIAL,
     name VARCHAR(150) NOT NULL,
@@ -51,22 +51,22 @@ CREATE TABLE thesis
     description VARCHAR(250),
     photo VARCHAR(250)
 );
-ALTER TABLE thesis ADD CONSTRAINT thesisPk PRIMARY KEY ( id );
-CREATE TABLE thesisBranch
+ALTER TABLE thesises ADD CONSTRAINT thesisPk PRIMARY KEY ( id );
+CREATE TABLE thesisBranches
 (
     thesisId INTEGER NOT NULL,
     branchName VARCHAR(50) NOT NULL
 );
-ALTER TABLE thesisBranch ADD CONSTRAINT thesisBranchPk PRIMARY KEY ( thesisId,
+ALTER TABLE thesisBranches ADD CONSTRAINT thesisBranchPk PRIMARY KEY ( thesisId,
 branchName );
-CREATE TABLE thesisSkill
+CREATE TABLE thesisSkills
 (
     thesisId INTEGER NOT NULL,
     skillName VARCHAR(50) NOT NULL
 );
-ALTER TABLE thesisSkill ADD CONSTRAINT thesisSkillPk PRIMARY KEY ( thesisId,
+ALTER TABLE thesisSkills ADD CONSTRAINT thesisSkillPk PRIMARY KEY ( thesisId,
 skillName );
-CREATE TABLE "user"
+CREATE TABLE "users"
 (
     login VARCHAR(30) NOT NULL,
     password VARCHAR(30) NOT NULL,
@@ -77,24 +77,24 @@ CREATE TABLE "user"
     roleId INTEGER
 );
 CREATE UNIQUE INDEX userIdx ON
-    "user" ( roleId ASC );
-ALTER TABLE "user" ADD CONSTRAINT userPk PRIMARY KEY ( login );
-CREATE TABLE userBranch
+    "users" ( roleId ASC );
+ALTER TABLE "users" ADD CONSTRAINT userPk PRIMARY KEY ( login );
+CREATE TABLE userBranches
 (
     userLogin VARCHAR(30) NOT NULL,
     branchName VARCHAR(50) NOT NULL
 );
-ALTER TABLE userBranch ADD CONSTRAINT userBranchPk PRIMARY KEY ( userLogin,
+ALTER TABLE userBranches ADD CONSTRAINT userBranchPk PRIMARY KEY ( userLogin,
 branchName );
-CREATE TABLE userSkill
+CREATE TABLE userSkills
 (
     priority INTEGER NOT NULL,
     userLogin VARCHAR(30) NOT NULL,
     skillName VARCHAR(50) NOT NULL
 );
-ALTER TABLE userSkill ADD CONSTRAINT userSkillPk PRIMARY KEY ( userLogin,
+ALTER TABLE userSkills ADD CONSTRAINT userSkillPk PRIMARY KEY ( userLogin,
 skillName );
-CREATE TABLE role
+CREATE TABLE roles
 (
     id SERIAL,
     capitan BOOLEAN NOT NULL,
@@ -103,73 +103,73 @@ CREATE TABLE role
     thesisId INTEGER NOT NULL
 );
 CREATE UNIQUE INDEX roleIdx ON
-    role ( userLogin ASC );
-ALTER TABLE role ADD CONSTRAINT rolePk PRIMARY KEY ( id );
-CREATE TABLE roleSkill
+    roles ( userLogin ASC );
+ALTER TABLE roles ADD CONSTRAINT rolePk PRIMARY KEY ( id );
+CREATE TABLE roleSkills
 (
     skillName VARCHAR(50) NOT NULL,
     roleId INTEGER NOT NULL
 );
-ALTER TABLE roleSkill ADD CONSTRAINT roleSkillPk PRIMARY KEY ( skillName,
+ALTER TABLE roleSkills ADD CONSTRAINT roleSkillPk PRIMARY KEY ( skillName,
 roleId );
-ALTER TABLE application
+ALTER TABLE applications
     ADD CONSTRAINT applicationUserFk FOREIGN KEY ( login )
-        REFERENCES "user" ( login );
-ALTER TABLE application
+        REFERENCES "users" ( login );
+ALTER TABLE applications
     ADD CONSTRAINT applicationRoleFk FOREIGN KEY ( roleId )
-        REFERENCES role ( id );
-ALTER TABLE promoterBranch
+        REFERENCES roles ( id );
+ALTER TABLE promoterBranches
     ADD CONSTRAINT promoterBranchBranchFk FOREIGN KEY ( branchName )
-        REFERENCES branch ( name );
-ALTER TABLE promoterBranch
+        REFERENCES branches ( name );
+ALTER TABLE promoterBranches
     ADD CONSTRAINT promoterBranchPromoterFk FOREIGN KEY ( promoterFirstName,
     promoterLastName )
-        REFERENCES promoter ( firstName,
+        REFERENCES promoters ( firstName,
         lastName );
-ALTER TABLE promoterThesis
+ALTER TABLE promoterThesises
     ADD CONSTRAINT promoterThesisPromoterFk FOREIGN KEY ( promoterFirstName,
     promoterLastName )
-        REFERENCES promoter ( firstName,
+        REFERENCES promoters ( firstName,
         lastName );
-ALTER TABLE promoterThesis
+ALTER TABLE promoterThesises
     ADD CONSTRAINT promoterThesisThesisFk FOREIGN KEY ( thesisId )
-        REFERENCES thesis ( id );
-ALTER TABLE thesisBranch
+        REFERENCES thesises ( id );
+ALTER TABLE thesisBranches
     ADD CONSTRAINT thesisBranchBranchFk FOREIGN KEY ( branchName )
-        REFERENCES branch ( name );
-ALTER TABLE thesisBranch
+        REFERENCES branches ( name );
+ALTER TABLE thesisBranches
     ADD CONSTRAINT thesisBranchThesisFk FOREIGN KEY ( thesisId )
-        REFERENCES thesis ( id );
-ALTER TABLE thesisSkill
+        REFERENCES thesises ( id );
+ALTER TABLE thesisSkills
     ADD CONSTRAINT thesisSkillSkillFk FOREIGN KEY ( skillName )
-        REFERENCES skill ( name );
-ALTER TABLE thesisSkill
+        REFERENCES skills ( name );
+ALTER TABLE thesisSkills
     ADD CONSTRAINT thesisSkillThesisFk FOREIGN KEY ( thesisId )
-        REFERENCES thesis ( id );
-ALTER TABLE userBranch
+        REFERENCES thesises ( id );
+ALTER TABLE userBranches
     ADD CONSTRAINT userBranchBranchFk FOREIGN KEY ( branchName )
-        REFERENCES branch ( name );
-ALTER TABLE userBranch
+        REFERENCES branches ( name );
+ALTER TABLE userBranches
     ADD CONSTRAINT userBranchUserFk FOREIGN KEY ( userLogin )
-        REFERENCES "user" ( login );
-ALTER TABLE userSkill
+        REFERENCES "users" ( login );
+ALTER TABLE userSkills
     ADD CONSTRAINT userSkillSkillFk FOREIGN KEY ( skillName )
-        REFERENCES skill ( name );
-ALTER TABLE userSkill
+        REFERENCES skills ( name );
+ALTER TABLE userSkills
     ADD CONSTRAINT userSkillUserFk FOREIGN KEY ( userLogin )
-        REFERENCES "user" ( login );
-ALTER TABLE "user"
+        REFERENCES "users" ( login );
+ALTER TABLE "users"
     ADD CONSTRAINT userRoleFk FOREIGN KEY ( roleId )
-        REFERENCES role ( id );
-ALTER TABLE roleSkill
+        REFERENCES roles ( id );
+ALTER TABLE roleSkills
     ADD CONSTRAINT roleSkillSkillFk FOREIGN KEY ( skillName )
-        REFERENCES skill ( name );
-ALTER TABLE roleSkill
+        REFERENCES skills ( name );
+ALTER TABLE roleSkills
     ADD CONSTRAINT roleSkillRoleFk FOREIGN KEY ( roleId )
-        REFERENCES role ( id );
-ALTER TABLE role
+        REFERENCES roles ( id );
+ALTER TABLE roles
     ADD CONSTRAINT roleThesisFk FOREIGN KEY ( thesisId )
-        REFERENCES thesis ( id );
-ALTER TABLE role
+        REFERENCES thesises ( id );
+ALTER TABLE roles
     ADD CONSTRAINT roleUserFk FOREIGN KEY ( userLogin )
-        REFERENCES "user" ( login );
+        REFERENCES "users" ( login );
