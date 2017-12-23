@@ -3,13 +3,13 @@ module.exports = (sequelize, DataTypes) => {
   const Application = sequelize.define("Application", {
     roleId: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
+      primaryKey: true
     },
     status: DataTypes.STRING,
     description: DataTypes.STRING,
     login: {
-      type: DataTypes.STRING
-      primaryKey: true,
+      type: DataTypes.STRING,
+      primaryKey: true
     }
   });
 
@@ -19,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: "roleId"
     });
 
-    Application.User = Application.belongsTo(models.User, {
+    Application.User = Application.belongsTo(models.user, {
       foreignKey: "login",
       sourceKey: "login"
     });
-  }
+  };
 
-  return User;
+  return Application;
 };
