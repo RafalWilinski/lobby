@@ -54,7 +54,7 @@ CREATE TABLE thesis (
     name                  VARCHAR(150) NOT NULL,
     numberOfRoles         INTEGER NOT NULL,
     description           VARCHAR(250),
-    photo                 BYTEA
+    photo                 VARCHAR(250)
 );
 
 ALTER TABLE thesis ADD CONSTRAINT thesisPk PRIMARY KEY ( id );
@@ -78,9 +78,10 @@ skillName );
 CREATE TABLE "user" (
     login        VARCHAR(30) NOT NULL,
     password     VARCHAR(30) NOT NULL,
-    firstName   VARCHAR(30) NOT NULL,
-    lastName    VARCHAR(30) NOT NULL,
-    studentId   INTEGER NOT NULL,
+    firstName   VARCHAR(30),
+    lastName    VARCHAR(30),
+    studentId   INTEGER,
+    picture     VARCHAR(100),
     roleId      INTEGER
 );
 
