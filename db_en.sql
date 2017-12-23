@@ -4,25 +4,33 @@ CREATE TABLE "Applications"
     status VARCHAR(30) NOT NULL,
     description VARCHAR(250),
     login VARCHAR(30) NOT NULL,
-    "roleId" INTEGER NOT NULL
+    "roleId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "Applications" ADD CONSTRAINT applicationPk PRIMARY KEY ( login, "roleId" );
 CREATE TABLE "Branches"
 (
-    name VARCHAR(50) NOT NULL
+    name VARCHAR(50) NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "Branches" ADD CONSTRAINT branchPk PRIMARY KEY ( name );
 CREATE TABLE "Promoters"
 (
     "firstName" VARCHAR(30) NOT NULL,
-    "lastName" VARCHAR(30) NOT NULL
+    "lastName" VARCHAR(30) NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "Promoters" ADD CONSTRAINT promoterPk PRIMARY KEY ("firstName", "lastName");
 CREATE TABLE "PromoterBranches"
 (
     "promoterFirstName" VARCHAR(30) NOT NULL,
     "promoterLastName" VARCHAR(30) NOT NULL,
-    "branchName" VARCHAR(50) NOT NULL
+    "branchName" VARCHAR(50) NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "PromoterBranches"
     ADD CONSTRAINT promoterBranchPk PRIMARY KEY ( "promoterFirstName",
@@ -32,7 +40,9 @@ CREATE TABLE "PromoterThesises"
 (
     "promoterFirstName" VARCHAR(30) NOT NULL,
     "promoterLastName" VARCHAR(30) NOT NULL,
-    "thesisId" INTEGER NOT NULL
+    "thesisId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "PromoterThesises"
     ADD CONSTRAINT promoterThesisPk PRIMARY KEY ( "promoterFirstName",
@@ -40,7 +50,9 @@ ALTER TABLE "PromoterThesises"
     "thesisId" );
 CREATE TABLE "Skills"
 (
-    name VARCHAR(50) NOT NULL
+    name VARCHAR(50) NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "Skills" ADD CONSTRAINT skillPk PRIMARY KEY ( name );
 CREATE TABLE "Thesises"
@@ -49,32 +61,40 @@ CREATE TABLE "Thesises"
     name VARCHAR(150) NOT NULL,
     "numberOfRoles" INTEGER NOT NULL,
     description VARCHAR(250),
-    photo VARCHAR(250)
+    photo VARCHAR(250),
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "Thesises" ADD CONSTRAINT thesisPk PRIMARY KEY ( id );
 CREATE TABLE "ThesisBranches"
 (
     "thesisId" INTEGER NOT NULL,
-    "branchName" VARCHAR(50) NOT NULL
+    "branchName" VARCHAR(50) NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "ThesisBranches" ADD CONSTRAINT thesisBranchPk PRIMARY KEY ( "thesisId",
 "branchName" );
 CREATE TABLE "ThesisSkills"
 (
     "thesisId" INTEGER NOT NULL,
-    "skillName" VARCHAR(50) NOT NULL
+    "skillName" VARCHAR(50) NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "ThesisSkills" ADD CONSTRAINT thesisSkillPk PRIMARY KEY ( "thesisId",
 "skillName" );
 CREATE TABLE "Users"
 (
     login VARCHAR(30) NOT NULL,
-    password VARCHAR(30) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     "firstName" VARCHAR(30),
     "lastName" VARCHAR(30),
     "studentId" INTEGER,
     picture VARCHAR(100),
-    "roleId" INTEGER
+    "roleId" INTEGER,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 CREATE UNIQUE INDEX userIdx ON
     "Users" ( "roleId" ASC );
@@ -82,7 +102,9 @@ ALTER TABLE "Users" ADD CONSTRAINT userPk PRIMARY KEY ( login );
 CREATE TABLE "UserBranches"
 (
     "userLogin" VARCHAR(30) NOT NULL,
-    "branchName" VARCHAR(50) NOT NULL
+    "branchName" VARCHAR(50) NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "UserBranches" ADD CONSTRAINT userBranchPk PRIMARY KEY ( "userLogin",
 "branchName" );
@@ -90,7 +112,9 @@ CREATE TABLE "UserSkills"
 (
     priority INTEGER NOT NULL,
     "userLogin" VARCHAR(30) NOT NULL,
-    "skillName" VARCHAR(50) NOT NULL
+    "skillName" VARCHAR(50) NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "UserSkills" ADD CONSTRAINT userSkillPk PRIMARY KEY ( "userLogin", "skillName" );
 CREATE TABLE "Roles"
@@ -99,7 +123,9 @@ CREATE TABLE "Roles"
     capitan BOOLEAN NOT NULL,
     description VARCHAR(250),
     "userLogin" VARCHAR(30),
-    "thesisId" INTEGER NOT NULL
+    "thesisId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 CREATE UNIQUE INDEX roleIdx ON
     "Roles" ( "userLogin" ASC );
@@ -107,7 +133,9 @@ ALTER TABLE "Roles" ADD CONSTRAINT rolePk PRIMARY KEY ( id );
 CREATE TABLE "RoleSkills"
 (
     "skillName" VARCHAR(50) NOT NULL,
-    "roleId" INTEGER NOT NULL
+    "roleId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP WITH TIME ZONE,
+    "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "RoleSkills" ADD CONSTRAINT roleSkillPk PRIMARY KEY ( "skillName", "roleId" );
 ALTER TABLE "Applications"
