@@ -9,28 +9,28 @@ const client = axios.create({
 
 export default client;
 
-export const login = (email, password) => ({
+export const login = (login, password) => ({
   type: "LOGIN",
   payload: {
     request: {
       method: "POST",
       url: "/login",
       data: {
-        email,
+        login,
         password
       }
     }
   }
 });
 
-export const register = (email, password) => ({
+export const register = (login, password) => ({
   type: "REGISTER",
   payload: {
     request: {
       method: "POST",
       url: "/register",
       data: {
-        email,
+        login,
         password
       }
     }

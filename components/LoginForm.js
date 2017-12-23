@@ -13,7 +13,7 @@ class LoginForm extends Component {
 
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.login(values.email, values.password);
+        this.props.login(values.login, values.password);
       }
     });
   };
@@ -34,7 +34,7 @@ class LoginForm extends Component {
         style={{ maxWidth: "280px" }}
       >
         <FormItem>
-          {getFieldDecorator("email", {
+          {getFieldDecorator("login", {
             rules: [{ required: true, message: "Proszę podac email!" }]
           })(
             <Input

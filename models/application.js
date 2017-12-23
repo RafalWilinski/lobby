@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: "roleId"
     });
 
-    Application.User = Application.belongsTo(models.user, {
+    Application.User = Application.belongsTo(models.User, {
       foreignKey: "login",
       sourceKey: "login"
     });

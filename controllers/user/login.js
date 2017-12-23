@@ -6,7 +6,7 @@ const config = require("../../config");
 const login = async ctx => {
   const user = await User.findOne({
     where: {
-      email: ctx.request.body.email
+      login: ctx.request.body.login
     }
   });
 
@@ -17,7 +17,7 @@ const login = async ctx => {
     );
 
     if (isCorrectPassword) {
-      const token = jwt.sign(user.id, config("jwtSecret"));
+      const token = jwt.sign(user.login, config("jwtSecret"));
       ctx.body = {
         user,
         token

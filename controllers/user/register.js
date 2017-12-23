@@ -8,11 +8,11 @@ const register = async ctx => {
 
   try {
     const user = await User.create({
-      email: ctx.request.body.email,
+      login: ctx.request.body.login,
       password: hashedPassword
     });
 
-    const token = jwt.sign(user.id, config("jwtSecret"));
+    const token = jwt.sign(user.login, config("jwtSecret"));
 
     ctx.body = {
       user,

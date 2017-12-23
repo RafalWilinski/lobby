@@ -13,7 +13,7 @@ class RegistrationForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        this.props.register(values.email, values.password);
+        this.props.register(values.login, values.password);
       }
     });
   };
@@ -70,7 +70,7 @@ class RegistrationForm extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit} style={{ width: "350px" }}>
         <FormItem {...formItemLayout} label="E-mail" hasFeedback>
-          {getFieldDecorator("email", {
+          {getFieldDecorator("login", {
             rules: [
               {
                 type: "email",
