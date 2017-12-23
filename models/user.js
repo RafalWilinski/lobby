@@ -3,13 +3,23 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define("User", {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    email: {
+    login: {
       type: DataTypes.STRING,
-      unique: true
+      unique: true,
+      primaryKey: true
     },
     password: DataTypes.STRING,
-    pictureUrl: DataTypes.STRING
+    picture: DataTypes.STRING,
+    studentId: DataTypes.INTEGER,
+    roleId: DataTypes.INTEGER
   });
+
+  User.associate = models => {
+    User.Role = User.hasOne(models.Role, {
+      foreignKey: "id",
+      sourceKey: "roleId"
+    });
+  };
 
   return User;
 };
