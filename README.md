@@ -33,12 +33,7 @@ npm run dev
 This command will start both Dockerized Postgres container and Koa based
 webserver (both frontend and backend).
 
-### Creating new models
-
-This consists of two parts:
-
-1. Defining ORM model
-2. Creating seeds (example data)
+Before doing any calls please setup database with `db_en.sql` file.
 
 #### Defining ORM model
 
@@ -60,22 +55,6 @@ Then head to `models/<yourModelName.js>` and tweak it. Add constraints, keys,
 indexes etc.
 
 [More info here](http://docs.sequelizejs.com/manual/tutorial/models-definition.html)
-
-#### Creating example data
-
-```bash
-node_modules/.bin/sequelize seed:generate --name demo-user
-```
-
-This command will create a seed file in seeders folder. File name will look
-something like XXXXXXXXXXXXXX-demo-user.js, It follows same up / down semantics
-like migration files.
-
-To apply seeds:
-
-```bash
-node_modules/.bin/sequelize db:seed:all
-```
 
 ## Deployment
 
