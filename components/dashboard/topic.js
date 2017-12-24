@@ -26,10 +26,27 @@ class Topic extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
-      console.log(values);
+      const roles = [];
+      values.roleName.forEach((roleName, index) => {
+        roles[index] = {
+          name: roleName,
+          description: values.roleDesc[index],
+          skills: values.roleSkills[index]
+        };
+      });
+
+      const thesis = {
+        name: values.name,
+        description: values.description,
+        public: values.public,
+        branches: values.relatives
+      };
+
+      roles.shift();
 
       if (!err) {
-        this.props.register(values.login, values.password);
+        console.log(thesis, roles);
+        this.props.create(thesis, roles);
       }
     });
   };

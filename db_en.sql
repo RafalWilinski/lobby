@@ -55,7 +55,7 @@ CREATE TABLE "Skills"
     "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "Skills" ADD CONSTRAINT skillPk PRIMARY KEY ( name );
-CREATE TABLE "Thesises"
+CREATE TABLE "Theses"
 (
     id SERIAL,
     name VARCHAR(150) NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE "Thesises"
     "createdAt" TIMESTAMP WITH TIME ZONE,
     "updatedAt" TIMESTAMP WITH TIME ZONE
 );
-ALTER TABLE "Thesises" ADD CONSTRAINT thesisPk PRIMARY KEY ( id );
+ALTER TABLE "Theses" ADD CONSTRAINT thesisPk PRIMARY KEY ( id );
 CREATE TABLE "ThesisBranches"
 (
     "thesisId" INTEGER NOT NULL,
@@ -120,6 +120,7 @@ ALTER TABLE "UserSkills" ADD CONSTRAINT userSkillPk PRIMARY KEY ( "userLogin", "
 CREATE TABLE "Roles"
 (
     id SERIAL,
+    name VARCHAR(30),
     capitan BOOLEAN NOT NULL,
     description VARCHAR(250),
     "userLogin" VARCHAR(30),
@@ -157,19 +158,19 @@ ALTER TABLE "PromoterThesises"
         REFERENCES "Promoters" ( "firstName", "lastName" );
 ALTER TABLE "PromoterThesises"
     ADD CONSTRAINT promoterThesisThesisFk FOREIGN KEY ( "thesisId" )
-        REFERENCES "Thesises" ( id );
+        REFERENCES "Theses" ( id );
 ALTER TABLE "ThesisBranches"
     ADD CONSTRAINT thesisBranchBranchFk FOREIGN KEY ( "branchName" )
         REFERENCES "Branches" ( name );
 ALTER TABLE "ThesisBranches"
     ADD CONSTRAINT thesisBranchThesisFk FOREIGN KEY ( "thesisId" )
-        REFERENCES "Thesises" ( id );
+        REFERENCES "Theses" ( id );
 ALTER TABLE "ThesisSkills"
     ADD CONSTRAINT thesisSkillSkillFk FOREIGN KEY ( "skillName" )
         REFERENCES "Skills" ( name );
 ALTER TABLE "ThesisSkills"
     ADD CONSTRAINT thesisSkillThesisFk FOREIGN KEY ( "thesisId" )
-        REFERENCES "Thesises" ( id );
+        REFERENCES "Theses" ( id );
 ALTER TABLE "UserBranches"
     ADD CONSTRAINT userBranchBranchFk FOREIGN KEY ( "branchName" )
         REFERENCES "Branches" ( name );
@@ -193,7 +194,7 @@ ALTER TABLE "RoleSkills"
         REFERENCES "Roles" ( id );
 ALTER TABLE "Roles"
     ADD CONSTRAINT roleThesisFk FOREIGN KEY ( "thesisId" )
-        REFERENCES "Thesises" ( id );
+        REFERENCES "Theses" ( id );
 ALTER TABLE "Roles"
     ADD CONSTRAINT roleUserFk FOREIGN KEY ( "userLogin" )
         REFERENCES "Users" ( login );
