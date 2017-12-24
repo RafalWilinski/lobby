@@ -11,5 +11,14 @@ module.exports = (sequelize, DataTypes) => {
     numberOfRoles: DataTypes.INTEGER
   });
 
+  Thesis.associate = models => {
+    Thesis.Roles = Thesis.hasMany(models.Role, {
+      sourceKey: 'id',
+      targetKey: 'thesisId'
+    });
+
+    
+  };
+
   return Thesis;
 };

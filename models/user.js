@@ -19,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "id",
       sourceKey: "roleId"
     });
+
+    User.Applications = User.hasMany(models.Application, {
+      foreignKey: "login",
+      sourceKey: "login"
+    });
   };
 
   return User;
