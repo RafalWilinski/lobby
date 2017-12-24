@@ -36,3 +36,17 @@ export const register = (login, password) => ({
     }
   }
 });
+
+export const createThesis = (thesis, roles) => ({
+  type: "THESIS_CREATE",
+  payload: {
+    request: {
+      method: "POST",
+      url: "/thesis",
+      data: {
+        thesis,
+        roles
+      }
+    }
+  }
+});

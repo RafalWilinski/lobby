@@ -1,0 +1,79 @@
+fixtures:
+  - model: Skill
+    data:
+      name: C
+  - model: Skill
+    data:
+      name: C++
+  - model: Skill
+    data:
+      name: C#
+  - model: Skill
+    data:
+      name: Python
+  - model: Skill
+    data:
+      name: Java
+  - model: Skill
+    data:
+      name: Javascript
+  - model: Skill
+    data:
+      name: Assembly
+  - model: Skill
+    data:
+      name: Arduino
+  - model: Skill
+    data:
+      name: SQL
+  - model: Skill
+    data:
+      name: NoSQL
+  - model: Skill
+    data:
+      name: PHP
+  - model: Skill
+    data:
+      name: Ruby on Rails
+  - model: Skill
+    data:
+      name: Go
+  - model: Skill
+    data:
+      name: Web Development
+  - model: Skill
+    data:
+      name: Scala
+  - model: Skill
+    data:
+      name: Node.js
+  - model: Skill
+    data:
+      name: HTML
+  - model: Skill
+    data:
+      name: .NET
+  - model: Skill
+    data:
+      name: Swift
+  - model: Skill
+    data:
+      name: Objective-C
+  - model: Skill
+    data:
+      name: Rust
+  - model: Skill
+    data:
+      name: Perl
+  - model: Skill
+    data:
+      name: Matlab
+  - model: Skill
+    data:
+      name: Latex
+  - model: Skill
+    data:
+      name: Elixir
+  - model: Skill
+    data:
+      name: Ruby

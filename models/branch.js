@@ -1,11 +1,11 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  var Skill = sequelize.define("Skill", {
+  var Branch = sequelize.define("Branch", {
     name: {
       type: DataTypes.STRING,
       primaryKey: true
     }
   });
 
-  return Skill;
+  return Branch;
 };

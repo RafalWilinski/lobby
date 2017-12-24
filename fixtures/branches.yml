@@ -1,0 +1,50 @@
+fixtures:
+  - model: Branch
+    data:
+      name: Przetwarzanie Rozproszone
+  - model: Branch
+    data:
+      name: Analiza Danych
+  - model: Branch
+    data:
+      name: Technologie Internetowe
+  - model: Branch
+    data:
+      name: Programowanie Równoległe
+  - model: Branch
+    data:
+      name: Badania Operacyjne
+  - model: Branch
+    data:
+      name: Matematyka
+  - model: Branch
+    data:
+      name: Sterowniki PLC
+  - model: Branch
+    data:
+      name: Gry komputerowe i symulacje
+  - model: Branch
+    data:
+      name: Programowanie Niskopoziomowe
+  - model: Branch
+    data:
+      name: Bazy Danych
+  - model: Branch
+    data:
+      name: Algorytmy i Struktury Danych
+  - model: Branch
+    data:
+      name: Mikrokontrolery
+  - model: Branch
+    data:
+      name: Automatyka i Robotyka
+  - model: Branch
+    data:
+      name: Sieci Komputerowe
+  - model: Branch
+    data:
+      name: Sztuczna Inteligencja
+  - model: Branch
+    data:
+      name: Inzynieria Oprogramowania
+

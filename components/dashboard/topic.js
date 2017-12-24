@@ -25,9 +25,11 @@ const { Header, Content, Footer, Sider } = Layout;
 class Topic extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      console.log(values);
+
       if (!err) {
-        console.log("Received values of form: ", values);
+        this.props.register(values.login, values.password);
       }
     });
   };
@@ -43,15 +45,15 @@ class Topic extends React.Component {
   remove = k => {
     const { form } = this.props;
     // can use data-binding to get
-    const keys = form.getFieldValue("keys");
+    const roles = form.getFieldValue("roles");
     // We need at least one passenger
-    if (keys.length === 1) {
+    if (roles.length === 1) {
       return;
     }
 
     // can use data-binding to set
     form.setFieldsValue({
-      keys: keys.filter(key => key !== k)
+      roles: roles.filter(key => key !== k)
     });
   };
 
@@ -59,12 +61,12 @@ class Topic extends React.Component {
     uuid++;
     const { form } = this.props;
     // can use data-binding to get
-    const keys = form.getFieldValue("keys");
-    const nextKeys = keys.concat(uuid);
+    const roles = form.getFieldValue("roles");
+    const nextRoles = roles.concat(uuid);
     // can use data-binding to set
     // important! notify form to detect changes
     form.setFieldsValue({
-      keys: nextKeys
+      roles: nextRoles
     });
   };
 
@@ -88,10 +90,10 @@ class Topic extends React.Component {
       }
     };
 
-    getFieldDecorator("keys", { initialValue: [] });
-    const keys = getFieldValue("keys");
+    getFieldDecorator("roles", { initialValue: [] });
+    const roles = getFieldValue("roles");
 
-    const formItems = keys.map((k, index) => {
+    const formItems = roles.map((k, index) => {
       return (
         <div key={k}>
           <FormItem
@@ -99,7 +101,7 @@ class Topic extends React.Component {
             label={index === 0 ? "Członkowie Druzyny" : ""}
             required={true}
           >
-            {getFieldDecorator(`names-${k}`, {
+            {getFieldDecorator(`roleName[${k}]`, {
               validateTrigger: ["onChange", "onBlur"],
               rules: [
                 {
@@ -114,11 +116,11 @@ class Topic extends React.Component {
                 style={{ width: "80%", marginRight: 8 }}
               />
             )}
-            {keys.length > 1 ? (
+            {roles.length > 1 ? (
               <Icon
                 className="dynamic-delete-button"
                 type="minus-circle-o"
-                disabled={keys.length === 1}
+                disabled={roles.length === 1}
                 onClick={() => this.remove(k)}
               />
             ) : null}
@@ -128,7 +130,7 @@ class Topic extends React.Component {
             label={index === 0 ? "Opis Stanowiska" : ""}
             required={true}
           >
-            {getFieldDecorator(`description-${k}`, {
+            {getFieldDecorator(`roleDesc[${k}]`, {
               validateTrigger: ["onChange", "onBlur"],
               rules: [
                 {
@@ -150,7 +152,7 @@ class Topic extends React.Component {
             label={index === 0 ? "Wymagane Umiejętnosci" : ""}
             required={true}
           >
-            {getFieldDecorator(`select-multiple-${k}`, {
+            {getFieldDecorator(`roleSkills[${k}]`, {
               rules: [
                 {
                   required: true,
@@ -180,7 +182,7 @@ class Topic extends React.Component {
         <Content style={{ marginTop: "20px" }}>
           <Form onSubmit={this.handleSubmit}>
             <FormItem {...formItemLayout} label="Temat Pracy" hasFeedback>
-              {getFieldDecorator("select", {
+              {getFieldDecorator("name", {
                 rules: [
                   { required: true, message: "Proszę podaj nazwę tematu" }
                 ]
@@ -190,7 +192,7 @@ class Topic extends React.Component {
             </FormItem>
 
             <FormItem {...formItemLayout} label="Opis Tematu" hasFeedback>
-              {getFieldDecorator("select", {
+              {getFieldDecorator("description", {
                 rules: [{ required: true, message: "Proszę dodaj krótki opis" }]
               })(
                 <TextArea
@@ -201,7 +203,7 @@ class Topic extends React.Component {
             </FormItem>
 
             <FormItem {...formItemLayout} label="Zagadnienie/a">
-              {getFieldDecorator("select-multiple", {
+              {getFieldDecorator("relatives", {
                 rules: [
                   {
                     required: true,
@@ -224,7 +226,7 @@ class Topic extends React.Component {
               label="Publiczny?"
               extra="Niektórzy nie chcą ujawniac tematów swoich prac publicznie. Aplikujący otrzyma pełne szczegóły dopiero po aplikacji"
             >
-              {getFieldDecorator("switch", { valuePropName: "checked" })(
+              {getFieldDecorator("public", { valuePropName: "checked" })(
                 <Switch />
               )}
             </FormItem>
@@ -237,7 +239,7 @@ class Topic extends React.Component {
             </FormItem>
             {formItems}
 
-            {getFieldValue("keys").length < 5 && (
+            {getFieldValue("roles").length < 5 && (
               <FormItem {...formItemLayoutWithOutLabel}>
                 <Button
                   type="dashed"

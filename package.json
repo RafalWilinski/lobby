@@ -30,7 +30,8 @@
     "redux-axios-middleware": "^4.0.0",
     "redux-thunk": "^2.2.0",
     "sequelize": "^4.19.0",
-    "sequelize-cli": "^3.0.0"
+    "sequelize-cli": "^3.0.0",
+    "sequelize-fixtures": "^0.7.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
@@ -42,7 +43,8 @@
     "deploy": "now --public",
     "dev": "concurrently --names \"APP,DB\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm run app\" \"npm run dev-db\" --kill-others",
     "dev-db": "docker-compose -f docker-compose-dev.yml up",
-    "app": "nodemon -w server.js -w routes -w controllers -w models"
+    "app": "nodemon -w server.js -w routes -w controllers -w models",
+    "seed": "node fixtures/loadFixtures.js"
   },
   "author": "Rafal Wilinski",
   "license": "ISC"
