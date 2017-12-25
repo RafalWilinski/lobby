@@ -6,7 +6,7 @@ const create = async ctx => {
   try {
     const thesis = await Thesis.create({
       ...ctx.request.body.thesis,
-      numberOfRoles: ctx.request.body.roles.length,
+      numberOfRoles: ctx.request.body.roles.length
     });
 
     const roles = await Promise.all(
@@ -14,12 +14,12 @@ const create = async ctx => {
         Role.create({
           ...role,
           thesisId: thesis.dataValues.id,
-          capitan: false,
+          capitan: false
         })
       )
     );
 
-    console.log(thesis,roles);
+    console.log(thesis, roles);
 
     ctx.body = {
       thesis,
@@ -27,7 +27,7 @@ const create = async ctx => {
     };
   } catch (err) {
     console.log(err);
-    
+
     throw {
       statusCode: 400,
       message: "Nie udało się utworzyć tematu",

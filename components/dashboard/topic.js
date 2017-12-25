@@ -27,7 +27,8 @@ class Topic extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      skills: []
+      skills: [],
+      branches: []
     };
   }
 
@@ -35,6 +36,12 @@ class Topic extends React.Component {
     axios.get("/api/skills").then(payload => {
       this.setState({
         skills: payload.data.skills
+      });
+    });
+
+    axios.get("/api/branches").then(payload => {
+      this.setState({
+        branches: payload.data.branches
       });
     });
   }
@@ -100,7 +107,6 @@ class Topic extends React.Component {
   };
 
   render() {
-    console.log(this.state.skills);
     const { getFieldDecorator, getFieldValue } = this.props.form;
     const formItemLayout = {
       labelCol: {
@@ -250,7 +256,11 @@ class Topic extends React.Component {
                   mode="multiple"
                   placeholder="Wybierz zagadnienia pokrewne"
                 >
-                  {topics.map(topic => <Option value={topic}>{topic}</Option>)}
+                  {this.state.branches.map(branch => (
+                    <Option value={branch.name} key={branch.name}>
+                      {branch.name}
+                    </Option>
+                  ))}
                 </Select>
               )}
             </FormItem>
