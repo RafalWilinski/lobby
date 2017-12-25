@@ -61,6 +61,7 @@ CREATE TABLE "Theses"
     name VARCHAR(150) NOT NULL,
     "numberOfRoles" INTEGER NOT NULL,
     description VARCHAR(250),
+    isPublic BOOLEAN NOT NULL,
     photo VARCHAR(250),
     "createdAt" TIMESTAMP WITH TIME ZONE,
     "updatedAt" TIMESTAMP WITH TIME ZONE

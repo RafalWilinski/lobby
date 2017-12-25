@@ -11,6 +11,7 @@ import {
   Icon,
   Input
 } from "antd";
+import axios from "axios";
 import skills from "../../consts/skills";
 import topics from "../../consts/topics";
 const FormItem = Form.Item;
@@ -23,6 +24,21 @@ const { TextArea } = Input;
 const { Header, Content, Footer, Sider } = Layout;
 
 class Topic extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      skills: []
+    };
+  }
+
+  componentDidMount() {
+    axios.get("/api/skills").then(payload => {
+      this.setState({
+        skills: payload.data.skills
+      });
+    });
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
@@ -61,14 +77,12 @@ class Topic extends React.Component {
 
   remove = k => {
     const { form } = this.props;
-    // can use data-binding to get
     const roles = form.getFieldValue("roles");
-    // We need at least one passenger
+
     if (roles.length === 1) {
       return;
     }
 
-    // can use data-binding to set
     form.setFieldsValue({
       roles: roles.filter(key => key !== k)
     });
@@ -77,17 +91,16 @@ class Topic extends React.Component {
   add = () => {
     uuid++;
     const { form } = this.props;
-    // can use data-binding to get
     const roles = form.getFieldValue("roles");
     const nextRoles = roles.concat(uuid);
-    // can use data-binding to set
-    // important! notify form to detect changes
+
     form.setFieldsValue({
       roles: nextRoles
     });
   };
 
   render() {
+    console.log(this.state.skills);
     const { getFieldDecorator, getFieldValue } = this.props.form;
     const formItemLayout = {
       labelCol: {
@@ -183,7 +196,11 @@ class Topic extends React.Component {
                 placeholder="Wybierz wymagane umiejetnosci"
                 style={{ width: "80%", marginRight: 8 }}
               >
-                {skills.map(skill => <Option value={skill}>{skill}</Option>)}
+                {this.state.skills.map(skill => (
+                  <Option value={skill.name} key={skill.name}>
+                    {skill.name}
+                  </Option>
+                ))}
               </Select>
             )}
           </FormItem>
