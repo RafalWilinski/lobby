@@ -1,5 +1,14 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb, Icon, Table, Row, Col } from "antd";
+import {
+  Layout,
+  Menu,
+  Breadcrumb,
+  Icon,
+  Table,
+  Row,
+  Col,
+  notification
+} from "antd";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -101,6 +110,19 @@ const applicationsData = [
 ];
 
 class Dashboard extends React.Component {
+  componentDidMount() {
+    if (this.props.url.query.success === "thesis") {
+      setTimeout(() => {
+        notification.open({
+          message: "Sukces!",
+          description: "Temat utworzony!",
+          duration: 2.0,
+          icon: <Icon type="smile-circle" style={{ color: "#108ee9" }} />
+        });
+      }, 100);
+    }
+  }
+
   render() {
     return (
       <Layout>

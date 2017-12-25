@@ -13,6 +13,7 @@ import {
   Input,
   message
 } from "antd";
+import Router from "next/router";
 import axios from "axios";
 import skills from "../../consts/skills";
 import topics from "../../consts/topics";
@@ -46,6 +47,21 @@ class Topic extends React.Component {
         branches: payload.data.branches
       });
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.isLoading) {
+      if (!nextProps.isLoading && !nextProps.error) {
+        Router.push({
+          pathname: "/dashboard",
+          query: {
+            success: "thesis"
+          }
+        });
+      } else if (nextProps.error) {
+        message.error("Nie udało się utworzyć tematu.");
+      }
+    }
   }
 
   handleSubmit = e => {

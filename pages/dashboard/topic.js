@@ -8,7 +8,10 @@ import Topic from "../../components/dashboard/topic";
 import { initStore } from "../../store";
 import { createThesis } from "../../actions/api";
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  isLoading: state.createThesis.isLoading,
+  error: state.createThesis.error
+});
 
 const mapDispatchToProps = dispatch => ({
   create: (...args) => dispatch(createThesis(...args))

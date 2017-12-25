@@ -26,8 +26,6 @@ const create = async ctx => {
       roles
     };
   } catch (err) {
-    console.log(err);
-
     throw {
       statusCode: 400,
       message: "Nie udało się utworzyć tematu",
