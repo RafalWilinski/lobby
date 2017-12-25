@@ -10,7 +10,7 @@ const create = async ctx => {
     });
 
     const roles = await Promise.all(
-      ctx.request.body.roles.forEach(async role =>
+      ctx.request.body.roles.map(role =>
         Role.create({
           ...role,
           thesisId: thesis.dataValues.id,

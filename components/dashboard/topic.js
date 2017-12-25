@@ -2,6 +2,7 @@ import {
   Form,
   Select,
   Layout,
+  Alert,
   InputNumber,
   Switch,
   Radio,
@@ -9,7 +10,8 @@ import {
   Button,
   Upload,
   Icon,
-  Input
+  Input,
+  message
 } from "antd";
 import axios from "axios";
 import skills from "../../consts/skills";
@@ -68,8 +70,9 @@ class Topic extends React.Component {
       roles.shift();
 
       if (!err) {
-        console.log(thesis, roles);
         this.props.create(thesis, roles);
+      } else {
+        message.error("Popraw błędy w formularzu");
       }
     });
   };
@@ -107,6 +110,7 @@ class Topic extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     const { getFieldDecorator, getFieldValue } = this.props.form;
     const formItemLayout = {
       labelCol: {
@@ -319,7 +323,18 @@ class Topic extends React.Component {
             </FormItem>
 
             <FormItem wrapperCol={{ span: 12, offset: 4 }}>
-              <Button type="primary" htmlType="submit">
+              {this.props.form.getFieldValue("roles").length < 1 && (
+                <Alert
+                  message="Musisz dodać przynajmniej jeden wakat"
+                  type="warning"
+                  showIcon
+                />
+              )}
+              <Button
+                type="primary"
+                htmlType="submit"
+                disabled={this.props.form.getFieldValue("roles").length < 1}
+              >
                 Utwórz
               </Button>
             </FormItem>
