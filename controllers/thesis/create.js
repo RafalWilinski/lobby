@@ -13,8 +13,7 @@ const create = async ctx => {
       ctx.request.body.roles.map(role =>
         Role.create({
           ...role,
-          thesisId: thesis.dataValues.id,
-          capitan: false
+          thesisId: thesis.dataValues.id
         })
       )
     );

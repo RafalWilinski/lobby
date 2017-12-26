@@ -10,7 +10,8 @@ import { createThesis } from "../../actions/api";
 
 const mapStateToProps = state => ({
   isLoading: state.createThesis.isLoading,
-  error: state.createThesis.error
+  error: state.createThesis.error,
+  user: state.user.data
 });
 
 const mapDispatchToProps = dispatch => ({

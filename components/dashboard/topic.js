@@ -68,11 +68,16 @@ class Topic extends React.Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       const roles = [];
-      values.roleName.forEach((roleName, index) => {
+      values.roleName.filter(x => !!x).forEach((roleName, index) => {
         roles[index] = {
           name: roleName,
           description: values.roleDesc[index],
-          skills: values.roleSkills[index]
+          skills: values.roleSkills[index],
+          capitan: index === 0,
+          userLogin:
+            index === 0
+              ? JSON.parse(localStorage.getItem("user")).user.login
+              : undefined
         };
       });
 
@@ -82,8 +87,6 @@ class Topic extends React.Component {
         public: values.public,
         branches: values.relatives
       };
-
-      roles.shift();
 
       if (!err) {
         this.props.create(thesis, roles);
@@ -127,6 +130,7 @@ class Topic extends React.Component {
 
   render() {
     console.log(this.props);
+
     const { getFieldDecorator, getFieldValue } = this.props.form;
     const formItemLayout = {
       labelCol: {
@@ -154,7 +158,7 @@ class Topic extends React.Component {
         <div key={k}>
           <FormItem
             {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-            label={index === 0 ? "Członkowie Druzyny" : ""}
+            label={index === 0 ? "Kapitan (Ty)" : ""}
             required={true}
           >
             {getFieldDecorator(`roleName[${k}]`, {
