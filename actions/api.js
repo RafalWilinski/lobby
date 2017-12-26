@@ -51,4 +51,12 @@ export const createThesis = (thesis, roles) => ({
   }
 });
 
-
+export const getTheses = userLogin => ({
+  type: "GET_THESES",
+  payload: {
+    request: {
+      method: "GET",
+      url: `/thesis?userLogin=${userLogin}`
+    }
+  }
+});

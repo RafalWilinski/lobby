@@ -121,6 +121,8 @@ class Dashboard extends React.Component {
         });
       }, 100);
     }
+
+    this.props.get(JSON.parse(localStorage.getItem("user")).user.login);
   }
 
   render() {

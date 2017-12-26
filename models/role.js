@@ -5,10 +5,14 @@ module.exports = (sequelize, DataTypes) => {
     userLogin: DataTypes.STRING,
     description: DataTypes.STRING,
     capitan: DataTypes.BOOLEAN,
-    thesisId: DataTypes.INTEGER,
-    photo: DataTypes.STRING,
-    numberOfRoles: DataTypes.INTEGER
+    thesisId: DataTypes.INTEGER
   });
+
+  Role.associate = models => {
+    Role.Thesis = Role.belongsTo(models.Thesis, {
+      foreignKey: "thesisId"
+    });
+  };
 
   return Role;
 };
