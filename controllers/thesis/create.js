@@ -12,13 +12,20 @@ const create = async ctx => {
     });
 
     const roles = await Promise.all(
-      ctx.request.body.roles.map(role => {
-        const roleObj = Role.create({
+      ctx.request.body.roles.map(async role => {
+        const roleObj = await Role.create({
           ...role,
           thesisId: thesis.dataValues.id
         });
 
-        return roleObj;
+        const roleSkills = role.skills.map(skill =>
+          RoleSkill.create({
+            skillName: skill,
+            roleId: roleObj.id
+          })
+        );
+
+        return Promise.all(roleSkills);
       })
     );
 
@@ -36,6 +43,8 @@ const create = async ctx => {
       roles
     };
   } catch (err) {
+    console.log(err);
+
     throw {
       statusCode: 400,
       message: "Nie udało się utworzyć tematu",
