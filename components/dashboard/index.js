@@ -7,6 +7,7 @@ import {
   Table,
   Row,
   Col,
+  Spin,
   notification
 } from "antd";
 
@@ -132,24 +133,38 @@ class Dashboard extends React.Component {
           <h1>Witaj!</h1>
         </Header>
         <Content style={{ margin: "0 16px" }}>
-          <Row gutter={16}>
-            <Col className="gutter-row" span={12}>
-              <h2 style={{ margin: "20px 0" }}>Twoje Tematy</h2>
-              <Table
-                columns={topicColumns}
-                dataSource={topicsData}
-                pagination={false}
-              />
-            </Col>
-            <Col className="gutter-row" span={12}>
-              <h2 style={{ margin: "20px 0" }}>Twoje Aplikacje</h2>
-              <Table
-                columns={applyColumns}
-                dataSource={applicationsData}
-                pagination={false}
-              />
-            </Col>
-          </Row>
+          {this.props.isLoading ? (
+            <Spin />
+          ) : (
+            <Row gutter={16}>
+              <Col className="gutter-row" span={12}>
+                <h2 style={{ margin: "20px 0" }}>Twoje Tematy</h2>
+                <Table
+                  columns={topicColumns}
+                  dataSource={this.props.theses.data
+                    .filter(role => role.capitan)
+                    .map(role => role.Thesis)}
+                  pagination={false}
+                  locale={{
+                    emptyText: "Brak Tematów"
+                  }}
+                />
+              </Col>
+              <Col className="gutter-row" span={12}>
+                <h2 style={{ margin: "20px 0" }}>Twoje Aplikacje</h2>
+                <Table
+                  columns={applyColumns}
+                  dataSource={this.props.theses.data
+                    .filter(role => !role.capitan)
+                    .map(role => role.Thesis)}
+                  pagination={false}
+                  locale={{
+                    emptyText: "Brak Aplikacji"
+                  }}
+                />
+              </Col>
+            </Row>
+          )}
         </Content>
       </Layout>
     );

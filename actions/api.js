@@ -56,7 +56,7 @@ export const getTheses = userLogin => ({
   payload: {
     request: {
       method: "GET",
-      url: `/thesis?userLogin=${userLogin}`
+      url: `/user/theses?userLogin=${userLogin}`
     }
   }
 });

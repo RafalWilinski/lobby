@@ -16,10 +16,12 @@ const mapDispatchToProps = dispatch => ({
   get: (...args) => dispatch(getTheses(...args))
 });
 
-export default withRedux(initStore, null, null)(props => (
-  <Head>
-    <DashboardWrapper {...props}>
-      <Dashboard {...props} />
-    </DashboardWrapper>
-  </Head>
-));
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
+  props => (
+    <Head>
+      <DashboardWrapper {...props}>
+        <Dashboard {...props} />
+      </DashboardWrapper>
+    </Head>
+  )
+);
