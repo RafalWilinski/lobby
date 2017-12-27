@@ -76,40 +76,6 @@ const applyColumns = [
   }
 ];
 
-const topicsData = [
-  {
-    key: "1",
-    name: "Przetwarzanie obrazów za pomocą biblioteki open CV",
-    applicants: 32
-  },
-  {
-    key: "2",
-    name: "System dobierania studentów do prac inzynierskich",
-    applicants: 12
-  }
-];
-
-const applicationsData = [
-  {
-    key: "1",
-    topicName: "Przetwarzanie obrazów za pomocą biblioteki open CV",
-    positionName: "Python (OpenCV) Developer",
-    status: "Zaakceptowany"
-  },
-  {
-    key: "2",
-    topicName: "System dobierania studentów do prac inzynierskich",
-    positionName: "Programista Javy",
-    status: "Odrzucony"
-  },
-  {
-    key: "3",
-    topicName: "Rozproszone obliczenia",
-    positionName: "Python Developer",
-    status: "W trakcie przetwarzanie"
-  }
-];
-
 class Dashboard extends React.Component {
   componentDidMount() {
     if (this.props.url.query.success === "thesis") {
@@ -133,7 +99,7 @@ class Dashboard extends React.Component {
           <h1>Witaj!</h1>
         </Header>
         <Content style={{ margin: "0 16px" }}>
-          {this.props.isLoading ? (
+          {this.props.isLoading || !this.props.theses ? (
             <Spin />
           ) : (
             <Row gutter={16}>

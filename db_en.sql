@@ -129,8 +129,7 @@ CREATE TABLE "Roles"
     "createdAt" TIMESTAMP WITH TIME ZONE,
     "updatedAt" TIMESTAMP WITH TIME ZONE
 );
-CREATE UNIQUE INDEX roleIdx ON
-    "Roles" ( "userLogin" ASC );
+
 ALTER TABLE "Roles" ADD CONSTRAINT rolePk PRIMARY KEY ( id );
 CREATE TABLE "RoleSkills"
 (

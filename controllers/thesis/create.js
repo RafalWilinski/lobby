@@ -1,5 +1,7 @@
 const Thesis = require("../../models/").Thesis;
+const ThesisBranch = require("../../models/").ThesisBranch;
 const Role = require("../../models/").Role;
+const RoleSkill = require("../../models/").RoleSkill;
 const config = require("../../config");
 
 const create = async ctx => {
@@ -10,15 +12,24 @@ const create = async ctx => {
     });
 
     const roles = await Promise.all(
-      ctx.request.body.roles.map(role =>
-        Role.create({
+      ctx.request.body.roles.map(role => {
+        const roleObj = Role.create({
           ...role,
           thesisId: thesis.dataValues.id
+        });
+
+        return roleObj;
+      })
+    );
+
+    const thesisBranches = await Promise.all(
+      ctx.request.body.thesis.branches.map(branch =>
+        ThesisBranch.create({
+          thesisId: thesis.id,
+          branchName: branch
         })
       )
     );
-
-    console.log(thesis, roles);
 
     ctx.body = {
       thesis,
