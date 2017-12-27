@@ -2,8 +2,14 @@
 module.exports = (sequelize, DataTypes) => {
   const UserSkill = sequelize.define("UserSkill", {
     priority: DataTypes.INTEGER,
-    userLogin: DataTypes.STRING,
-    skillName: DataTypes.STRING
+    userLogin: {
+      type: DataTypes.STRING,
+      primaryKey: true
+    },
+    skillName: {
+      type: DataTypes.STRING,
+      primaryKey: true
+    }
   });
 
   return UserSkill;

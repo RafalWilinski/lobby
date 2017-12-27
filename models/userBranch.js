@@ -1,8 +1,14 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
   const UserBranch = sequelize.define("UserBranch", {
-    userLogin: DataTypes.STRING,
-    branchName: DataTypes.STRING
+    userLogin: {
+      type: DataTypes.STRING,
+      primaryKey: true
+    },
+    branchName: {
+      type: DataTypes.STRING,
+      primaryKey: true
+    }
   });
 
   return UserBranch;
