@@ -23,7 +23,7 @@ export const login = (login, password) => ({
   }
 });
 
-export const register = (login, password) => ({
+export const register = (login, password, firstName, lastName, studentId) => ({
   type: "REGISTER",
   payload: {
     request: {
@@ -31,7 +31,10 @@ export const register = (login, password) => ({
       url: "/register",
       data: {
         login,
-        password
+        password,
+		firstName,
+		lastName,
+		studentId
       }
     }
   }
