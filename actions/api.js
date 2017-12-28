@@ -32,9 +32,9 @@ export const register = (login, password, firstName, lastName, studentId) => ({
       data: {
         login,
         password,
-		firstName,
-		lastName,
-		studentId
+        firstName,
+        lastName,
+        studentId
       }
     }
   }
