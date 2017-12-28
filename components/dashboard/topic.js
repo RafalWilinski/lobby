@@ -68,7 +68,6 @@ class Topic extends React.Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       const roles = [];
-      console.log(values.roleDesc, values.roleName, values.roleSkills);
 
       values.roleName.filter(x => !!x).forEach((roleName, index) => {
         roles[index] = {

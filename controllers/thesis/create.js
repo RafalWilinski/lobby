@@ -18,18 +18,18 @@ const create = async ctx => {
           thesisId: thesis.dataValues.id
         });
 
-        const roleSkills = role.skills.map(skill =>
-          RoleSkill.create({
-            skillName: skill,
-            roleId: roleObj.id
-          })
+        return Promise.all(
+          role.skills.map(skill =>
+            RoleSkill.create({
+              skillName: skill,
+              roleId: roleObj.id
+            })
+          )
         );
-
-        return Promise.all(roleSkills);
       })
     );
 
-    const thesisBranches = await Promise.all(
+    await Promise.all(
       ctx.request.body.thesis.branches.map(branch =>
         ThesisBranch.create({
           thesisId: thesis.id,

@@ -13,7 +13,13 @@ class RegistrationForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        this.props.register(values.login, values.password, values.firstName, values.lastName, values.studentId);
+        this.props.register(
+          values.login,
+          values.password,
+          values.firstName,
+          values.lastName,
+          values.studentId
+        );
       }
     });
   };
@@ -45,7 +51,7 @@ class RegistrationForm extends React.Component {
     const { autoCompleteResult } = this.state;
 
     const headItemLayout = {
-		labelCol: {
+      labelCol: {
         xs: {
           span: 24,
           offset: 0
@@ -54,10 +60,10 @@ class RegistrationForm extends React.Component {
           span: 16,
           offset: 0
         }
-		}
-	}
+      }
+    };
 
-	const formItemLayout = {
+    const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
         sm: { span: 8 }
@@ -84,10 +90,15 @@ class RegistrationForm extends React.Component {
       <Form onSubmit={this.handleSubmit} style={{ width: "450px" }}>
         <FormItem {...headItemLayout}>
           <h1 align="center">Szukasz tematu pracy inżynierskiej?</h1>
-		  <h1 align="center">Pomożemy Ci!</h1>
-		  <h4 align="center">Ale najpierw powiedz coś o sobie</h4>
+          <h1 align="center">Pomożemy Ci!</h1>
+          <h4 align="center">Ale najpierw powiedz coś o sobie</h4>
         </FormItem>
-				<FormItem {...formItemLayout} style={{width: "350px"}} label="Imię" hasFeedback>
+        <FormItem
+          {...formItemLayout}
+          style={{ width: "350px" }}
+          label="Imię"
+          hasFeedback
+        >
           {getFieldDecorator("firstName", {
             rules: [
               {
@@ -97,7 +108,12 @@ class RegistrationForm extends React.Component {
             ]
           })(<Input />)}
         </FormItem>
-		<FormItem {...formItemLayout} style={{width: "350px"}} label="Nazwisko" hasFeedback>
+        <FormItem
+          {...formItemLayout}
+          style={{ width: "350px" }}
+          label="Nazwisko"
+          hasFeedback
+        >
           {getFieldDecorator("lastName", {
             rules: [
               {
@@ -107,17 +123,27 @@ class RegistrationForm extends React.Component {
             ]
           })(<Input />)}
         </FormItem>
-		<FormItem {...formItemLayout} style={{width: "350px"}} label="Nr indeksu" hasFeedback>
+        <FormItem
+          {...formItemLayout}
+          style={{ width: "350px" }}
+          label="Nr indeksu"
+          hasFeedback
+        >
           {getFieldDecorator("studentId", {
             rules: [
-			  {
+              {
                 required: true,
                 message: "Wprowadź nr indeksu"
               }
             ]
           })(<Input />)}
         </FormItem>
-		<FormItem {...formItemLayout} style={{width: "350px"}} label="E-mail" hasFeedback>
+        <FormItem
+          {...formItemLayout}
+          style={{ width: "350px" }}
+          label="E-mail"
+          hasFeedback
+        >
           {getFieldDecorator("login", {
             rules: [
               {
@@ -131,7 +157,12 @@ class RegistrationForm extends React.Component {
             ]
           })(<Input />)}
         </FormItem>
-        <FormItem {...formItemLayout} style={{width: "350px"}} label="Hasło" hasFeedback>
+        <FormItem
+          {...formItemLayout}
+          style={{ width: "350px" }}
+          label="Hasło"
+          hasFeedback
+        >
           {getFieldDecorator("password", {
             rules: [
               {
@@ -144,7 +175,12 @@ class RegistrationForm extends React.Component {
             ]
           })(<Input type="password" />)}
         </FormItem>
-        <FormItem {...formItemLayout} style={{width: "350px"}} label="Potwierdz hasło" hasFeedback>
+        <FormItem
+          {...formItemLayout}
+          style={{ width: "350px" }}
+          label="Potwierdz hasło"
+          hasFeedback
+        >
           {getFieldDecorator("confirm", {
             rules: [
               {
@@ -158,21 +194,25 @@ class RegistrationForm extends React.Component {
           })(<Input type="password" onBlur={this.handleConfirmBlur} />)}
         </FormItem>
 
-        <FormItem {...tailFormItemLayout} style={{ marginBottom: 8, width: "350px"}}>
+        <FormItem
+          {...tailFormItemLayout}
+          style={{ marginBottom: 8, width: "350px" }}
+        >
           {getFieldDecorator("agreement", {
             valuePropName: "checked",
-			rules: [
+            rules: [
               {
                 required: true,
                 message: "Zaakceptuj umowę!"
-              }]
+              }
+            ]
           })(
             <Checkbox>
               Przeczytałem warunki <a href="">umowy</a>
             </Checkbox>
           )}
         </FormItem>
-        <FormItem {...tailFormItemLayout} style={{width: "350px"}}>
+        <FormItem {...tailFormItemLayout} style={{ width: "350px" }}>
           <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
             Zarejestruj
           </Button>
