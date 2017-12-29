@@ -11,15 +11,15 @@ const register = async ctx => {
     const user = await User.create({
       ...ctx.request.body.user
     });
-	const userbranch = await UserBranch.create({
-	  ...ctx.request.body.userbranch
+    const userbranch = await UserBranch.create({
+      ...ctx.request.body.userbranch
     });
 
     const token = jwt.sign(user.login, config("jwtSecret"));
 
     ctx.body = {
       user,
-	  userbranch,
+      userbranch,
       token
     };
   } catch (err) {
@@ -28,7 +28,6 @@ const register = async ctx => {
       message: "Uzytkownik z danym mailem juz istnieje!"
     };
   }
-
 };
 
 module.exports = register;

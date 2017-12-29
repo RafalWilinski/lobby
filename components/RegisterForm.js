@@ -1,4 +1,14 @@
-import { Select, Form, Input, Icon, Row, Col, Checkbox, Button, Alert } from "antd";
+import {
+  Select,
+  Form,
+  Input,
+  Icon,
+  Row,
+  Col,
+  Checkbox,
+  Button,
+  Alert
+} from "antd";
 import Link from "next/link";
 import skills from "../consts/skills";
 import topics from "../consts/topics";
@@ -14,17 +24,17 @@ class RegistrationForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
-	const user = {
-		login: values.login,
+      const user = {
+        login: values.login,
         password: values.password,
         firstName: values.firstName,
         lastName: values.lastName,
-        studentId: values.studentId,
-	}
-	const userbranch = {
-		userLogin: values.login,
-		branchName: values.interests
-	}
+        studentId: values.studentId
+      };
+      const userbranch = {
+        userLogin: values.login,
+        branchName: values.interests
+      };
       if (!err) {
         this.props.register(user, userbranch);
       }
@@ -200,21 +210,26 @@ class RegistrationForm extends React.Component {
             ]
           })(<Input type="password" onBlur={this.handleConfirmBlur} />)}
         </FormItem>
-		<FormItem {...formItemLayout} style={{ width: "350px" }} label="Zainteresowania">
-              {getFieldDecorator("interests", {
-                rules: [
-                  {
-                    required: true,
-                    message: "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
-                    //type: "array"
-                  }
-                ]
-              })(
-                <Select>
-                  {topics.map(topic => <Option value={topic}>{topic}</Option>)}
-                </Select>
-              )}
-            </FormItem>
+        <FormItem
+          {...formItemLayout}
+          style={{ width: "350px" }}
+          label="Zainteresowania"
+        >
+          {getFieldDecorator("interests", {
+            rules: [
+              {
+                required: true,
+                message:
+                  "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry."
+                //type: "array"
+              }
+            ]
+          })(
+            <Select>
+              {topics.map(topic => <Option value={topic}>{topic}</Option>)}
+            </Select>
+          )}
+        </FormItem>
 
         <FormItem
           {...tailFormItemLayout}
