@@ -10,6 +10,7 @@ import {
   Alert
 } from "antd";
 import Link from "next/link";
+import axios from "axios";
 import skills from "../consts/skills";
 import topics from "../consts/topics";
 
@@ -20,6 +21,29 @@ class RegistrationForm extends React.Component {
     confirmDirty: false,
     autoCompleteResult: []
   };
+
+    constructor(props) {
+    super(props);
+    this.state = {
+      skills: [],
+      branches: []
+    };
+  }
+
+  componentDidMount() {
+
+   axios.get("/api/skills").then(payload => {
+      this.setState({
+        skills: payload.data.skills
+      });
+    });
+
+  axios.get("/api/branches").then(payload => {
+      this.setState({
+        branches: payload.data.branches
+      });
+    });
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -64,8 +88,9 @@ class RegistrationForm extends React.Component {
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator, getFieldValue, formItemLayoutWithOutLabel } = this.props.form;
     const { autoCompleteResult } = this.state;
+	const { key, index } = this.props;
 
     const headItemLayout = {
       labelCol: {
@@ -102,7 +127,7 @@ class RegistrationForm extends React.Component {
         }
       }
     };
-
+	
     return (
       <Form onSubmit={this.handleSubmit} style={{ width: "450px" }}>
         <FormItem {...headItemLayout}>
@@ -215,22 +240,28 @@ class RegistrationForm extends React.Component {
           style={{ width: "350px" }}
           label="Zainteresowania"
         >
-          {getFieldDecorator("interests", {
+       
+		  {getFieldDecorator("interests", {
             rules: [
               {
-                required: true,
-                message:
-                  "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry."
+                //required: true,
+                //message:
+                //  "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
                 //type: "array"
               }
             ]
           })(
             <Select>
-              {topics.map(topic => <Option value={topic}>{topic}</Option>)}
+              {this.state.branches.map(branch => (
+                    <Option value={branch.name} key={branch.name}>
+                      {branch.name}
+                    </Option>
+                  ))}
+			  
             </Select>
           )}
         </FormItem>
-
+		
         <FormItem
           {...tailFormItemLayout}
           style={{ marginBottom: 8, width: "350px" }}
