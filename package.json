@@ -44,7 +44,8 @@
     "dev": "concurrently --names \"APP,DB\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm run app\" \"npm run dev-db\" --kill-others",
     "dev-db": "docker-compose -f docker-compose-dev.yml up",
     "app": "nodemon -w server.js -w routes -w controllers -w models",
-    "seed": "node fixtures/loadFixtures.js"
+    "seed": "node fixtures/loadFixtures.js",
+    "test:nightwatch": "./nightwatch/run.sh"
   },
   "author": "Rafal Wilinski",
   "license": "ISC"
