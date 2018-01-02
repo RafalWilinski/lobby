@@ -45,7 +45,8 @@
     "dev-db": "docker-compose -f docker-compose-dev.yml up",
     "app": "nodemon -w server.js -w routes -w controllers -w models",
     "seed": "node fixtures/loadFixtures.js",
-    "test:nightwatch": "./nightwatch/run.sh"
+    "test:nightwatch": "./nightwatch/run.sh",
+    "test:nighwatch:seed": "node fixtures/test/loadFixtures.js"
   },
   "author": "Rafal Wilinski",
   "license": "ISC"
