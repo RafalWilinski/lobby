@@ -1,0 +1,9 @@
+fixtures:
+  - model: User
+    data:
+      login: testowy@test.pl
+      password: $2a$10$LjP2D0VRL.lV3UUQUgMT8.99r/Mf.O2uxbsidauGngqcsy.fc9sf.
+      firstName: Testowy
+      lastName: Uzytkownik
+      studentId: 111111
+

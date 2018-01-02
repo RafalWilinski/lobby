@@ -75,5 +75,6 @@ TBA
 ### Integration
 Application uses Selenium + Nightwatch.js for Integration E2E tests.
 
-1. Run `npm run dev`
-2. In separate tab run `npm run test:nightwatch`
+1. Run `npm run test:nighwatch:seed` to insert test data to the database
+2. Run `npm run dev` to start the application
+3. In separate tab run `npm run test:nightwatch` to start tests suite
