@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar renders correctly 1`] = `
+<img
+  onBlur={undefined}
+  onClick={undefined}
+  onFocus={undefined}
+  onMouseDown={undefined}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onTouchStart={undefined}
+  src={undefined}
+  style={
+    Object {
+      "borderRadius": "50%",
+      "boxShadow": "1px 2px 2px 1px #aaaaaa",
+      "height": "40px",
+      "marginRight": "-8px",
+    }
+  }
+/>
+`;
