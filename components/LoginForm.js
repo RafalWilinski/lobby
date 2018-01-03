@@ -38,6 +38,7 @@ class LoginForm extends Component {
             rules: [{ required: true, message: "Proszę podac email!" }]
           })(
             <Input
+              id="login-email"
               prefix={<Icon type="user" style={{ fontSize: 13 }} />}
               placeholder="Email"
             />
@@ -48,6 +49,7 @@ class LoginForm extends Component {
             rules: [{ required: true, message: "Proszę podac hasło!" }]
           })(
             <Input
+              id="login-password"
               prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
               type="password"
               placeholder="Hasło"

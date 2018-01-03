@@ -1,0 +1,13 @@
+version: "3.2"
+
+networks:
+  default:
+    external:
+      name: nightwatch-network
+
+services:
+  selenium:
+    image: selenium/standalone-chrome
+    ports:
+      - "4444:4444"
+      

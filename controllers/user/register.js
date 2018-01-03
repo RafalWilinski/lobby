@@ -9,11 +9,8 @@ const register = async ctx => {
 
   try {
     const user = await User.create({
-	  login: ctx.request.body.user.login,
-	  password: hashedPassword,
-	  firstName: ctx.request.body.user.firstName,
-	  lastName: ctx.request.body.user.lastName,
-	  studentId: ctx.request.body.user.studentId
+      ...ctx.request.body.user,
+      password: hashedPassword,
     });
     const userbranch = await UserBranch.create({
       ...ctx.request.body.userbranch

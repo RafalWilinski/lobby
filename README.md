@@ -66,3 +66,16 @@ Still, you can (but shouldn't) perform them manually with following command:
 ```bash
 now -e DB_PASSWORD=@db_password -t <ZEIT_TOKEN> --public
 ```
+
+## Tests
+### Unit 
+Application uses Jest as a test runner.
+
+`npm run test`
+
+### Integration
+Application uses Selenium + Nightwatch.js for Integration E2E tests.
+
+1. Run `npm run test:nighwatch:seed` to insert test data to the database
+2. Run `npm run dev` to start the application
+3. In separate tab run `npm run test:nightwatch` to start tests suite
