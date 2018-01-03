@@ -35,7 +35,9 @@
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
-    "nodemon": "^1.2.5"
+    "jest": "^22.0.4",
+    "nodemon": "^1.2.5",
+    "react-test-renderer": "^16.2.0"
   },
   "scripts": {
     "build": "next build",
@@ -45,9 +47,16 @@
     "dev-db": "docker-compose -f docker-compose-dev.yml up",
     "app": "nodemon -w server.js -w routes -w controllers -w models",
     "seed": "node fixtures/loadFixtures.js",
+    "test": "NODE_ENV=test jest",
     "test:nightwatch": "./nightwatch/run.sh",
     "test:nighwatch:seed": "node fixtures/test/loadFixtures.js"
   },
   "author": "Rafal Wilinski",
-  "license": "ISC"
+  "license": "ISC",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  }
 }
