@@ -61,7 +61,11 @@ class SkillDescriptor extends React.Component {
                   .indexOf(input.toLowerCase()) >= 0
               }
             >
-              {skills.map(skill => <Option value={skill}>{skill}</Option>)}
+              {skills.map(skill => (
+                <Option key={skill} value={skill}>
+                  {skill}
+                </Option>
+              ))}
             </Select>
           )}
         </FormItem>
