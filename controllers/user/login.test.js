@@ -34,4 +34,23 @@ describe("LoginController", () => {
       done();
     }
   });
+
+  it("should return 400 if not existing user was trying to login", async done => {
+    const ctx = {
+      request: {
+        body: {
+          login: "testowy1@test.pl",
+          password: "123"
+        }
+      }
+    };
+
+    try {
+      await LoginController(ctx);
+      done.fail(new Error("Should Fail!"));
+    } catch (error) {
+      expect(error.statusCode).toEqual(404);
+      done();
+    }
+  });
 });
