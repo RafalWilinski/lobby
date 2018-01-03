@@ -69,8 +69,9 @@ now -e DB_PASSWORD=@db_password -t <ZEIT_TOKEN> --public
 
 ## Tests
 ### Unit 
+Application uses Jest as a test runner.
 
-TBA
+`npm run test`
 
 ### Integration
 Application uses Selenium + Nightwatch.js for Integration E2E tests.
