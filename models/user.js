@@ -15,14 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = models => {
-    User.Role = User.hasOne(models.Role, {
-      foreignKey: "id",
-      sourceKey: "roleId"
-    });
-
     User.Applications = User.hasMany(models.Application, {
-      foreignKey: "login",
-      sourceKey: "login"
+      foreignKey: "login"
     });
   };
 

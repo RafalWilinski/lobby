@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
     },
     {
       name: "Zglos temat",
-      href: "/dashboard/topic",
+      href: "/dashboard/topic/create",
       icon: "user"
     },
     {

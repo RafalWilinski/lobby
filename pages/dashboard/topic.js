@@ -1,31 +1,43 @@
 import React from "react";
-import withRedux from "next-redux-wrapper";
+import { Layout, Spin } from "antd";
+import axios from "axios";
 
 import DashboardWrapper from "../../components/DashboardWrapper";
 import Head from "../../components/Head.js";
 import HWCenterWrapper from "../../components/HVCenterWrapper";
-import Topic from "../../components/dashboard/topic";
-import { initStore } from "../../store";
-import { createThesis } from "../../actions/api";
 
-const mapStateToProps = state => ({
-  isLoading: state.createThesis.isLoading,
-  error: state.createThesis.error,
-  user: state.user.data
-});
+const { Header, Content } = Layout;
 
-const mapDispatchToProps = dispatch => ({
-  create: (...args) => dispatch(createThesis(...args))
-});
+export default class extends React.Component {
+  static async getInitialProps({ req, pathname }) {
+    const id = req.url.split(pathname)[1].substring(1);
+    const { data } = await axios.get(`http://localhost:3000/api/thesis/${id}`);
 
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
-  props => (
-    <Head>
-      <HWCenterWrapper>
-        <DashboardWrapper {...props}>
-          <Topic {...props} />
-        </DashboardWrapper>
-      </HWCenterWrapper>
-    </Head>
-  )
-);
+    return data;
+  }
+
+  renderData() {
+    return (
+      <Layout>
+        <Header style={{ background: "#fff", paddingLeft: "20px" }}>
+          <h1>{this.props.data.name}</h1>
+        </Header>
+        <Content style={{ marginTop: "20px" }} />
+      </Layout>
+    );
+  }
+
+  render() {
+    console.log(this.props.data);
+
+    return (
+      <Head>
+        <HWCenterWrapper>
+          <DashboardWrapper {...this.props}>
+            {this.props.data ? this.renderData() : <Spin />}
+          </DashboardWrapper>
+        </HWCenterWrapper>
+      </Head>
+    );
+  }
+}
