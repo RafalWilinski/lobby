@@ -45,11 +45,7 @@ node_modules/.bin/sequelize model:generate --name User --attributes firstName:st
 
 Of course replace values with attributes of your choice.
 
-This will do following:
-
-* Create a model file in models folder
-* Create a migration file with name like XXXXXXXXXXXXXX-create-yourModel.js in
-  migrations folder
+This will create a model file in models folder
 
 Then head to `models/<yourModelName.js>` and tweak it. Add constraints, keys,
 indexes etc.
