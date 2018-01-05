@@ -11,6 +11,7 @@ import {
   Icon,
   Input
 } from "antd";
+import axios from "axios";
 import skills from "../../consts/skills";
 import topics from "../../consts/topics";
 import SkillsDescriptor from "../SkillDescriptor";
@@ -25,6 +26,20 @@ const { TextArea } = Input;
 const { Header, Content, Footer, Sider } = Layout;
 
 class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      skills: [],
+      branches: []
+    };
+
+    axios.get("/api/branches").then(payload => {
+        this.setState({
+          branches: payload.data.branches
+        });
+      });
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -145,7 +160,7 @@ class Profile extends React.Component {
                 ]
               })(
                 <Select mode="multiple" placeholder="Analiza Matematyczna">
-                  {topics.map(topic => <Option value={topic}>{topic}</Option>)}
+                  {this.state.branches.map(branch => ( <Option value={branch.name} key={branch.name}>{branch.name}</Option>))}
                 </Select>
               )}
             </FormItem>
