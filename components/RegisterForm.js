@@ -57,14 +57,11 @@ class RegistrationForm extends React.Component {
         password: values.password,
         firstName: values.firstName,
         lastName: values.lastName,
-        studentId: values.studentId
-      };
-      const userbranch = {
-        userLogin: values.login,
-        branchName: values.interests
+        studentId: values.studentId,
+		branches: values.interests
       };
       if (!err) {
-        this.props.register(user, userbranch);
+        this.props.register(user);
       }
     });
   };
@@ -351,18 +348,19 @@ class RegistrationForm extends React.Component {
                 //required: true,
                 //message:
                 //  "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
-                //type: "array"
+                type: "array"
               }
             ]
           })(
-            <Select>
-              {this.state.branches.map(branch => (
+             <Select
+                  mode="multiple"
+                >
+                  {this.state.branches.map(branch => (
                     <Option value={branch.name} key={branch.name}>
                       {branch.name}
                     </Option>
                   ))}
-			  
-            </Select>
+                </Select>
           )}
         </FormItem>
 

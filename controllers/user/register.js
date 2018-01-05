@@ -12,15 +12,20 @@ const register = async ctx => {
       ...ctx.request.body.user,
       password: hashedPassword,
     });
-    const userbranch = await UserBranch.create({
-      ...ctx.request.body.userbranch
-    });
+
+	await Promise.all(
+      ctx.request.body.user.branches.map(branch =>
+        UserBranch.create({
+          userLogin: ctx.request.body.user.login,
+          branchName: branch
+        })
+      )
+    );
 
     const token = jwt.sign(user.login, config("jwtSecret"));
 
     ctx.body = {
       user,
-      userbranch,
       token
     };
   } catch (err) {
