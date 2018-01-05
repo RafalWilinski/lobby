@@ -134,6 +134,14 @@ class Profile extends React.Component {
               })(<Input placeholder="Kowalski" />)}
             </FormItem>
 
+            <FormItem {...formItemLayout} label="Nr indeksu" hasFeedback>
+              {getFieldDecorator("studentId", {
+                rules: [
+                  { required: true, message: "Podaj Swój numer indeksu, smiało!" }
+                ]
+              })(<Input placeholder="122521" />)}
+            </FormItem>
+
             <FormItem {...formItemLayout} label="O mnie" hasFeedback>
               {getFieldDecorator("description", {
                 rules: [
