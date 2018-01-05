@@ -15,7 +15,6 @@ class SkillDescriptor extends React.Component {
 
   componentDidMount() {
     axios.get("/api/skills").then(payload => {
-      console.log('Witam');
       this.setState({
         skills: payload.data.skills
       });
@@ -70,6 +69,7 @@ class SkillDescriptor extends React.Component {
               showSearch
               style={{ width: 200 }}
               placeholder="Wybierz umiejętność"
+              notFoundContent="Brak wyników" 
               optionFilterProp="children"
               filterOption={(input, option) =>
                 option.props.children
