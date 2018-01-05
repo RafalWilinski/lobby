@@ -159,7 +159,7 @@ class Profile extends React.Component {
                   }
                 ]
               })(
-                <Select mode="multiple" placeholder="Analiza Matematyczna">
+                <Select mode="multiple" placeholder="Analiza Matematyczna" notFoundContent="Brak wyników">
                   {this.state.branches.map(branch => ( <Option value={branch.name} key={branch.name}>{branch.name}</Option>))}
                 </Select>
               )}
