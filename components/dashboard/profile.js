@@ -12,8 +12,6 @@ import {
   Input
 } from "antd";
 import axios from "axios";
-import skills from "../../consts/skills";
-import topics from "../../consts/topics";
 import SkillsDescriptor from "../SkillDescriptor";
 
 const FormItem = Form.Item;
@@ -29,15 +27,16 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      skills: [],
       branches: []
     };
+  }
 
+  componentDidMount() {
     axios.get("/api/branches").then(payload => {
-        this.setState({
-          branches: payload.data.branches
-        });
+      this.setState({
+        branches: payload.data.branches
       });
+    });
   }
 
   handleSubmit = e => {
