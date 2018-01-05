@@ -42,8 +42,14 @@ class Profile extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
+      const user = {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        studentId: values.studentId,
+        description: values.description
+      };
       if (!err) {
-        console.log("Received values of form: ", values);
+        this.props.profileUpdate(user);
       }
     });
   };
