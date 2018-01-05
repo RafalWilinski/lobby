@@ -12,6 +12,14 @@ module.exports = (sequelize, DataTypes) => {
     Role.Thesis = Role.belongsTo(models.Thesis, {
       foreignKey: "thesisId"
     });
+
+    Role.User = Role.belongsTo(models.User, {
+      foreignKey: "userLogin"
+    });
+
+    Role.Skills = Role.hasMany(models.RoleSkill, {
+      foreignKey: "roleId"
+    });
   };
 
   return Role;

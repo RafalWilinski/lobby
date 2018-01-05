@@ -11,5 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  RoleSkill.associate = models => {
+    RoleSkill.Role = RoleSkill.belongsTo(models.Role, {
+      foreignKey: "roleId"
+    });
+  };
+
   return RoleSkill;
 };

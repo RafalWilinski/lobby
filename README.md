@@ -45,11 +45,7 @@ node_modules/.bin/sequelize model:generate --name User --attributes firstName:st
 
 Of course replace values with attributes of your choice.
 
-This will do following:
-
-* Create a model file in models folder
-* Create a migration file with name like XXXXXXXXXXXXXX-create-yourModel.js in
-  migrations folder
+This will create a model file in models folder
 
 Then head to `models/<yourModelName.js>` and tweak it. Add constraints, keys,
 indexes etc.
@@ -68,6 +64,8 @@ now -e DB_PASSWORD=@db_password -t <ZEIT_TOKEN> --public
 ```
 
 ## Tests
+Before testing anything please run `npm run test:seed` to insert test data to the database. Also, make sure that DB is up and running.
+
 ### Unit 
 Application uses Jest as a test runner.
 
@@ -76,6 +74,5 @@ Application uses Jest as a test runner.
 ### Integration
 Application uses Selenium + Nightwatch.js for Integration E2E tests.
 
-1. Run `npm run test:nighwatch:seed` to insert test data to the database
-2. Run `npm run dev` to start the application
-3. In separate tab run `npm run test:nightwatch` to start tests suite
+1. Run `npm run dev` to start the application
+2. In separate tab run `npm run test:nightwatch` to start tests suite

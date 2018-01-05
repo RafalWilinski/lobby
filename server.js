@@ -42,7 +42,12 @@ app.prepare().then(() => {
     ctx.respond = false;
   });
 
-  router.get("/dashboard/topic", async ctx => {
+  router.get("/dashboard/topic/create", async ctx => {
+    await app.render(ctx.req, ctx.res, "/dashboard/createTopic", ctx.query);
+    ctx.respond = false;
+  });
+
+  router.get("/dashboard/topic/:id", async ctx => {
     await app.render(ctx.req, ctx.res, "/dashboard/topic", ctx.query);
     ctx.respond = false;
   });

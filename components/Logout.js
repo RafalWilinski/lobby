@@ -1,17 +1,18 @@
 import React from "react";
-import Router from "next/router";
 import { BarLoader } from "react-spinners";
 import HVCenterWrapper from "./HVCenterWrapper";
 
 class Logout extends React.PureComponent {
   componentDidMount() {
-    localStorage.removeItem("user");
-    this.props.logout();
+    if (window.localStorage) {
+      localStorage.removeItem("user");
+      this.props.logout();
+    }
   }
 
   render() {
-    if (!this.props.isLoggedIn) {
-      Router.push({
+    if (!this.props.isLoggedIn && this.props.url) {
+      this.props.url.push({
         pathname: "/login"
       });
     }

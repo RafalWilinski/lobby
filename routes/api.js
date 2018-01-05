@@ -4,8 +4,9 @@ const login = require("../controllers/user/login");
 const register = require("../controllers/user/register");
 
 const createThesis = require("../controllers/thesis/create");
-const getByUserLogin = require("../controllers/thesis/getByUserLogin");
-const search = require('../controllers/thesis/search');
+const getThesisByUserLogin = require("../controllers/thesis/getByUserLogin");
+const getThesisById = require("../controllers/thesis/getById");
+const search = require("../controllers/thesis/search");
 
 const getSkills = require("../controllers/skills/getAll");
 
@@ -16,8 +17,9 @@ const API = new Router();
 API.post("/login", login)
   .post("/register", register)
   .post("/thesis", createThesis)
-  .get('/thesis/search', search)
-  .get("/user/theses", getByUserLogin)
+  .get("/thesis/:id", getThesisById)
+  .get("/thesis/search", search)
+  .get("/user/theses", getThesisByUserLogin)
   .get("/skills", getSkills)
   .get("/branches", getBranches);
 
