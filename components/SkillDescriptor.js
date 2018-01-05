@@ -1,11 +1,27 @@
 import React from "react";
 import { Select, Form, Rate } from "antd";
-import skills from "../consts/skills";
+import axios from "axios";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 
 class SkillDescriptor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      skills: []
+    };
+  }
+
+  componentDidMount() {
+    axios.get("/api/skills").then(payload => {
+      console.log('Witam');
+      this.setState({
+        skills: payload.data.skills
+      });
+    });
+  }
+
   handleRateChange = value => {
     this.setState({ value });
   };
@@ -46,14 +62,14 @@ class SkillDescriptor extends React.Component {
               {
                 required: true,
                 whitespace: true,
-                message: "Proszę podaj umiejętnosc"
+                message: "Proszę podaj umiejętność"
               }
             ]
           })(
             <Select
               showSearch
               style={{ width: 200 }}
-              placeholder="Wybierz umiejętnosc"
+              placeholder="Wybierz umiejętność"
               optionFilterProp="children"
               filterOption={(input, option) =>
                 option.props.children
@@ -61,11 +77,7 @@ class SkillDescriptor extends React.Component {
                   .indexOf(input.toLowerCase()) >= 0
               }
             >
-              {skills.map(skill => (
-                <Option key={skill} value={skill}>
-                  {skill}
-                </Option>
-              ))}
+              {this.state.skills.map(skills => ( <Option value={skills.name} key={skills.name}>{skills.name}</Option>))}
             </Select>
           )}
         </FormItem>
