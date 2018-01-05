@@ -159,7 +159,12 @@ class Profile extends React.Component {
                   }
                 ]
               })(
-                <Select mode="multiple" placeholder="Analiza Matematyczna" notFoundContent="Brak wyników">
+                <Select mode="multiple" placeholder="Analiza Matematyczna" notFoundContent="Brak wyników" 
+                  filterOption={(input, option) =>
+                    option.props.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                }>
                   {this.state.branches.map(branch => ( <Option value={branch.name} key={branch.name}>{branch.name}</Option>))}
                 </Select>
               )}
