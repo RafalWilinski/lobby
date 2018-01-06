@@ -2,7 +2,7 @@ const Router = require("koa-router");
 
 const login = require("../controllers/user/login");
 const register = require("../controllers/user/register");
-const profileUpdate = require("../controllers/user/profileUpdate");
+const updateUser = require("../controllers/user/update");
 
 const createThesis = require("../controllers/thesis/create");
 const getThesisByUserLogin = require("../controllers/thesis/getByUserLogin");
@@ -17,7 +17,7 @@ const API = new Router();
 
 API.post("/login", login)
   .post("/register", register)
-  .post("/profileUpdate", profileUpdate)
+  .post("/user/update", updateUser)
   .post("/thesis", createThesis)
   .get("/thesis/:id", getThesisById)
   .get("/thesis/search", search)

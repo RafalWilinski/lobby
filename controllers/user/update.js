@@ -1,6 +1,6 @@
 const User = require("../../models/").User;
 
-const profileUpdate = async ctx => {
+const update = async ctx => {
   try {
     const user = await User.update(ctx.request.body.user,
       { where: { login: ctx.request.body.user.login }}
@@ -13,4 +13,4 @@ const profileUpdate = async ctx => {
   }
 };
 
-module.exports = profileUpdate;
+module.exports = update;

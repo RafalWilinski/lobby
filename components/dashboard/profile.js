@@ -51,10 +51,7 @@ class Profile extends React.Component {
         login: JSON.parse(localStorage.getItem("user")).user.login
       };
       if (!err) {
-        this.props.profileUpdate(user)
-        .then(() => {
-          console.log('Witam!');
-        });
+        this.props.updateUser(user);
       }
     });
   };
