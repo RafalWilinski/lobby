@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../../models/").User;
 const UserBranch = require("../../models/").UserBranch;
+const UserSkill = require("../../models/").UserSkill;
 const config = require("../../config");
 
 const register = async ctx => {
@@ -22,10 +23,19 @@ const register = async ctx => {
       )
     );
 
+	const userSkills = await Promise.all(
+      ctx.request.body.userSkills.map(async userSkill => {
+        const userSkillObj = await UserSkill.create({
+          ...userSkill
+        });
+	  })
+	); 
+
     const token = jwt.sign(user.login, config("jwtSecret"));
 
     ctx.body = {
       user,
+	  userSkills,
       token
     };
   } catch (err) {

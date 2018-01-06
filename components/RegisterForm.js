@@ -60,8 +60,19 @@ class RegistrationForm extends React.Component {
         studentId: values.studentId,
 		branches: values.interests
       };
+
+	  const userSkills = [];
+	  
+      values.skillname.filter(x => !!x).forEach((skillname, index) => {
+        userSkills[index] = {
+          skillName: skillname,
+          userLogin: values.login,
+		  priority: 1//values.skillvalue.filter(x => !!x)[index]
+        };
+      });
+
       if (!err) {
-        this.props.register(user);
+        this.props.register(user, userSkills);
       }
     });
   };
@@ -74,7 +85,7 @@ class RegistrationForm extends React.Component {
   checkPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && value !== form.getFieldValue("password")) {
-      callback("Two passwords that you enter is inconsistent!");
+      callback("Wprowadzone hasła różnią się od siebie!");
     } else {
       callback();
     }
@@ -151,10 +162,10 @@ class RegistrationForm extends React.Component {
         }
       }
     };
-	//
+	
 	getFieldDecorator("userSkills", { initialValue: [] });
     const userSkills = getFieldValue("userSkills");
-
+	
     const formItems = userSkills.map((k, index) => 
       {
       return(<div key={k}>
@@ -164,7 +175,7 @@ class RegistrationForm extends React.Component {
           label={"Umiejętnosc"}
           style={{ marginBottom: "10px", width: "350px" }}
         >
-          {getFieldDecorator(`skill-name-${k}`, {
+          {getFieldDecorator(`skillname[${k}]`, {
             //validateTrigger: ["onChange", "onBlur"],
             rules: [
               {
@@ -211,11 +222,11 @@ class RegistrationForm extends React.Component {
           label={"Stopień Zaawansowania"}
 		  style={{ width: "350px" }}
         >
-          {getFieldDecorator(`skill-value-${key}`, {
+          {getFieldDecorator(`skillvalue[${k}]`, {
             validateTrigger: ["onChange", "onBlur"],
             rules: [
               {
-                required: true,
+                //required: true,
 				whitespace: true,
                 message: "Podaj stopień zaawansowania"
               }
@@ -228,7 +239,7 @@ class RegistrationForm extends React.Component {
         </FormItem>
       </div>)
     });
-	//
+	
     return (
       <Form onSubmit={this.handleSubmit} style={{ width: "450px" }}>
         <FormItem {...headItemLayout}>
@@ -365,7 +376,7 @@ class RegistrationForm extends React.Component {
         </FormItem>
 
 		<FormItem {...headItemLayout}>
-              <h4 align="center">Twoje umiejętnosci</h4>
+              <h2 align="center">Twoje umiejętnosci</h2>
 			  <h4 align="center">Pokaz w czym jestes dobry!</h4>
             </FormItem>
             {formItems}

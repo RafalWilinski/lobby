@@ -23,14 +23,15 @@ export const login = (login, password) => ({
   }
 });
 
-export const register = (user) => ({
+export const register = (user, userSkills) => ({
   type: "REGISTER",
   payload: {
     request: {
       method: "POST",
       url: "/register",
       data: {
-        user
+        user,
+		userSkills
       }
     }
   }
