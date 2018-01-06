@@ -92,6 +92,7 @@ CREATE TABLE "Users"
     "firstName" VARCHAR(30),
     "lastName" VARCHAR(30),
     "studentId" INTEGER,
+    "description" TEXT,
     picture VARCHAR(100),
     "roleId" INTEGER,
     "createdAt" TIMESTAMP WITH TIME ZONE,
