@@ -31,11 +31,26 @@ export const register = (user, userbranch) => ({
       url: "/register",
       data: {
         user,
-		userbranch
+		    userbranch
       }
     }
   }
 });
+
+export const profileUpdate = (user) => {
+  console.log(user);
+  return ({
+  type: "PROFILE_UPDATE",
+  payload: {
+    request: {
+      method: "POST",
+      url: "/profileUpdate",
+      data: {
+        user
+      }
+    }
+  }
+})};
 
 export const createThesis = (thesis, roles) => ({
   type: "THESIS_CREATE",

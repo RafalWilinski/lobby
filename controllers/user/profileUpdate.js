@@ -3,7 +3,7 @@ const User = require("../../models/").User;
 const profileUpdate = async ctx => {
   try {
     const user = await User.update(ctx.request.body.user,
-      { where: { login: '???' }}
+      { where: { login: ctx.request.body.user.login }}
     );
   } catch (err) {
     throw {

@@ -46,7 +46,8 @@ class Profile extends React.Component {
         firstName: values.firstName,
         lastName: values.lastName,
         studentId: values.studentId,
-        description: values.description
+        description: values.description,
+        login: JSON.parse(localStorage.getItem("user")).user.login
       };
       if (!err) {
         this.props.profileUpdate(user);
