@@ -11,10 +11,10 @@ const register = async ctx => {
   try {
     const user = await User.create({
       ...ctx.request.body.user,
-      password: hashedPassword,
+      password: hashedPassword
     });
 
-	await Promise.all(
+    await Promise.all(
       ctx.request.body.user.branches.map(branch =>
         UserBranch.create({
           userLogin: ctx.request.body.user.login,
@@ -23,19 +23,19 @@ const register = async ctx => {
       )
     );
 
-	const userSkills = await Promise.all(
+    const userSkills = await Promise.all(
       ctx.request.body.userSkills.map(async userSkill => {
         const userSkillObj = await UserSkill.create({
           ...userSkill
         });
-	  })
-	); 
+      })
+    );
 
     const token = jwt.sign(user.login, config("jwtSecret"));
 
     ctx.body = {
       user,
-	  userSkills,
+      userSkills,
       token
     };
   } catch (err) {

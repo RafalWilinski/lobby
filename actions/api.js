@@ -31,7 +31,7 @@ export const register = (user, userSkills) => ({
       url: "/register",
       data: {
         user,
-		userSkills
+        userSkills
       }
     }
   }
