@@ -37,6 +37,19 @@ export const register = (user, userSkills) => ({
   }
 });
 
+export const updateUser = (user) => ({
+  type: "USER_UPDATE",
+  payload: {
+    request: {
+      method: "POST",
+      url: "/user/update",
+      data: {
+        user
+      }
+    }
+  }
+});
+
 export const createThesis = (thesis, roles) => ({
   type: "THESIS_CREATE",
   payload: {
