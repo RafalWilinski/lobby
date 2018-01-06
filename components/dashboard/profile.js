@@ -27,7 +27,8 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      branches: []
+      branches: [],
+      user: JSON.parse(localStorage.getItem("user")).user
     };
   }
 
@@ -50,7 +51,10 @@ class Profile extends React.Component {
         login: JSON.parse(localStorage.getItem("user")).user.login
       };
       if (!err) {
-        this.props.profileUpdate(user);
+        this.props.profileUpdate(user)
+        .then(() => {
+          console.log('Witam!');
+        });
       }
     });
   };
@@ -129,7 +133,7 @@ class Profile extends React.Component {
               {getFieldDecorator("firstName", {
                 rules: [
                   { required: true, message: "Podaj Swoje imię, smiało!" }
-                ]
+                ], initialValue: this.state.user.firstName
               })(<Input placeholder="Adam" />)}
             </FormItem>
 
@@ -137,7 +141,7 @@ class Profile extends React.Component {
               {getFieldDecorator("lastName", {
                 rules: [
                   { required: true, message: "Podaj Swoje naziwsko, smiało!" }
-                ]
+                ], initialValue: this.state.user.lastName
               })(<Input placeholder="Kowalski" />)}
             </FormItem>
 
@@ -145,7 +149,7 @@ class Profile extends React.Component {
               {getFieldDecorator("studentId", {
                 rules: [
                   { required: true, message: "Podaj Swój numer indeksu, smiało!" }
-                ]
+                ], initialValue: this.state.user.studentId
               })(<Input placeholder="122521" />)}
             </FormItem>
 
@@ -153,7 +157,7 @@ class Profile extends React.Component {
               {getFieldDecorator("description", {
                 rules: [
                   { required: true, message: "Pare słów o sobie nie zaszkodzi" }
-                ]
+                ], initialValue: this.state.user.description
               })(
                 <TextArea
                   placeholder="Jestem..."
