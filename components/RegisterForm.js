@@ -26,7 +26,7 @@ class RegistrationForm extends React.Component {
     autoCompleteResult: []
   };
 
-    constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       skills: [],
@@ -35,14 +35,13 @@ class RegistrationForm extends React.Component {
   }
 
   componentDidMount() {
-
-   axios.get("/api/skills").then(payload => {
+    axios.get("/api/skills").then(payload => {
       this.setState({
         skills: payload.data.skills
       });
     });
 
-  axios.get("/api/branches").then(payload => {
+    axios.get("/api/branches").then(payload => {
       this.setState({
         branches: payload.data.branches
       });
@@ -58,16 +57,16 @@ class RegistrationForm extends React.Component {
         firstName: values.firstName,
         lastName: values.lastName,
         studentId: values.studentId,
-		branches: values.interests
+        branches: values.interests
       };
 
-	  const userSkills = [];
-	  
+      const userSkills = [];
+
       values.skillname.filter(x => !!x).forEach((skillname, index) => {
         userSkills[index] = {
           skillName: skillname,
           userLogin: values.login,
-		  priority: 1//values.skillvalue.filter(x => !!x)[index]
+          priority: 1 //values.skillvalue.filter(x => !!x)[index]
         };
       });
 
@@ -99,7 +98,7 @@ class RegistrationForm extends React.Component {
     callback();
   };
 
-   add = () => {
+  add = () => {
     uuid++;
     const { form } = this.props;
     const userSkills = form.getFieldValue("userSkills");
@@ -123,9 +122,13 @@ class RegistrationForm extends React.Component {
   };
 
   render() {
-    const { getFieldDecorator, getFieldValue, formItemLayoutWithOutLabel } = this.props.form;
+    const {
+      getFieldDecorator,
+      getFieldValue,
+      formItemLayoutWithOutLabel
+    } = this.props.form;
     const { autoCompleteResult } = this.state;
-	const { key, index } = this.props;
+    const { key, index } = this.props;
 
     const headItemLayout = {
       labelCol: {
@@ -162,51 +165,49 @@ class RegistrationForm extends React.Component {
         }
       }
     };
-	
-	getFieldDecorator("userSkills", { initialValue: [] });
+
+    getFieldDecorator("userSkills", { initialValue: [] });
     const userSkills = getFieldValue("userSkills");
-	
-    const formItems = userSkills.map((k, index) => 
-      {
-      return(<div key={k}>
-		<FormItem
-          required={true}
-          {...formItemLayout}
-          label={"Umiejętnosc"}
-          style={{ marginBottom: "10px", width: "350px" }}
-        >
-          {getFieldDecorator(`skillname[${k}]`, {
-            //validateTrigger: ["onChange", "onBlur"],
-            rules: [
-              {
-                required: true,
-                whitespace: true,
-                message: "Proszę podaj umiejętność"
-              }
-            ]
-          })(
-            <Select
-              showSearch
-              //style={{ width: "350px" }}
-              placeholder="Wybierz umiejętność"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                option.props.children
-                  .toLowerCase()
-                  .indexOf(input.toLowerCase()) >= 0
-              }
-            >
-             
-              {this.state.skills.map(skill => (
-                    <Option value={skill.name} key={skill.name}>
-                      {skill.name}
-                    </Option>
-                  ))}
-			  
-            </Select>
-          )}
-		  
-        {userSkills.length > 0 ? (
+
+    const formItems = userSkills.map((k, index) => {
+      return (
+        <div key={k}>
+          <FormItem
+            required={true}
+            {...formItemLayout}
+            label={"Umiejętnosc"}
+            style={{ marginBottom: "10px", width: "350px" }}
+          >
+            {getFieldDecorator(`skillname[${k}]`, {
+              //validateTrigger: ["onChange", "onBlur"],
+              rules: [
+                {
+                  required: true,
+                  whitespace: true,
+                  message: "Proszę podaj umiejętność"
+                }
+              ]
+            })(
+              <Select
+                showSearch
+                //style={{ width: "350px" }}
+                placeholder="Wybierz umiejętność"
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  option.props.children
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+                }
+              >
+                {this.state.skills.map(skill => (
+                  <Option value={skill.name} key={skill.name}>
+                    {skill.name}
+                  </Option>
+                ))}
+              </Select>
+            )}
+
+            {userSkills.length > 0 ? (
               <Icon
                 className="dynamic-delete-button"
                 type="minus-circle-o"
@@ -214,32 +215,33 @@ class RegistrationForm extends React.Component {
                 onClick={() => this.remove(k)}
               />
             ) : null}
-        </FormItem>
-		
-        <FormItem
-          required={true}
-          {...formItemLayout}
-          label={"Stopień Zaawansowania"}
-		  style={{ width: "350px" }}
-        >
-          {getFieldDecorator(`skillvalue[${k}]`, {
-            validateTrigger: ["onChange", "onBlur"],
-            rules: [
-              {
-                //required: true,
-				whitespace: true,
-                message: "Podaj stopień zaawansowania"
-              }
-            ]
-          })(
-            <span>
-              <Rate />
-            </span>
-          )}
-        </FormItem>
-      </div>)
+          </FormItem>
+
+          <FormItem
+            required={true}
+            {...formItemLayout}
+            label={"Stopień Zaawansowania"}
+            style={{ width: "350px" }}
+          >
+            {getFieldDecorator(`skillvalue[${k}]`, {
+              validateTrigger: ["onChange", "onBlur"],
+              rules: [
+                {
+                  //required: true,
+                  whitespace: true,
+                  message: "Podaj stopień zaawansowania"
+                }
+              ]
+            })(
+              <span>
+                <Rate />
+              </span>
+            )}
+          </FormItem>
+        </div>
+      );
     });
-	
+
     return (
       <Form onSubmit={this.handleSubmit} style={{ width: "450px" }}>
         <FormItem {...headItemLayout}>
@@ -352,8 +354,7 @@ class RegistrationForm extends React.Component {
           style={{ width: "350px" }}
           label="Zainteresowania"
         >
-       
-		  {getFieldDecorator("interests", {
+          {getFieldDecorator("interests", {
             rules: [
               {
                 //required: true,
@@ -363,36 +364,30 @@ class RegistrationForm extends React.Component {
               }
             ]
           })(
-             <Select
-                  mode="multiple"
-                >
-                  {this.state.branches.map(branch => (
-                    <Option value={branch.name} key={branch.name}>
-                      {branch.name}
-                    </Option>
-                  ))}
-                </Select>
+            <Select mode="multiple">
+              {this.state.branches.map(branch => (
+                <Option value={branch.name} key={branch.name}>
+                  {branch.name}
+                </Option>
+              ))}
+            </Select>
           )}
         </FormItem>
 
-		<FormItem {...headItemLayout}>
-              <h2 align="center">Twoje umiejętnosci</h2>
-			  <h4 align="center">Pokaz w czym jestes dobry!</h4>
-            </FormItem>
-            {formItems}
+        <FormItem {...headItemLayout}>
+          <h2 align="center">Twoje umiejętnosci</h2>
+          <h4 align="center">Pokaz w czym jestes dobry!</h4>
+        </FormItem>
+        {formItems}
 
-            {(
-              <FormItem {...tailFormItemLayout} style={{ width: "350px" }}>
-                <Button
-                  type="dashed"
-                  onClick={this.add}
-                  style={{ width: "100%" }}
-                >
-                  <Icon type="plus" /> Dodaj Umiejetnosc
-                </Button>
-              </FormItem>
-            )}
-		
+        {
+          <FormItem {...tailFormItemLayout} style={{ width: "350px" }}>
+            <Button type="dashed" onClick={this.add} style={{ width: "100%" }}>
+              <Icon type="plus" /> Dodaj Umiejetnosc
+            </Button>
+          </FormItem>
+        }
+
         <FormItem
           {...tailFormItemLayout}
           style={{ marginBottom: 8, width: "350px" }}
