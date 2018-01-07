@@ -75,7 +75,7 @@ class Topic extends React.Component {
         <p style={{ marginBottom: "10px 0" }}>{role.description}</p>
         <h3 style={{ margin: "10px 0" }}>Wymagane Umiejętności:</h3>
         {role.RoleSkills.map(skill => (
-          <Tag key={`${role.id}-${skill.id}`}>{skill.skillName}</Tag>
+          <Tag key={`${role.id}-${skill.name}`}>{skill.skillName}</Tag>
         ))}
         <Button
           type="primary"

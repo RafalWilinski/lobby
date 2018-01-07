@@ -130,8 +130,6 @@ class Topic extends React.Component {
   };
 
   render() {
-    console.log(this.props);
-
     const { getFieldDecorator, getFieldValue } = this.props.form;
     const formItemLayout = {
       labelCol: {
