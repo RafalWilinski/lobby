@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
       title: "Akcja",
       key: "action",
       render: (text, record) => (
-        <span>
+        <span key={text}>
           <a
             style={{ margin: "0 10px" }}
             onClick={() => this.handleApplicationDelete(record)}
@@ -63,12 +63,18 @@ class Dashboard extends React.Component {
     {
       title: "Nazwa tematu",
       dataIndex: "topicName",
-      key: "topicName"
+      key: "topicName",
+      render: (text, record) => (
+        <a href={`/dashboard/topic/${record.Role.Thesis.id}`}>
+          {record.Role.Thesis.name}
+        </a>
+      )
     },
     {
       title: "Nazwa Stanowiska",
       dataIndex: "positionName",
-      key: "positionName"
+      key: "positionName",
+      render: (text, record) => <a href={`#`}>{record.Role.name}</a>
     },
     {
       title: "Status",
@@ -79,7 +85,7 @@ class Dashboard extends React.Component {
       title: "Akcja",
       key: "action",
       render: (text, record) => (
-        <span>
+        <span key={text}>
           <a style={{ margin: "0 10px" }} href="#">
             Wycofaj Aplikacje
           </a>
@@ -103,7 +109,10 @@ class Dashboard extends React.Component {
       }, 100);
     }
 
-    this.props.get(JSON.parse(localStorage.getItem("user")).user.login);
+    this.props.getTheses(JSON.parse(localStorage.getItem("user")).user.login);
+    this.props.getApplications(
+      JSON.parse(localStorage.getItem("user")).user.login
+    );
   }
 
   render() {
@@ -134,9 +143,9 @@ class Dashboard extends React.Component {
                 <h2 style={{ margin: "20px 0" }}>Twoje Aplikacje</h2>
                 <Table
                   columns={this.applyColumns}
-                  dataSource={this.props.theses.data
-                    .filter(role => !role.capitan)
-                    .map(role => role.Thesis)}
+                  dataSource={this.props.applications.data.filter(
+                    application => !application.Role.capitan
+                  )}
                   pagination={false}
                   locale={{
                     emptyText: "Brak Aplikacji"

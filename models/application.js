@@ -15,13 +15,11 @@ module.exports = (sequelize, DataTypes) => {
 
   Application.associate = models => {
     Application.Role = Application.belongsTo(models.Role, {
-      foreignKey: "id",
-      sourceKey: "roleId"
+      foreignKey: "roleId"
     });
 
     Application.User = Application.belongsTo(models.User, {
-      foreignKey: "login",
-      sourceKey: "login"
+      foreignKey: "login"
     });
   };
 

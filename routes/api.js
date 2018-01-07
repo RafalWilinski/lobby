@@ -13,6 +13,7 @@ const apply = require("../controllers/thesis/apply");
 
 const accept = require("../controllers/application/accept");
 const reject = require("../controllers/application/reject");
+const getApplicationsByUserLogin = require("../controllers/application/getByUserLogin");
 
 const getSkills = require("../controllers/skills/getAll");
 const getBranches = require("../controllers/branches/getAll");
@@ -26,10 +27,11 @@ API.post("/login", login)
   .post("/thesis", createThesis)
   .post("/application/:roleId/:login/accept")
   .post("/application/:roleId/:login/reject")
-  .get("/thesis/:id", getThesisById)
   .delete("/thesis/:id", deleteThesisById)
+  .get("/thesis/:id", getThesisById)
   .get("/thesis/search", search)
   .get("/user/theses", getThesisByUserLogin)
+  .get("/user/applications", getApplicationsByUserLogin)
   .get("/skills", getSkills)
   .get("/branches", getBranches);
 

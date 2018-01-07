@@ -88,3 +88,13 @@ export const getTheses = userLogin => ({
     }
   }
 });
+
+export const getApplications = userLogin => ({
+  type: "GET_APPLICATIONS",
+  payload: {
+    request: {
+      method: "GET",
+      url: `/user/applications?userLogin=${userLogin}`
+    }
+  }
+});
