@@ -37,7 +37,7 @@ export const register = (user, userSkills) => ({
   }
 });
 
-export const updateUser = (user) => ({
+export const updateUser = user => ({
   type: "USER_UPDATE",
   payload: {
     request: {
@@ -59,6 +59,21 @@ export const createThesis = (thesis, roles) => ({
       data: {
         thesis,
         roles
+      }
+    }
+  }
+});
+
+export const apply = (roleId, login, description) => ({
+  type: "APPLY",
+  payload: {
+    request: {
+      method: "POST",
+      url: "/thesis/apply",
+      data: {
+        roleId,
+        login,
+        description
       }
     }
   }
