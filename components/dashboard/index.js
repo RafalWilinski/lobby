@@ -15,11 +15,29 @@ import axios from "axios";
 const { Header, Content, Footer, Sider } = Layout;
 
 class Dashboard extends React.Component {
-  handleApplicationDelete = record => {
+  handleThesisDelete = record => {
     if (window.confirm("Czy na pewno chcesz usunąć ten temat?")) {
       axios.delete(`/api/thesis/${record.id}`).then(payload => {
-        this.props.get(JSON.parse(localStorage.getItem("user")).user.login);
+        this.props.getTheses(
+          JSON.parse(localStorage.getItem("user")).user.login
+        );
       });
+    }
+  };
+
+  handleApplicationWithdrawal = record => {
+    if (window.confirm("Czy na pewno chcesz wycofać swoją aplikacje?")) {
+      axios
+        .delete(
+          `/api/application/${record.Role.id}/${
+            JSON.parse(localStorage.getItem("user")).user.login
+          }/withdraw`
+        )
+        .then(payload => {
+          this.props.getApplications(
+            JSON.parse(localStorage.getItem("user")).user.login
+          );
+        });
     }
   };
 
@@ -44,7 +62,7 @@ class Dashboard extends React.Component {
         <span key={text}>
           <a
             style={{ margin: "0 10px" }}
-            onClick={() => this.handleApplicationDelete(record)}
+            onClick={() => this.handleThesisDelete(record)}
           >
             Usuń
           </a>
@@ -86,7 +104,10 @@ class Dashboard extends React.Component {
       key: "action",
       render: (text, record) => (
         <span key={text}>
-          <a style={{ margin: "0 10px" }} href="#">
+          <a
+            style={{ margin: "0 10px" }}
+            onClick={() => this.handleApplicationWithdrawal(record)}
+          >
             Wycofaj Aplikacje
           </a>
           <a style={{ margin: "0 10px" }} href="#">
