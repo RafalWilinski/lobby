@@ -92,6 +92,7 @@ CREATE TABLE "Users"
     "firstName" VARCHAR(30),
     "lastName" VARCHAR(30),
     "studentId" INTEGER,
+    "description" TEXT,
     picture VARCHAR(100),
     "roleId" INTEGER,
     "createdAt" TIMESTAMP WITH TIME ZONE,
@@ -141,10 +142,12 @@ CREATE TABLE "RoleSkills"
 ALTER TABLE "RoleSkills" ADD CONSTRAINT roleSkillPk PRIMARY KEY ( "skillName", "roleId" );
 ALTER TABLE "Applications"
     ADD CONSTRAINT applicationUserFk FOREIGN KEY ( login )
-        REFERENCES "Users" ( login );
+        REFERENCES "Users" ( login )
+        ON DELETE CASCADE;
 ALTER TABLE "Applications"
     ADD CONSTRAINT applicationRoleFk FOREIGN KEY ( "roleId" )
-        REFERENCES "Roles" ( id );
+        REFERENCES "Roles" ( id )
+        ON DELETE CASCADE;
 ALTER TABLE "PromoterBranches"
     ADD CONSTRAINT promoterBranchBranchFk FOREIGN KEY ( "branchName" )
         REFERENCES "Branches" ( name );
@@ -164,7 +167,8 @@ ALTER TABLE "ThesisBranches"
         REFERENCES "Branches" ( name );
 ALTER TABLE "ThesisBranches"
     ADD CONSTRAINT thesisBranchThesisFk FOREIGN KEY ( "thesisId" )
-        REFERENCES "Theses" ( id );
+        REFERENCES "Theses" ( id )
+        ON DELETE CASCADE;
 ALTER TABLE "ThesisSkills"
     ADD CONSTRAINT thesisSkillSkillFk FOREIGN KEY ( "skillName" )
         REFERENCES "Skills" ( name );
@@ -191,10 +195,12 @@ ALTER TABLE "RoleSkills"
         REFERENCES "Skills" ( name );
 ALTER TABLE "RoleSkills"
     ADD CONSTRAINT roleSkillRoleFk FOREIGN KEY ( "roleId" )
-        REFERENCES "Roles" ( id );
+        REFERENCES "Roles" ( id )
+        ON DELETE CASCADE;
 ALTER TABLE "Roles"
     ADD CONSTRAINT roleThesisFk FOREIGN KEY ( "thesisId" )
-        REFERENCES "Theses" ( id );
+        REFERENCES "Theses" ( id )
+        ON DELETE CASCADE;
 ALTER TABLE "Roles"
     ADD CONSTRAINT roleUserFk FOREIGN KEY ( "userLogin" )
         REFERENCES "Users" ( login );

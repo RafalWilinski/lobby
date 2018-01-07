@@ -11,8 +11,7 @@ import {
   Icon,
   Input
 } from "antd";
-import skills from "../../consts/skills";
-import topics from "../../consts/topics";
+import axios from "axios";
 import SkillsDescriptor from "../SkillDescriptor";
 
 const FormItem = Form.Item;
@@ -25,11 +24,34 @@ const { TextArea } = Input;
 const { Header, Content, Footer, Sider } = Layout;
 
 class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      branches: [],
+      user: JSON.parse(localStorage.getItem("user")).user
+    };
+  }
+
+  componentDidMount() {
+    axios.get("/api/branches").then(payload => {
+      this.setState({
+        branches: payload.data.branches
+      });
+    });
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
+      const user = {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        studentId: values.studentId,
+        description: values.description,
+        login: JSON.parse(localStorage.getItem("user")).user.login
+      };
       if (!err) {
-        console.log("Received values of form: ", values);
+        this.props.updateUser(user);
       }
     });
   };
@@ -108,7 +130,7 @@ class Profile extends React.Component {
               {getFieldDecorator("firstName", {
                 rules: [
                   { required: true, message: "Podaj Swoje imię, smiało!" }
-                ]
+                ], initialValue: this.state.user.firstName
               })(<Input placeholder="Adam" />)}
             </FormItem>
 
@@ -116,15 +138,23 @@ class Profile extends React.Component {
               {getFieldDecorator("lastName", {
                 rules: [
                   { required: true, message: "Podaj Swoje naziwsko, smiało!" }
-                ]
+                ], initialValue: this.state.user.lastName
               })(<Input placeholder="Kowalski" />)}
+            </FormItem>
+
+            <FormItem {...formItemLayout} label="Nr indeksu" hasFeedback>
+              {getFieldDecorator("studentId", {
+                rules: [
+                  { required: true, message: "Podaj Swój numer indeksu, smiało!" }
+                ], initialValue: this.state.user.studentId
+              })(<Input placeholder="122521" />)}
             </FormItem>
 
             <FormItem {...formItemLayout} label="O mnie" hasFeedback>
               {getFieldDecorator("description", {
                 rules: [
                   { required: true, message: "Pare słów o sobie nie zaszkodzi" }
-                ]
+                ], initialValue: this.state.user.description
               })(
                 <TextArea
                   placeholder="Jestem..."
@@ -144,8 +174,13 @@ class Profile extends React.Component {
                   }
                 ]
               })(
-                <Select mode="multiple" placeholder="Analiza Matematyczna">
-                  {topics.map(topic => <Option value={topic}>{topic}</Option>)}
+                <Select mode="multiple" placeholder="Analiza Matematyczna" notFoundContent="Brak wyników" 
+                  filterOption={(input, option) =>
+                    option.props.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                }>
+                  {this.state.branches.map(branch => ( <Option value={branch.name} key={branch.name}>{branch.name}</Option>))}
                 </Select>
               )}
             </FormItem>
