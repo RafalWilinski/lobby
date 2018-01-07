@@ -5,8 +5,6 @@ const RoleSkill = require("../../models/").RoleSkill;
 const config = require("../../config");
 
 const get = async ctx => {
-  console.log(ctx.params.id);
-
   const data = await Thesis.findOne({
     include: [
       {

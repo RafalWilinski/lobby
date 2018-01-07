@@ -10,12 +10,16 @@ import {
   Spin,
   notification
 } from "antd";
+import axios from "axios";
 
 const { Header, Content, Footer, Sider } = Layout;
 
 class Dashboard extends React.Component {
   handleApplicationDelete = record => {
     if (window.confirm("Czy na pewno chcesz usunąć ten temat?")) {
+      axios.delete(`/api/thesis/${record.id}`).then(payload => {
+        this.props.get(JSON.parse(localStorage.getItem("user")).user.login);
+      });
     }
   };
 
