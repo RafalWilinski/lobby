@@ -9,9 +9,12 @@ const getThesisByUserLogin = require("../controllers/thesis/getByUserLogin");
 const getThesisById = require("../controllers/thesis/getById");
 const deleteThesisById = require("../controllers/thesis/delete");
 const search = require("../controllers/thesis/search");
+const apply = require("../controllers/thesis/apply");
+
+const accept = require("../controllers/application/accept");
+const reject = require("../controllers/application/reject");
 
 const getSkills = require("../controllers/skills/getAll");
-
 const getBranches = require("../controllers/branches/getAll");
 
 const API = new Router();
@@ -19,7 +22,10 @@ const API = new Router();
 API.post("/login", login)
   .post("/register", register)
   .post("/user/update", updateUser)
+  .post("/thesis/apply", apply)
   .post("/thesis", createThesis)
+  .post("/application/:roleId/:login/accept")
+  .post("/application/:roleId/:login/reject")
   .get("/thesis/:id", getThesisById)
   .delete("/thesis/:id", deleteThesisById)
   .get("/thesis/search", search)
