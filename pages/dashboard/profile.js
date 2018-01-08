@@ -5,10 +5,11 @@ import Head from "../../components/Head.js";
 import HWCenterWrapper from "../../components/HVCenterWrapper";
 import Profile from "../../components/dashboard/profile";
 import { initStore } from "../../store";
-import { updateUser } from "../../actions/api";
+import { updateUser, getBranches } from "../../actions/api";
 
 const mapDispatchToProps = dispatch => ({
-  updateUser: (...args) => dispatch(updateUser(...args))
+  updateUser: (...args) => dispatch(updateUser(...args)),
+  getBranches: (...args) => dispatch(getBranches(...args))
 });
 
 const mapStateToProps = state => ({

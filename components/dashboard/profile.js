@@ -38,6 +38,13 @@ class Profile extends React.Component {
         branches: payload.data.branches
       });
     });
+
+    const login = JSON.parse(localStorage.getItem("user")).user.login;
+    this.props.getBranches(login)
+      .then(data => {
+        console.log(data);
+      });
+    //this.props.getSkills(login);
   }
 
   handleSubmit = e => {
@@ -172,7 +179,7 @@ class Profile extends React.Component {
                       "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
                     type: "array"
                   }
-                ]
+                ], initialValue: ['Analiza', 'Inżynieria Oprogramowania']
               })(
                 <Select mode="multiple" placeholder="Analiza Matematyczna" notFoundContent="Brak wyników" 
                   filterOption={(input, option) =>

@@ -12,6 +12,7 @@ const search = require("../controllers/thesis/search");
 const getSkills = require("../controllers/skills/getAll");
 
 const getBranches = require("../controllers/branches/getAll");
+const getBranchesByUserLogin = require("../controllers/branches/getByUserLogin");
 
 const API = new Router();
 
@@ -23,6 +24,7 @@ API.post("/login", login)
   .get("/thesis/search", search)
   .get("/user/theses", getThesisByUserLogin)
   .get("/skills", getSkills)
-  .get("/branches", getBranches);
+  .get("/branches", getBranches)
+  .get("/user/branches", getBranchesByUserLogin);
 
 module.exports = API;
