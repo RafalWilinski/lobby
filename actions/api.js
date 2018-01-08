@@ -37,7 +37,7 @@ export const register = (user, userSkills) => ({
   }
 });
 
-export const updateUser = (user) => ({
+export const updateUser = user => ({
   type: "USER_UPDATE",
   payload: {
     request: {
@@ -74,12 +74,37 @@ export const getBranches = userLogin => ({
   }
 });
 
+export const apply = (roleId, login, description) => ({
+  type: "APPLY",
+  payload: {
+    request: {
+      method: "POST",
+      url: "/thesis/apply",
+      data: {
+        roleId,
+        login,
+        description
+      }
+    }
+  }
+});
+
 export const getTheses = userLogin => ({
   type: "GET_THESES",
   payload: {
     request: {
       method: "GET",
       url: `/user/theses?userLogin=${userLogin}`
+    }
+  }
+});
+
+export const getApplications = userLogin => ({
+  type: "GET_APPLICATIONS",
+  payload: {
+    request: {
+      method: "GET",
+      url: `/user/applications?userLogin=${userLogin}`
     }
   }
 });

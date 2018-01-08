@@ -192,6 +192,7 @@ class RegistrationForm extends React.Component {
                 showSearch
                 //style={{ width: "350px" }}
                 placeholder="Wybierz umiejętność"
+				notFoundContent="Brak wyników"
                 optionFilterProp="children"
                 filterOption={(input, option) =>
                   option.props.children
@@ -364,7 +365,7 @@ class RegistrationForm extends React.Component {
               }
             ]
           })(
-            <Select mode="multiple">
+            <Select mode="multiple" notFoundContent="Brak wyników">
               {this.state.branches.map(branch => (
                 <Option value={branch.name} key={branch.name}>
                   {branch.name}
