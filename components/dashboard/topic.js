@@ -26,6 +26,8 @@ let uuid = 0;
 const { TextArea } = Input;
 const { Header, Content, Footer, Sider } = Layout;
 
+
+
 class Topic extends React.Component {
   constructor(props) {
     super(props);
@@ -85,7 +87,10 @@ class Topic extends React.Component {
       const thesis = {
         name: values.name,
         description: values.description,
-        public: values.public,
+        ispublic: 
+			values.public === true
+				? true
+				: false,
         branches: values.relatives
       };
 
