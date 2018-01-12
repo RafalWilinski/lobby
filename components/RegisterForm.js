@@ -8,7 +8,8 @@ import {
   Checkbox,
   Button,
   Alert,
-  Rate
+  Rate,
+  Modal
 } from "antd";
 import Link from "next/link";
 import axios from "axios";
@@ -19,6 +20,20 @@ import SkillsDescriptor from "../components/SkillDescriptor";
 const FormItem = Form.Item;
 
 let uuid = 0;
+
+function info() {
+  Modal.info({
+    title: 'Umowa',
+	okText: 'OK',
+    content: (
+      <div>
+        <p>1. Warunek 1</p>
+        <p>2. Warunek 2</p>
+      </div>
+    ),
+    onOk() {},
+  });
+}
 
 class RegistrationForm extends React.Component {
   state = {
@@ -403,7 +418,7 @@ class RegistrationForm extends React.Component {
             ]
           })(
             <Checkbox>
-              Przeczytałem warunki <a href="">umowy</a>
+			 Przeczytałem warunki <a href="#" onClick={info}>umowy</a>
             </Checkbox>
           )}
         </FormItem>
