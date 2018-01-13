@@ -33,7 +33,8 @@ class Topic extends React.Component {
     super(props);
     this.state = {
       skills: [],
-      branches: []
+      branches: [],
+	  promoters: []
     };
   }
 
@@ -47,6 +48,12 @@ class Topic extends React.Component {
     axios.get("/api/branches").then(payload => {
       this.setState({
         branches: payload.data.branches
+      });
+    });
+
+	axios.get("/api/promoters").then(payload => {
+      this.setState({
+        promoters: payload.data.promoters
       });
     });
   }
@@ -287,6 +294,26 @@ class Topic extends React.Component {
                   {this.state.branches.map(branch => (
                     <Option value={branch.name} key={branch.name}>
                       {branch.name}
+                    </Option>
+                  ))}
+                </Select>
+              )}
+            </FormItem>
+
+			<FormItem {...formItemLayout} label="Promotor">
+              {getFieldDecorator("promoter", {
+                rules: [
+                  {
+                   
+                  }
+                ]
+              })(
+                <Select
+                  placeholder="Wybierz promotora"
+                >
+                  {this.state.promoters.map(promoter => (
+                    <Option value={promoter.fistName, promoter.lastName} key={promoter.firstName, promoter.lastName}>
+                      {promoter.degree +" " + promoter.firstName + " " + promoter.lastName}
                     </Option>
                   ))}
                 </Select>

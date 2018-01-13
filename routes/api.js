@@ -17,6 +17,7 @@ const getApplicationsByUserLogin = require("../controllers/application/getByUser
 
 const getSkills = require("../controllers/skills/getAll");
 const getBranches = require("../controllers/branches/getAll");
+const getPromoters = require("../controllers/promoters/getByBranch");
 
 const API = new Router();
 
@@ -33,6 +34,7 @@ API.post("/login", login)
   .get("/user/theses", getThesisByUserLogin)
   .get("/user/applications", getApplicationsByUserLogin)
   .get("/skills", getSkills)
-  .get("/branches", getBranches);
+  .get("/branches", getBranches)
+  .get("/promoters", getPromoters);
 
 module.exports = API;
