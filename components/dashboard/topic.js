@@ -101,8 +101,13 @@ class Topic extends React.Component {
         branches: values.relatives
       };
 
+	  const promoterThesis = {
+	  	  promoterFirstName: values.promoter,
+		  promoterLastName: values.promoter
+	  }
+
       if (!err) {
-        this.props.create(thesis, roles);
+        this.props.create(thesis, roles, promoterThesis);
       } else {
         message.error("Popraw błędy w formularzu");
       }
@@ -312,8 +317,8 @@ class Topic extends React.Component {
                   placeholder="Wybierz promotora"
                 >
                   {this.state.promoters.map(promoter => (
-                    <Option value={promoter.fistName, promoter.lastName} key={promoter.firstName, promoter.lastName}>
-                      {promoter.degree +" " + promoter.firstName + " " + promoter.lastName}
+                    <Option value={promoter.firstName} key={promoter.id}>
+                      {promoter.degree + " " + promoter.firstName + " " + promoter.lastName}
                     </Option>
                   ))}
                 </Select>

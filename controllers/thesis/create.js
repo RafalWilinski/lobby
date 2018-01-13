@@ -2,6 +2,7 @@ const Thesis = require("../../models/").Thesis;
 const ThesisBranch = require("../../models/").ThesisBranch;
 const Role = require("../../models/").Role;
 const RoleSkill = require("../../models/").RoleSkill;
+const PromoterThesis = require("../../models/").PromoterThesis;
 const config = require("../../config");
 
 const create = async ctx => {
@@ -38,9 +39,15 @@ const create = async ctx => {
       )
     );
 
+	const promoterThesis = await PromoterThesis.create({
+      ...ctx.request.body.promoterThesis,
+      thesisId: thesis.dataValues.id
+    });
+
     ctx.body = {
       thesis,
-      roles
+      roles,
+	  promoterThesis
     };
   } catch (err) {
     console.log(err);
