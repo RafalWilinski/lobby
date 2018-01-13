@@ -1,18 +1,12 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
   const Promoter = sequelize.define("Promoter", {
-    /*id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true
-    },*/
-    firstName: {
-		type: DataTypes.STRING,
-		primaryKey: true
-	},
-	lastName: {
-		type: DataTypes.STRING,
-		primaryKey: true
-	},
+    },
+    firstName: DataTypes.STRING,
+	lastName: DataTypes.STRING,
 	degree: DataTypes.STRING
   });
 

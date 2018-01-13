@@ -1,12 +1,8 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
   const PromoterThesis = sequelize.define("PromoterThesis", {
-    firstName: {
-      type: DataTypes.STRING,
-      primaryKey: true
-    },
-    lastName: {
-      type: DataTypes.STRING,
+    promoterId: {
+      type: DataTypes.INTEGER,
       primaryKey: true
     },
 	thesisId: {

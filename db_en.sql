@@ -18,36 +18,33 @@ CREATE TABLE "Branches"
 ALTER TABLE "Branches" ADD CONSTRAINT branchPk PRIMARY KEY ( name );
 CREATE TABLE "Promoters"
 (
+	id SERIAL,
     "firstName" VARCHAR(30) NOT NULL,
     "lastName" VARCHAR(30) NOT NULL,
 	"degree" VARCHAR(30) NOT NULL,
     "createdAt" TIMESTAMP WITH TIME ZONE,
     "updatedAt" TIMESTAMP WITH TIME ZONE
 );
-ALTER TABLE "Promoters" ADD CONSTRAINT promoterPk PRIMARY KEY ("firstName", "lastName");
+ALTER TABLE "Promoters" ADD CONSTRAINT promoterPk PRIMARY KEY (id);
 CREATE TABLE "PromoterBranches"
 (
-    "promoterFirstName" VARCHAR(30) NOT NULL,
-    "promoterLastName" VARCHAR(30) NOT NULL,
+	"promoterId" INTEGER NOT NULL,
     "branchName" VARCHAR(50) NOT NULL,
     "createdAt" TIMESTAMP WITH TIME ZONE,
     "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "PromoterBranches"
-    ADD CONSTRAINT promoterBranchPk PRIMARY KEY ( "promoterFirstName",
-    "promoterLastName",
+    ADD CONSTRAINT promoterBranchPk PRIMARY KEY ( "promoterId",
     "branchName" );
 CREATE TABLE "PromoterThesises"
 (
-    "promoterFirstName" VARCHAR(30) NOT NULL,
-    "promoterLastName" VARCHAR(30) NOT NULL,
+    "promoterId" INTEGER NOT NULL,
     "thesisId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP WITH TIME ZONE,
     "updatedAt" TIMESTAMP WITH TIME ZONE
 );
 ALTER TABLE "PromoterThesises"
-    ADD CONSTRAINT promoterThesisPk PRIMARY KEY ( "promoterFirstName",
-    "promoterLastName",
+    ADD CONSTRAINT promoterThesisPk PRIMARY KEY ( "promoterId",
     "thesisId" );
 CREATE TABLE "Skills"
 (
@@ -144,13 +141,11 @@ ALTER TABLE "PromoterBranches"
     ADD CONSTRAINT promoterBranchBranchFk FOREIGN KEY ( "branchName" )
         REFERENCES "Branches" ( name );
 ALTER TABLE "PromoterBranches"
-    ADD CONSTRAINT promoterBranchPromoterFk FOREIGN KEY ( "promoterFirstName",
-    "promoterLastName" )
-        REFERENCES "Promoters" ( "firstName", "lastName" );
+    ADD CONSTRAINT promoterBranchPromoterFk FOREIGN KEY ( "promoterId" )
+        REFERENCES "Promoters" ( id );
 ALTER TABLE "PromoterThesises"
-    ADD CONSTRAINT promoterThesisPromoterFk FOREIGN KEY ( "promoterFirstName",
-    "promoterLastName" )
-        REFERENCES "Promoters" ( "firstName", "lastName" );
+    ADD CONSTRAINT promoterThesisPromoterFk FOREIGN KEY ( "promoterId" )
+        REFERENCES "Promoters" ( id );
 ALTER TABLE "PromoterThesises"
     ADD CONSTRAINT promoterThesisThesisFk FOREIGN KEY ( "thesisId" )
         REFERENCES "Theses" ( id );
@@ -161,12 +156,6 @@ ALTER TABLE "ThesisBranches"
     ADD CONSTRAINT thesisBranchThesisFk FOREIGN KEY ( "thesisId" )
         REFERENCES "Theses" ( id )
         ON DELETE CASCADE;
-ALTER TABLE "ThesisSkills"
-    ADD CONSTRAINT thesisSkillSkillFk FOREIGN KEY ( "skillName" )
-        REFERENCES "Skills" ( name );
-ALTER TABLE "ThesisSkills"
-    ADD CONSTRAINT thesisSkillThesisFk FOREIGN KEY ( "thesisId" )
-        REFERENCES "Theses" ( id );
 ALTER TABLE "UserBranches"
     ADD CONSTRAINT userBranchBranchFk FOREIGN KEY ( "branchName" )
         REFERENCES "Branches" ( name );
