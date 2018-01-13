@@ -11,5 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  UserBranch.associate = models => {
+    UserBranch.User = UserBranch.belongsTo(models.User, {
+      foreignKey: "userLogin"
+    });
+  };
+
   return UserBranch;
 };

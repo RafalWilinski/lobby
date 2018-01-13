@@ -1,5 +1,5 @@
 import React from "react";
-import { Select, Form, Rate } from "antd";
+import { Select, Form, Rate, Icon } from "antd";
 import axios from "axios";
 
 const FormItem = Form.Item;
@@ -9,7 +9,9 @@ class SkillDescriptor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      skills: []
+      skills: [],
+      priority: this.props.priority,
+      skillName: this.props.skillName
     };
   }
 
@@ -21,12 +23,16 @@ class SkillDescriptor extends React.Component {
     });
   }
 
-  handleRateChange = value => {
-    this.setState({ value });
+  handleRateChange = priority => {
+    this.setState({ priority });
+  };
+
+  handleSkillNameChange = skillName => {
+    this.setState({ skillName });
   };
 
   render() {
-    const { key, index } = this.props;
+    const { skillName, priority, index } = this.props;
     const { getFieldDecorator, getFieldValue } = this.props.form;
 
     const formItemLayout = {
@@ -55,7 +61,7 @@ class SkillDescriptor extends React.Component {
           label={index === 0 ? "Umiejętnosc" : ""}
           style={{ marginBottom: "10px" }}
         >
-          {getFieldDecorator(`skill-name-${key}`, {
+          {getFieldDecorator(`skill-name-${index}`, {
             validateTrigger: ["onChange", "onBlur"],
             rules: [
               {
@@ -63,9 +69,9 @@ class SkillDescriptor extends React.Component {
                 whitespace: true,
                 message: "Proszę podaj umiejętność"
               }
-            ]
+            ], initialValue: skillName
           })(
-            <Select
+            <Select onChange={this.handleSkillNameChange}
               showSearch
               style={{ width: 200 }}
               placeholder="Wybierz umiejętność"
@@ -80,26 +86,31 @@ class SkillDescriptor extends React.Component {
               {this.state.skills.map(skills => ( <Option value={skills.name} key={skills.name}>{skills.name}</Option>))}
             </Select>
           )}
+          {index !== 0 ? (
+              <Icon
+                className="dynamic-delete-button"
+                type="minus-circle-o"
+                onClick={this.props.onRemove}
+              />
+            ) : null}
         </FormItem>
         <FormItem
           required={true}
           {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
           label={index === 0 ? "Stopien Zaawansowania" : ""}
         >
-          {getFieldDecorator(`skill-value-${key}`, {
+          {getFieldDecorator(`skill-value-${index}`, {
             validateTrigger: ["onChange", "onBlur"],
             rules: [
               {
-                required: true,
+                //required: true,
                 whitespace: true,
                 message: "Podaj stopień zaawansowania"
               }
             ]
-          })(
-            <span>
-              <Rate />
-            </span>
-          )}
+          })(<span>
+            <Rate allowClear={false} defaultValue={priority} onChange={this.handleRateChange}/>
+          </span>)}
         </FormItem>
       </div>
     );
