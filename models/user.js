@@ -19,6 +19,14 @@ module.exports = (sequelize, DataTypes) => {
     User.Applications = User.hasMany(models.Application, {
       foreignKey: "login"
     });
+    
+    User.UserBranch = User.hasMany(models.UserBranch, {
+      foreignKey: "userLogin"
+    });
+    
+    User.UserSkill = User.hasMany(models.UserSkill, {
+      foreignKey: "userLogin"
+    });
   };
 
   return User;
