@@ -10,7 +10,7 @@ import { updateUser, getBranches, getSkills } from "../../actions/api";
 const mapStateToProps = state => ({
   isLoading: state.user.isLoading || state.branches.isLoading || state.skills.isLoading,
   error: state.user.error && state.branches.error && state.skills.error,
-  success: state.user.userId !== -1,
+  success: state.user.data && !state.user.error && !state.branches.error && !state.skills.error,
   myBranches: state.branches.data,
   mySkills: state.skills.data
 });

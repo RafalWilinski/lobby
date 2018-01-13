@@ -106,6 +106,17 @@ class Profile extends React.Component {
   };
 
   render() {
+    if (this.props.success) {
+      setTimeout(() => {
+        notification.open({
+          message: "Sukces!",
+          description: "Profil zaktualizowany!",
+          duration: 2.0,
+          icon: <Icon type="smile-circle" style={{ color: "#108ee9" }} />
+        });
+      }, 100);
+    }
+
     const { getFieldDecorator, getFieldValue } = this.props.form;
     const formItemLayout = {
       labelCol: {
