@@ -5,18 +5,20 @@ import Head from "../../components/Head.js";
 import HWCenterWrapper from "../../components/HVCenterWrapper";
 import Profile from "../../components/dashboard/profile";
 import { initStore } from "../../store";
-import { updateUser, getBranches } from "../../actions/api";
+import { updateUser, getBranches, getSkills } from "../../actions/api";
 
 const mapStateToProps = state => ({
-  isLoading: state.user.isLoading || state.branches.isLoading,
-  error: state.user.error && state.branches.error,
+  isLoading: state.user.isLoading || state.branches.isLoading || state.skills.isLoading,
+  error: state.user.error && state.branches.error && state.skills.error,
   success: state.user.userId !== -1,
-  myBranches: state.branches.data
+  myBranches: state.branches.data,
+  mySkills: state.skills.data
 });
 
 const mapDispatchToProps = dispatch => ({
   updateUser: (...args) => dispatch(updateUser(...args)),
-  getMyBranches: (...args) => dispatch(getBranches(...args))
+  getMyBranches: (...args) => dispatch(getBranches(...args)),
+  getMySkills: (...args) => dispatch(getSkills(...args))
 });
 
 export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(props => (

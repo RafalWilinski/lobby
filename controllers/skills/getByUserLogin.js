@@ -1,8 +1,8 @@
-const UserBranch = require("../../models/").UserBranch;
+const UserSkill = require("../../models/").UserSkill;
 
 const get = async ctx => {
   try {
-    const data = await UserBranch.findAll({
+    const data = await UserSkill.findAll({
       where: {
         userLogin: ctx.request.query.userLogin
       }
@@ -14,7 +14,7 @@ const get = async ctx => {
   } catch (err) {
     throw {
       statusCode: 400,
-      message: "Nie udało się pobrać zainteresowań użytkownika",
+      message: "Nie udało się pobrać umiejętności użytkownika",
       err
     };
   }

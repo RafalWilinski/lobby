@@ -74,6 +74,16 @@ export const getBranches = userLogin => ({
   }
 });
 
+export const getSkills = userLogin => ({
+  type: "GET_SKILLS",
+  payload: {
+    request: {
+      method: "GET",
+      url: `/user/skills?userLogin=${userLogin}`
+    }
+  }
+});
+
 export const apply = (roleId, login, description) => ({
   type: "APPLY",
   payload: {

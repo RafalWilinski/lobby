@@ -10,7 +10,8 @@ import {
   Upload,
   Icon,
   Input,
-  Spin
+  Spin,
+  notification
 } from "antd";
 import axios from "axios";
 import SkillsDescriptor from "../SkillDescriptor";
@@ -20,7 +21,6 @@ const Option = Select.Option;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
-let uuid = 0;
 const { TextArea } = Input;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -29,8 +29,9 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       branches: [],
-      user: JSON.parse(localStorage.getItem("user")).user
+      user: {}
     };
+    this.skillDescriptor = [];
   }
 
   componentDidMount() {
@@ -40,8 +41,14 @@ class Profile extends React.Component {
       });
     });
 
+    this.setState({user: JSON.parse(localStorage.getItem("user")).user});
     this.props.getMyBranches(JSON.parse(localStorage.getItem("user")).user.login);
-    //this.props.getSkills(JSON.parse(localStorage.getItem("user")).user.login);
+    this.props.getMySkills(JSON.parse(localStorage.getItem("user")).user.login)
+      .then(() => {
+        this.props.form.setFieldsValue({
+          keys: this.props.mySkills.data
+        });
+      });
   }
 
   handleSubmit = e => {
@@ -52,6 +59,8 @@ class Profile extends React.Component {
         lastName: values.lastName,
         studentId: values.studentId,
         description: values.description,
+        branches: values.interests,
+        skills: this.skillDescriptor.map(sd => sd.state),
         login: JSON.parse(localStorage.getItem("user")).user.login
       };
       if (!err) {
@@ -84,11 +93,11 @@ class Profile extends React.Component {
   };
 
   add = () => {
-    uuid++;
+    const newKey = {skillName: '', priority: 1};
     const { form } = this.props;
     // can use data-binding to get
     const keys = form.getFieldValue("keys");
-    const nextKeys = keys.concat(uuid);
+    const nextKeys = keys.concat(newKey);
     // can use data-binding to set
     // important! notify form to detect changes
     form.setFieldsValue({
@@ -120,7 +129,10 @@ class Profile extends React.Component {
     const keys = getFieldValue("keys");
 
     const formItems = keys.map((k, index) => {
-      return <SkillsDescriptor key={k} index={index} form={this.props.form} />;
+      return <SkillsDescriptor 
+        ref={(e) => { this.skillDescriptor[index] = e; }}
+        skillName={k.skillName} priority={Number(k.priority)} key={index} index={index} form={this.props.form} 
+      />;
     });
 
     return (
