@@ -7,15 +7,16 @@ import Profile from "../../components/dashboard/profile";
 import { initStore } from "../../store";
 import { updateUser, getBranches } from "../../actions/api";
 
-const mapDispatchToProps = dispatch => ({
-  updateUser: (...args) => dispatch(updateUser(...args)),
-  getBranches: (...args) => dispatch(getBranches(...args))
+const mapStateToProps = state => ({
+  isLoading: state.user.isLoading || state.branches.isLoading,
+  error: state.user.error && state.branches.error,
+  success: state.user.userId !== -1,
+  myBranches: state.branches.data
 });
 
-const mapStateToProps = state => ({
-  isLoading: state.user.isLoading,
-  error: state.user.error,
-  success: state.user.userId !== -1
+const mapDispatchToProps = dispatch => ({
+  updateUser: (...args) => dispatch(updateUser(...args)),
+  getMyBranches: (...args) => dispatch(getBranches(...args))
 });
 
 export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(props => (

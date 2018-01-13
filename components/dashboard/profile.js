@@ -9,7 +9,8 @@ import {
   Button,
   Upload,
   Icon,
-  Input
+  Input,
+  Spin
 } from "antd";
 import axios from "axios";
 import SkillsDescriptor from "../SkillDescriptor";
@@ -39,12 +40,8 @@ class Profile extends React.Component {
       });
     });
 
-    const login = JSON.parse(localStorage.getItem("user")).user.login;
-    this.props.getBranches(login)
-      .then(data => {
-        console.log(data);
-      });
-    //this.props.getSkills(login);
+    this.props.getMyBranches(JSON.parse(localStorage.getItem("user")).user.login);
+    //this.props.getSkills(JSON.parse(localStorage.getItem("user")).user.login);
   }
 
   handleSubmit = e => {
@@ -170,27 +167,31 @@ class Profile extends React.Component {
               )}
             </FormItem>
 
-            <FormItem {...formItemLayout} label="Zainteresowania">
-              {getFieldDecorator("interests", {
-                rules: [
-                  {
-                    required: true,
-                    message:
-                      "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
-                    type: "array"
-                  }
-                ], initialValue: ['Analiza', 'Inżynieria Oprogramowania']
-              })(
-                <Select mode="multiple" placeholder="Analiza Matematyczna" notFoundContent="Brak wyników" 
-                  filterOption={(input, option) =>
-                    option.props.children
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                }>
-                  {this.state.branches.map(branch => ( <Option value={branch.name} key={branch.name}>{branch.name}</Option>))}
-                </Select>
-              )}
-            </FormItem>
+            {this.props.isLoading || !this.props.myBranches ? (
+              <Spin />
+            ) : (
+              <FormItem {...formItemLayout} label="Zainteresowania">
+                {getFieldDecorator("interests", {
+                  rules: [
+                    {
+                      required: true,
+                      message:
+                        "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
+                      type: "array"
+                    }
+                  ], initialValue: this.props.myBranches.data.map(myBranch => myBranch.branchName)
+                })(
+                  <Select mode="multiple" placeholder="Analiza Matematyczna" notFoundContent="Brak wyników" 
+                    filterOption={(input, option) =>
+                      option.props.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
+                  }>
+                    {this.state.branches.map(branch => ( <Option value={branch.name} key={branch.name}>{branch.name}</Option>))}
+                  </Select>
+                )}
+              </FormItem>
+            )}
 
             <FormItem {...formItemLayout} label="Twoje umiejętnosci">
               <span className="ant-form-text">Pokaz w czym jestes dobry!</span>
