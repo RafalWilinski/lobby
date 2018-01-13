@@ -20,6 +20,7 @@ CREATE TABLE "Promoters"
 (
     "firstName" VARCHAR(30) NOT NULL,
     "lastName" VARCHAR(30) NOT NULL,
+	"degree" VARCHAR(30) NOT NULL,
     "createdAt" TIMESTAMP WITH TIME ZONE,
     "updatedAt" TIMESTAMP WITH TIME ZONE
 );
@@ -76,15 +77,6 @@ CREATE TABLE "ThesisBranches"
 );
 ALTER TABLE "ThesisBranches" ADD CONSTRAINT thesisBranchPk PRIMARY KEY ( "thesisId",
 "branchName" );
-CREATE TABLE "ThesisSkills"
-(
-    "thesisId" INTEGER NOT NULL,
-    "skillName" VARCHAR(50) NOT NULL,
-    "createdAt" TIMESTAMP WITH TIME ZONE,
-    "updatedAt" TIMESTAMP WITH TIME ZONE
-);
-ALTER TABLE "ThesisSkills" ADD CONSTRAINT thesisSkillPk PRIMARY KEY ( "thesisId",
-"skillName" );
 CREATE TABLE "Users"
 (
     login VARCHAR(30) NOT NULL,
