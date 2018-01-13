@@ -77,7 +77,7 @@ class Profile extends React.Component {
     return e && e.fileList;
   };
 
-  remove = k => {
+  remove = index => {
     const { form } = this.props;
     // can use data-binding to get
     const keys = form.getFieldValue("keys");
@@ -85,11 +85,11 @@ class Profile extends React.Component {
     if (keys.length === 1) {
       return;
     }
+    keys.splice(index, 1);
+    this.skillDescriptor = [];
 
     // can use data-binding to set
-    form.setFieldsValue({
-      keys: keys.filter(key => key !== k)
-    });
+    form.setFieldsValue({ keys });
   };
 
   add = () => {
@@ -111,7 +111,7 @@ class Profile extends React.Component {
         notification.open({
           message: "Sukces!",
           description: "Profil zaktualizowany!",
-          duration: 2.0,
+          duration: 3.0,
           icon: <Icon type="smile-circle" style={{ color: "#108ee9" }} />
         });
       }, 100);
@@ -141,7 +141,7 @@ class Profile extends React.Component {
 
     const formItems = keys.map((k, index) => {
       return <SkillsDescriptor 
-        ref={(e) => { this.skillDescriptor[index] = e; }}
+        ref={(e) => { if(e) { this.skillDescriptor[index] = e; } } } onRemove={this.remove.bind(this, index)}
         skillName={k.skillName} priority={Number(k.priority)} key={index} index={index} form={this.props.form} 
       />;
     });

@@ -1,5 +1,5 @@
 import React from "react";
-import { Select, Form, Rate } from "antd";
+import { Select, Form, Rate, Icon } from "antd";
 import axios from "axios";
 
 const FormItem = Form.Item;
@@ -86,6 +86,13 @@ class SkillDescriptor extends React.Component {
               {this.state.skills.map(skills => ( <Option value={skills.name} key={skills.name}>{skills.name}</Option>))}
             </Select>
           )}
+          {index !== 0 ? (
+              <Icon
+                className="dynamic-delete-button"
+                type="minus-circle-o"
+                onClick={this.props.onRemove}
+              />
+            ) : null}
         </FormItem>
         <FormItem
           required={true}
