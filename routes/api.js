@@ -21,6 +21,8 @@ const getSkillsUserLogin = require("../controllers/skills/getByUserLogin");
 const getBranches = require("../controllers/branches/getAll");
 const getBranchesByUserLogin = require("../controllers/branches/getByUserLogin");
 
+const getPromoters = require("../controllers/promoters/getByBranch");
+
 const API = new Router();
 
 API.post("/login", login)
@@ -38,6 +40,7 @@ API.post("/login", login)
   .get("/user/branches", getBranchesByUserLogin)
   .get("/user/skills", getSkillsUserLogin)
   .get("/skills", getSkills)
-  .get("/branches", getBranches);
+  .get("/branches", getBranches)
+  .get("/promoters", getPromoters);
 
 module.exports = API;

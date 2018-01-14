@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING
+	lastName: DataTypes.STRING,
+	degree: DataTypes.STRING
   });
 
   return Promoter;
