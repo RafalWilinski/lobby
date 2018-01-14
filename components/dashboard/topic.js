@@ -240,13 +240,14 @@ class Topic extends React.Component {
               <Select
                 mode="multiple"
                 placeholder="Wybierz wymagane umiejetnosci"
-                style={{ width: "80%", marginRight: 8 }}
-              >
-                {this.state.skills.map(skill => (
-                  <Option value={skill.name} key={skill.name}>
-                    {skill.name}
-                  </Option>
-                ))}
+                style={{ width: "80%", marginRight: 8 }} 
+                notFoundContent="Brak wyników" 
+                filterOption={(input, option) =>
+                  option.props.children
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+              }>
+                {this.state.skills.map(skill => ( <Select.Option value={skill.name} key={skill.name}>{skill.name}</Select.Option> ))}
               </Select>
             )}
           </FormItem>
@@ -294,8 +295,12 @@ class Topic extends React.Component {
               })(
                 <Select
                   mode="multiple"
-                  placeholder="Wybierz zagadnienia pokrewne"
-                >
+                  placeholder="Wybierz zagadnienia pokrewne" notFoundContent="Brak wyników" 
+                  filterOption={(input, option) =>
+                    option.props.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                }>
                   {this.state.branches.map(branch => (
                     <Option value={branch.name} key={branch.name}>
                       {branch.name}

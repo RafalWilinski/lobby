@@ -202,7 +202,7 @@ class Profile extends React.Component {
                         .toLowerCase()
                         .indexOf(input.toLowerCase()) >= 0
                   }>
-                    {this.state.branches.map(branch => ( <Option value={branch.name} key={branch.name}>{branch.name}</Option>))}
+                    {this.state.branches.map(branch => ( <Select.Option value={branch.name} key={branch.name}>{branch.name}</Select.Option>))}
                   </Select>
                 )}
               </FormItem>
