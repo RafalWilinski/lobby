@@ -102,8 +102,7 @@ class Topic extends React.Component {
       };
 
 	  const promoterThesis = {
-	  	  promoterFirstName: values.promoter,
-		  promoterLastName: values.promoter
+	  	  promoterId: parseInt(values.promoter)
 	  }
 
       if (!err) {
@@ -317,7 +316,7 @@ class Topic extends React.Component {
                   placeholder="Wybierz promotora"
                 >
                   {this.state.promoters.map(promoter => (
-                    <Option value={promoter.firstName} key={promoter.id}>
+                    <Option value={promoter.id.toString()} key={promoter.id}>
                       {promoter.degree + " " + promoter.firstName + " " + promoter.lastName}
                     </Option>
                   ))}

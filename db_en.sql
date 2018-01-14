@@ -36,14 +36,14 @@ CREATE TABLE "PromoterBranches"
 ALTER TABLE "PromoterBranches"
     ADD CONSTRAINT promoterBranchPk PRIMARY KEY ( "promoterId",
     "branchName" );
-CREATE TABLE "PromoterThesises"
+CREATE TABLE "PromoterTheses"
 (
     "promoterId" INTEGER NOT NULL,
     "thesisId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP WITH TIME ZONE,
     "updatedAt" TIMESTAMP WITH TIME ZONE
 );
-ALTER TABLE "PromoterThesises"
+ALTER TABLE "PromoterTheses"
     ADD CONSTRAINT promoterThesisPk PRIMARY KEY ( "promoterId",
     "thesisId" );
 CREATE TABLE "Skills"
@@ -143,12 +143,13 @@ ALTER TABLE "PromoterBranches"
 ALTER TABLE "PromoterBranches"
     ADD CONSTRAINT promoterBranchPromoterFk FOREIGN KEY ( "promoterId" )
         REFERENCES "Promoters" ( id );
-ALTER TABLE "PromoterThesises"
+ALTER TABLE "PromoterTheses"
     ADD CONSTRAINT promoterThesisPromoterFk FOREIGN KEY ( "promoterId" )
         REFERENCES "Promoters" ( id );
-ALTER TABLE "PromoterThesises"
+ALTER TABLE "PromoterTheses"
     ADD CONSTRAINT promoterThesisThesisFk FOREIGN KEY ( "thesisId" )
-        REFERENCES "Theses" ( id );
+        REFERENCES "Theses" ( id )
+        ON DELETE CASCADE;
 ALTER TABLE "ThesisBranches"
     ADD CONSTRAINT thesisBranchBranchFk FOREIGN KEY ( "branchName" )
         REFERENCES "Branches" ( name );
