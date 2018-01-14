@@ -65,6 +65,26 @@ export const createThesis = (thesis, roles, promoterThesis) => ({
   }
 });
 
+export const getBranches = userLogin => ({
+  type: "GET_BRANCHES",
+  payload: {
+    request: {
+      method: "GET",
+      url: `/user/branches?userLogin=${userLogin}`
+    }
+  }
+});
+
+export const getSkills = userLogin => ({
+  type: "GET_SKILLS",
+  payload: {
+    request: {
+      method: "GET",
+      url: `/user/skills?userLogin=${userLogin}`
+    }
+  }
+});
+
 export const apply = (roleId, login, description) => ({
   type: "APPLY",
   payload: {

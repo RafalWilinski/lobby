@@ -16,7 +16,11 @@ const reject = require("../controllers/application/reject");
 const getApplicationsByUserLogin = require("../controllers/application/getByUserLogin");
 
 const getSkills = require("../controllers/skills/getAll");
+const getSkillsUserLogin = require("../controllers/skills/getByUserLogin");
+
 const getBranches = require("../controllers/branches/getAll");
+const getBranchesByUserLogin = require("../controllers/branches/getByUserLogin");
+
 const getPromoters = require("../controllers/promoters/getByBranch");
 
 const API = new Router();
@@ -33,6 +37,8 @@ API.post("/login", login)
   .get("/thesis/search", search)
   .get("/user/theses", getThesisByUserLogin)
   .get("/user/applications", getApplicationsByUserLogin)
+  .get("/user/branches", getBranchesByUserLogin)
+  .get("/user/skills", getSkillsUserLogin)
   .get("/skills", getSkills)
   .get("/branches", getBranches)
   .get("/promoters", getPromoters);

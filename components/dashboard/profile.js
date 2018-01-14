@@ -9,7 +9,9 @@ import {
   Button,
   Upload,
   Icon,
-  Input
+  Input,
+  Spin,
+  notification
 } from "antd";
 import axios from "axios";
 import SkillsDescriptor from "../SkillDescriptor";
@@ -19,7 +21,6 @@ const Option = Select.Option;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
-let uuid = 0;
 const { TextArea } = Input;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -28,8 +29,9 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       branches: [],
-      user: JSON.parse(localStorage.getItem("user")).user
+      user: {}
     };
+    this.skillDescriptor = [];
   }
 
   componentDidMount() {
@@ -38,6 +40,15 @@ class Profile extends React.Component {
         branches: payload.data.branches
       });
     });
+
+    this.setState({user: JSON.parse(localStorage.getItem("user")).user});
+    this.props.getMyBranches(JSON.parse(localStorage.getItem("user")).user.login);
+    this.props.getMySkills(JSON.parse(localStorage.getItem("user")).user.login)
+      .then(() => {
+        this.props.form.setFieldsValue({
+          keys: this.props.mySkills.data
+        });
+      });
   }
 
   handleSubmit = e => {
@@ -48,6 +59,8 @@ class Profile extends React.Component {
         lastName: values.lastName,
         studentId: values.studentId,
         description: values.description,
+        branches: values.interests,
+        skills: this.skillDescriptor.map(sd => sd.state),
         login: JSON.parse(localStorage.getItem("user")).user.login
       };
       if (!err) {
@@ -64,7 +77,7 @@ class Profile extends React.Component {
     return e && e.fileList;
   };
 
-  remove = k => {
+  remove = index => {
     const { form } = this.props;
     // can use data-binding to get
     const keys = form.getFieldValue("keys");
@@ -72,19 +85,19 @@ class Profile extends React.Component {
     if (keys.length === 1) {
       return;
     }
+    keys.splice(index, 1);
+    this.skillDescriptor = [];
 
     // can use data-binding to set
-    form.setFieldsValue({
-      keys: keys.filter(key => key !== k)
-    });
+    form.setFieldsValue({ keys });
   };
 
   add = () => {
-    uuid++;
+    const newKey = {skillName: '', priority: 1};
     const { form } = this.props;
     // can use data-binding to get
     const keys = form.getFieldValue("keys");
-    const nextKeys = keys.concat(uuid);
+    const nextKeys = keys.concat(newKey);
     // can use data-binding to set
     // important! notify form to detect changes
     form.setFieldsValue({
@@ -93,6 +106,17 @@ class Profile extends React.Component {
   };
 
   render() {
+    if (this.props.success) {
+      setTimeout(() => {
+        notification.open({
+          message: "Sukces!",
+          description: "Profil zaktualizowany!",
+          duration: 3.0,
+          icon: <Icon type="smile-circle" style={{ color: "#108ee9" }} />
+        });
+      }, 100);
+    }
+
     const { getFieldDecorator, getFieldValue } = this.props.form;
     const formItemLayout = {
       labelCol: {
@@ -116,7 +140,10 @@ class Profile extends React.Component {
     const keys = getFieldValue("keys");
 
     const formItems = keys.map((k, index) => {
-      return <SkillsDescriptor key={k} index={index} form={this.props.form} />;
+      return <SkillsDescriptor 
+        ref={(e) => { if(e) { this.skillDescriptor[index] = e; } } } onRemove={this.remove.bind(this, index)}
+        skillName={k.skillName} priority={Number(k.priority)} key={index} index={index} form={this.props.form} 
+      />;
     });
 
     return (
@@ -163,27 +190,31 @@ class Profile extends React.Component {
               )}
             </FormItem>
 
-            <FormItem {...formItemLayout} label="Zainteresowania">
-              {getFieldDecorator("interests", {
-                rules: [
-                  {
-                    required: true,
-                    message:
-                      "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
-                    type: "array"
-                  }
-                ]
-              })(
-                <Select mode="multiple" placeholder="Analiza Matematyczna" notFoundContent="Brak wyników" 
-                  filterOption={(input, option) =>
-                    option.props.children
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                }>
-                  {this.state.branches.map(branch => ( <Option value={branch.name} key={branch.name}>{branch.name}</Option>))}
-                </Select>
-              )}
-            </FormItem>
+            {this.props.isLoading || !this.props.myBranches ? (
+              <Spin />
+            ) : (
+              <FormItem {...formItemLayout} label="Zainteresowania">
+                {getFieldDecorator("interests", {
+                  rules: [
+                    {
+                      required: true,
+                      message:
+                        "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
+                      type: "array"
+                    }
+                  ], initialValue: this.props.myBranches.data.map(myBranch => myBranch.branchName)
+                })(
+                  <Select mode="multiple" placeholder="Analiza Matematyczna" notFoundContent="Brak wyników" 
+                    filterOption={(input, option) =>
+                      option.props.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
+                  }>
+                    {this.state.branches.map(branch => ( <Option value={branch.name} key={branch.name}>{branch.name}</Option>))}
+                  </Select>
+                )}
+              </FormItem>
+            )}
 
             <FormItem {...formItemLayout} label="Twoje umiejętnosci">
               <span className="ant-form-text">Pokaz w czym jestes dobry!</span>
