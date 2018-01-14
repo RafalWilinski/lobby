@@ -50,7 +50,7 @@ export const updateUser = user => ({
   }
 });
 
-export const createThesis = (thesis, roles) => ({
+export const createThesis = (thesis, roles, promoterThesis) => ({
   type: "THESIS_CREATE",
   payload: {
     request: {
@@ -58,8 +58,29 @@ export const createThesis = (thesis, roles) => ({
       url: "/thesis",
       data: {
         thesis,
-        roles
+        roles,
+		promoterThesis
       }
+    }
+  }
+});
+
+export const getBranches = userLogin => ({
+  type: "GET_BRANCHES",
+  payload: {
+    request: {
+      method: "GET",
+      url: `/user/branches?userLogin=${userLogin}`
+    }
+  }
+});
+
+export const getSkills = userLogin => ({
+  type: "GET_SKILLS",
+  payload: {
+    request: {
+      method: "GET",
+      url: `/user/skills?userLogin=${userLogin}`
     }
   }
 });

@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     password: DataTypes.STRING,
     picture: DataTypes.STRING,
+    description: DataTypes.STRING,
     studentId: DataTypes.INTEGER,
     roleId: DataTypes.INTEGER
   });
@@ -17,6 +18,14 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = models => {
     User.Applications = User.hasMany(models.Application, {
       foreignKey: "login"
+    });
+    
+    User.UserBranch = User.hasMany(models.UserBranch, {
+      foreignKey: "userLogin"
+    });
+    
+    User.UserSkill = User.hasMany(models.UserSkill, {
+      foreignKey: "userLogin"
     });
   };
 
