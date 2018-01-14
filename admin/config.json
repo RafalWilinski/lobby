@@ -1,0 +1,16 @@
+{
+    "pg": {
+        "database": "lobby",
+        "user": "lobby",
+        "password": "",
+        "schema": "public"
+    },
+    "server": {
+        "port": 1337
+    },
+    "app": {
+        "layouts": true,
+        "themes": true,
+        "languages": false
+    }
+}

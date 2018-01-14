@@ -12,6 +12,7 @@
     "babel-plugin-import": "^1.6.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "bcrypt": "^1.0.3",
+    "express-admin": "^1.3.2",
     "jsonwebtoken": "^8.1.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^2.5.0",
@@ -20,7 +21,7 @@
     "koa-session": "^5.5.0",
     "next": "^4.1.4",
     "next-redux-wrapper": "^1.3.4",
-    "pg": "^7.3.0",
+    "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -40,6 +41,7 @@
     "react-test-renderer": "^16.2.0"
   },
   "scripts": {
+    "admin": "echo \"Use admin:ADmin12 credentials to login.\" && admin ./admin",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "deploy": "now --public",
