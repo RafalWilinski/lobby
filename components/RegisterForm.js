@@ -6,9 +6,11 @@ import {
   Button,
   Alert,
   Icon,
-  Modal
+  Modal,
+  message
 } from "antd";
 import Link from "next/link";
+import Router from "next/router";
 import axios from "axios";
 import skills from "../consts/skills";
 import topics from "../consts/topics";
@@ -115,6 +117,19 @@ class RegistrationForm extends React.Component {
       keys: nextKeys
     });
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.success) {
+      Router.push({
+        pathname: "/dashboard",
+        query: {
+          success: "register"
+        }
+      });
+    } else if (nextProps.error) {
+      message.error("Nie udało się zarejestrować użytkownika.");
+    }
+  }
 
   render() {
     const {
