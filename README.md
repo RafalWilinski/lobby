@@ -76,3 +76,8 @@ Application uses Selenium + Nightwatch.js for Integration E2E tests.
 
 1. Run `npm run dev` to start the application
 2. In separate tab run `npm run test:nightwatch` to start tests suite
+
+
+### Administration Panel
+
+Application has a special administration panel for redefining consts, e.g. Skills and Promoters. To access it run `npm run dev` and `npm run admin`, then head to `http://localhost:1337` and use `admin:ADmin12` credentials.
