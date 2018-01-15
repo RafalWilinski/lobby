@@ -23,19 +23,20 @@ const register = async ctx => {
       )
     );
 
-    const userSkills = await Promise.all(
-      ctx.request.body.userSkills.map(async userSkill => {
-        const userSkillObj = await UserSkill.create({
-          ...userSkill
-        });
-      })
+    await Promise.all(
+      ctx.request.body.user.skills.map(skill =>
+        UserSkill.create({
+          userLogin: ctx.request.body.user.login,
+          skillName: skill.skillName,
+          priority: skill.priority
+        })
+      )
     );
 
     const token = jwt.sign(user.login, config("jwtSecret"));
 
     ctx.body = {
       user,
-      userSkills,
       token
     };
   } catch (err) {
