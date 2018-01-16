@@ -124,7 +124,16 @@ class Dashboard extends React.Component {
         notification.open({
           message: "Sukces!",
           description: "Temat utworzony!",
-          duration: 2.0,
+          duration: 3.0,
+          icon: <Icon type="smile-circle" style={{ color: "#108ee9" }} />
+        });
+      }, 100);
+    } else if(this.props.url.query.success === "register") {
+      setTimeout(() => {
+        notification.open({
+          message: "Sukces!",
+          description: "Użytkownik pomyślnie zarejestrowany!",
+          duration: 3.0,
           icon: <Icon type="smile-circle" style={{ color: "#108ee9" }} />
         });
       }, 100);
