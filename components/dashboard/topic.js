@@ -318,7 +318,13 @@ class Topic extends React.Component {
                 ]
               })(
                 <Select
+				  showSearch
                   placeholder="Wybierz promotora"
+				  notFoundContent="Brak wyników" 
+				  filterOption={(input, option) =>
+                    option.props.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0}
                 >
                   {this.state.promoters.map(promoter => (
                     <Option value={promoter.id.toString()} key={promoter.id}>
