@@ -68,7 +68,7 @@ class Topic extends React.Component {
           }
         });
       } else if (nextProps.error) {
-        message.error("Nie udało się utworzyć tematu.");
+        // message.error("Nie udało się utworzyć tematu.");
       }
     }
   }

@@ -23,15 +23,15 @@ let uuid = 0;
 
 function info() {
   Modal.info({
-    title: 'Umowa',
-	okText: 'OK',
+    title: "Umowa",
+    okText: "OK",
     content: (
       <div>
         <p>1. Warunek 1</p>
         <p>2. Warunek 2</p>
       </div>
     ),
-    onOk() {},
+    onOk() {}
   });
 }
 
@@ -207,7 +207,7 @@ class RegistrationForm extends React.Component {
                 showSearch
                 //style={{ width: "350px" }}
                 placeholder="Wybierz umiejętność"
-				        notFoundContent="Brak wyników"
+                notFoundContent="Brak wyników"
                 optionFilterProp="children"
                 filterOption={(input, option) =>
                   option.props.children
@@ -418,7 +418,10 @@ class RegistrationForm extends React.Component {
             ]
           })(
             <Checkbox>
-			 Przeczytałem warunki <a href="#" onClick={info}>umowy</a>
+              Przeczytałem warunki{" "}
+              <a href="#" onClick={info}>
+                umowy
+              </a>
             </Checkbox>
           )}
         </FormItem>

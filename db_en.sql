@@ -36,7 +36,7 @@ CREATE TABLE "PromoterBranches"
 ALTER TABLE "PromoterBranches"
     ADD CONSTRAINT promoterBranchPk PRIMARY KEY ( "promoterId",
     "branchName" );
-CREATE TABLE "PromoterThesises"
+CREATE TABLE "PromoterTheses"
 (
     "promoterId" INTEGER NOT NULL,
     "thesisId" INTEGER NOT NULL,
