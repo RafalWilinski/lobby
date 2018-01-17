@@ -2,24 +2,21 @@ import {
   Select,
   Form,
   Input,
-  Icon,
-  Row,
-  Col,
   Checkbox,
   Button,
   Alert,
-  Rate,
-  Modal
+  Icon,
+  Modal,
+  message
 } from "antd";
 import Link from "next/link";
+import Router from "next/router";
 import axios from "axios";
 import skills from "../consts/skills";
 import topics from "../consts/topics";
 import SkillsDescriptor from "../components/SkillDescriptor";
 
 const FormItem = Form.Item;
-
-let uuid = 0;
 
 function info() {
   Modal.info({
@@ -44,23 +41,17 @@ class RegistrationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      skills: [],
       branches: []
     };
   }
 
   componentDidMount() {
-    axios.get("/api/skills").then(payload => {
-      this.setState({
-        skills: payload.data.skills
-      });
-    });
-
     axios.get("/api/branches").then(payload => {
       this.setState({
         branches: payload.data.branches
       });
     });
+    this.skillDescriptor = [];
   }
 
   handleSubmit = e => {
@@ -72,21 +63,12 @@ class RegistrationForm extends React.Component {
         firstName: values.firstName,
         lastName: values.lastName,
         studentId: values.studentId,
-        branches: values.interests
+        branches: values.interests,
+        skills: this.skillDescriptor.map(sd => sd.state)
       };
 
-      const userSkills = [];
-
-      values.skillname.filter(x => !!x).forEach((skillname, index) => {
-        userSkills[index] = {
-          skillName: skillname,
-          userLogin: values.login,
-          priority: 1 //values.skillvalue.filter(x => !!x)[index]
-        };
-      });
-
       if (!err) {
-        this.props.register(user, userSkills);
+        this.props.register(user);
       }
     });
   };
@@ -113,28 +95,41 @@ class RegistrationForm extends React.Component {
     callback();
   };
 
-  add = () => {
-    uuid++;
+  remove = index => {
     const { form } = this.props;
-    const userSkills = form.getFieldValue("userSkills");
-    const nextUserSkills = userSkills.concat(uuid);
-    form.setFieldsValue({
-      userSkills: nextUserSkills
-    });
-  };
-
-  remove = k => {
-    const { form } = this.props;
-    const userSkills = form.getFieldValue("userSkills");
-
-    if (userSkills.length === 0) {
+    const keys = form.getFieldValue("keys");
+    if (keys.length === 1) {
       return;
     }
+    
+    keys.splice(index, 1);
+    this.skillDescriptor = [];
 
+    form.setFieldsValue({ keys });
+  };
+
+  add = () => {
+    const newKey = {skillName: '', priority: 1};
+    const { form } = this.props;
+    const keys = form.getFieldValue("keys");
+    const nextKeys = keys.concat(newKey);
     form.setFieldsValue({
-      userSkills: userSkills.filter(key => key !== k)
+      keys: nextKeys
     });
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.success) {
+      Router.push({
+        pathname: "/dashboard",
+        query: {
+          success: "register"
+        }
+      });
+    } else if (nextProps.error) {
+      message.error("Nie udało się zarejestrować użytkownika.");
+    }
+  }
 
   render() {
     const {
@@ -181,9 +176,10 @@ class RegistrationForm extends React.Component {
       }
     };
 
-    getFieldDecorator("userSkills", { initialValue: [] });
-    const userSkills = getFieldValue("userSkills");
+    getFieldDecorator("keys", { initialValue: [] });
+    const keys = getFieldValue("keys");
 
+<<<<<<< HEAD
     const formItems = userSkills.map((k, index) => {
       return (
         <div key={k}>
@@ -256,6 +252,13 @@ class RegistrationForm extends React.Component {
           </FormItem>
         </div>
       );
+=======
+    const formItems = keys.map((k, index) => {
+      return <SkillsDescriptor 
+        ref={(e) => { if(e) { this.skillDescriptor[index] = e; } } } onRemove={this.remove.bind(this, index)}
+        skillName={k.skillName} priority={Number(k.priority)} key={index} index={index} form={this.props.form} 
+      />;
+>>>>>>> 5d2c1d24647d5923e1b9a189206f6b5533661cab
     });
 
     return (
@@ -373,18 +376,22 @@ class RegistrationForm extends React.Component {
           {getFieldDecorator("interests", {
             rules: [
               {
-                //required: true,
-                //message:
-                //  "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
+                required: true,
+                message: "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
                 type: "array"
               }
             ]
           })(
-            <Select mode="multiple" notFoundContent="Brak wyników">
+            <Select mode="multiple"  placeholder="Analiza Matematyczna" notFoundContent="Brak wyników" 
+              filterOption={(input, option) =>
+                option.props.children
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0
+            }>
               {this.state.branches.map(branch => (
-                <Option value={branch.name} key={branch.name}>
+                <Select.Option value={branch.name} key={branch.name}>
                   {branch.name}
-                </Option>
+                </Select.Option>
               ))}
             </Select>
           )}

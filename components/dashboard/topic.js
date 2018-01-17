@@ -96,11 +96,17 @@ class Topic extends React.Component {
         branches: values.relatives
       };
 
+<<<<<<< HEAD
       const promoterThesis = {
         promoterFirstName: values.promoter,
         promoterLastName: values.promoter,
         promoterId: values.promoter,
       };
+=======
+	  const promoterThesis = {
+	  	  promoterId: parseInt(values.promoter)
+	  }
+>>>>>>> 5d2c1d24647d5923e1b9a189206f6b5533661cab
 
       if (!err) {
         this.props.create(thesis, roles, promoterThesis);
@@ -236,13 +242,14 @@ class Topic extends React.Component {
               <Select
                 mode="multiple"
                 placeholder="Wybierz wymagane umiejetnosci"
-                style={{ width: "80%", marginRight: 8 }}
-              >
-                {this.state.skills.map(skill => (
-                  <Option value={skill.name} key={skill.name}>
-                    {skill.name}
-                  </Option>
-                ))}
+                style={{ width: "80%", marginRight: 8 }} 
+                notFoundContent="Brak wyników" 
+                filterOption={(input, option) =>
+                  option.props.children
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+              }>
+                {this.state.skills.map(skill => ( <Select.Option value={skill.name} key={skill.name}>{skill.name}</Select.Option> ))}
               </Select>
             )}
           </FormItem>
@@ -290,8 +297,12 @@ class Topic extends React.Component {
               })(
                 <Select
                   mode="multiple"
-                  placeholder="Wybierz zagadnienia pokrewne"
-                >
+                  placeholder="Wybierz zagadnienia pokrewne" notFoundContent="Brak wyników" 
+                  filterOption={(input, option) =>
+                    option.props.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                }>
                   {this.state.branches.map(branch => (
                     <Option value={branch.name} key={branch.name}>
                       {branch.name}
@@ -308,11 +319,15 @@ class Topic extends React.Component {
                 <Select placeholder="Wybierz promotora">
                   {this.state.promoters.map(promoter => (
                     <Option value={promoter.id.toString()} key={promoter.id}>
+<<<<<<< HEAD
                       {promoter.degree +
                         " " +
                         promoter.firstName +
                         " " +
                         promoter.lastName}
+=======
+                      {promoter.degree + " " + promoter.firstName + " " + promoter.lastName}
+>>>>>>> 5d2c1d24647d5923e1b9a189206f6b5533661cab
                     </Option>
                   ))}
                 </Select>

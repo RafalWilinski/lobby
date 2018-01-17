@@ -43,7 +43,7 @@ CREATE TABLE "PromoterTheses"
     "createdAt" TIMESTAMP WITH TIME ZONE,
     "updatedAt" TIMESTAMP WITH TIME ZONE
 );
-ALTER TABLE "PromoterThesises"
+ALTER TABLE "PromoterTheses"
     ADD CONSTRAINT promoterThesisPk PRIMARY KEY ( "promoterId",
     "thesisId" );
 CREATE TABLE "Skills"
@@ -143,7 +143,7 @@ ALTER TABLE "PromoterBranches"
 ALTER TABLE "PromoterBranches"
     ADD CONSTRAINT promoterBranchPromoterFk FOREIGN KEY ( "promoterId" )
         REFERENCES "Promoters" ( id );
-ALTER TABLE "PromoterThesesPromoter"
+ALTER TABLE "PromoterTheses"
     ADD CONSTRAINT promoterThesisPromoterFk FOREIGN KEY ( "promoterId" )
         REFERENCES "Promoters" ( id );
 ALTER TABLE "PromoterTheses"

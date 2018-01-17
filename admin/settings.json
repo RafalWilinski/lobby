@@ -372,12 +372,27 @@
         "table": {
             "name": "Promoters",
             "pk": [
-                "firstName",
-                "lastName"
+                "id"
             ],
             "verbose": "Promoters"
         },
         "columns": [
+            {
+                "name": "id",
+                "verbose": "id",
+                "control": {
+                    "text": true
+                },
+                "type": "integer",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
             {
                 "name": "firstName",
                 "verbose": "firstName",
@@ -397,6 +412,22 @@
             {
                 "name": "lastName",
                 "verbose": "lastName",
+                "control": {
+                    "text": true
+                },
+                "type": "varchar(30)",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "degree",
+                "verbose": "degree",
                 "control": {
                     "text": true
                 },
@@ -741,6 +772,22 @@
                 "editview": {
                     "show": true
                 }
+            },
+            {
+                "name": "promoterId",
+                "verbose": "promoterId",
+                "control": {
+                    "text": true
+                },
+                "type": "integer",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
             }
         ],
         "mainview": {
@@ -834,6 +881,22 @@
                 },
                 "type": "timestamp",
                 "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "promoterId",
+                "verbose": "promoterId",
+                "control": {
+                    "text": true
+                },
+                "type": "integer",
+                "allowNull": false,
                 "defaultValue": null,
                 "listview": {
                     "show": true
@@ -997,6 +1060,22 @@
                     "text": true
                 },
                 "type": "timestamp",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "description",
+                "verbose": "description",
+                "control": {
+                    "text": true
+                },
+                "type": "text",
                 "allowNull": true,
                 "defaultValue": null,
                 "listview": {
@@ -1398,6 +1477,22 @@
                 },
                 "type": "timestamp",
                 "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "ispublic",
+                "verbose": "ispublic",
+                "control": {
+                    "text": true
+                },
+                "type": "char",
+                "allowNull": false,
                 "defaultValue": null,
                 "listview": {
                     "show": true

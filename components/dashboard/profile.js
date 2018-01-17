@@ -2,10 +2,6 @@ import {
   Form,
   Select,
   Layout,
-  InputNumber,
-  Switch,
-  Radio,
-  Slider,
   Button,
   Upload,
   Icon,
@@ -18,8 +14,6 @@ import SkillsDescriptor from "../SkillDescriptor";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const RadioButton = Radio.Button;
-const RadioGroup = Radio.Group;
 
 const { TextArea } = Input;
 const { Header, Content, Footer, Sider } = Layout;
@@ -51,6 +45,21 @@ class Profile extends React.Component {
       });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.success) {
+      setTimeout(() => {
+        notification.open({
+          message: "Sukces!",
+          description: "Profil zaktualizowany!",
+          duration: 3.0,
+          icon: <Icon type="smile-circle" style={{ color: "#108ee9" }} />
+        });
+      }, 100);
+    } else if (nextProps.error) {
+      message.error("Nie udało się zaktualizować profilu.");
+    }
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -79,44 +88,28 @@ class Profile extends React.Component {
 
   remove = index => {
     const { form } = this.props;
-    // can use data-binding to get
     const keys = form.getFieldValue("keys");
-    // We need at least one passenger
     if (keys.length === 1) {
       return;
     }
+
     keys.splice(index, 1);
     this.skillDescriptor = [];
 
-    // can use data-binding to set
     form.setFieldsValue({ keys });
   };
 
   add = () => {
     const newKey = {skillName: '', priority: 1};
     const { form } = this.props;
-    // can use data-binding to get
     const keys = form.getFieldValue("keys");
     const nextKeys = keys.concat(newKey);
-    // can use data-binding to set
-    // important! notify form to detect changes
     form.setFieldsValue({
       keys: nextKeys
     });
   };
 
   render() {
-    if (this.props.success) {
-      setTimeout(() => {
-        notification.open({
-          message: "Sukces!",
-          description: "Profil zaktualizowany!",
-          duration: 3.0,
-          icon: <Icon type="smile-circle" style={{ color: "#108ee9" }} />
-        });
-      }, 100);
-    }
-
     const { getFieldDecorator, getFieldValue } = this.props.form;
     const formItemLayout = {
       labelCol: {
@@ -198,8 +191,7 @@ class Profile extends React.Component {
                   rules: [
                     {
                       required: true,
-                      message:
-                        "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
+                      message: "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
                       type: "array"
                     }
                   ], initialValue: this.props.myBranches.data.map(myBranch => myBranch.branchName)
@@ -210,7 +202,7 @@ class Profile extends React.Component {
                         .toLowerCase()
                         .indexOf(input.toLowerCase()) >= 0
                   }>
-                    {this.state.branches.map(branch => ( <Option value={branch.name} key={branch.name}>{branch.name}</Option>))}
+                    {this.state.branches.map(branch => ( <Select.Option value={branch.name} key={branch.name}>{branch.name}</Select.Option>))}
                   </Select>
                 )}
               </FormItem>
