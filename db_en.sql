@@ -143,12 +143,13 @@ ALTER TABLE "PromoterBranches"
 ALTER TABLE "PromoterBranches"
     ADD CONSTRAINT promoterBranchPromoterFk FOREIGN KEY ( "promoterId" )
         REFERENCES "Promoters" ( id );
-ALTER TABLE "PromoterThesises"
+ALTER TABLE "PromoterThesesPromoter"
     ADD CONSTRAINT promoterThesisPromoterFk FOREIGN KEY ( "promoterId" )
         REFERENCES "Promoters" ( id );
-ALTER TABLE "PromoterThesises"
+ALTER TABLE "PromoterTheses"
     ADD CONSTRAINT promoterThesisThesisFk FOREIGN KEY ( "thesisId" )
-        REFERENCES "Theses" ( id );
+        REFERENCES "Theses" ( id )
+        ON DELETE CASCADE;
 ALTER TABLE "ThesisBranches"
     ADD CONSTRAINT thesisBranchBranchFk FOREIGN KEY ( "branchName" )
         REFERENCES "Branches" ( name );

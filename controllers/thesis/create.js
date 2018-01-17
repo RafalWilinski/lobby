@@ -39,7 +39,7 @@ const create = async ctx => {
       )
     );
 
-	const promoterThesis = await PromoterThesis.create({
+    await PromoterThesis.create({
       ...ctx.request.body.promoterThesis,
       thesisId: thesis.dataValues.id
     });
@@ -47,7 +47,6 @@ const create = async ctx => {
     ctx.body = {
       thesis,
       roles,
-	  promoterThesis
     };
   } catch (err) {
     console.log(err);

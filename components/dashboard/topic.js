@@ -26,15 +26,13 @@ let uuid = 0;
 const { TextArea } = Input;
 const { Header, Content, Footer, Sider } = Layout;
 
-
-
 class Topic extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       skills: [],
       branches: [],
-	  promoters: []
+      promoters: []
     };
   }
 
@@ -51,7 +49,7 @@ class Topic extends React.Component {
       });
     });
 
-	axios.get("/api/promoters").then(payload => {
+    axios.get("/api/promoters").then(payload => {
       this.setState({
         promoters: payload.data.promoters
       });
@@ -94,17 +92,15 @@ class Topic extends React.Component {
       const thesis = {
         name: values.name,
         description: values.description,
-        ispublic: 
-			values.public === true
-				? true
-				: false,
+        ispublic: values.public === true ? true : false,
         branches: values.relatives
       };
 
-	  const promoterThesis = {
-	  	  promoterFirstName: values.promoter,
-		  promoterLastName: values.promoter
-	  }
+      const promoterThesis = {
+        promoterFirstName: values.promoter,
+        promoterLastName: values.promoter,
+        promoterId: values.promoter,
+      };
 
       if (!err) {
         this.props.create(thesis, roles, promoterThesis);
@@ -305,20 +301,18 @@ class Topic extends React.Component {
               )}
             </FormItem>
 
-			<FormItem {...formItemLayout} label="Promotor">
+            <FormItem {...formItemLayout} label="Promotor">
               {getFieldDecorator("promoter", {
-                rules: [
-                  {
-                   
-                  }
-                ]
+                rules: [{}]
               })(
-                <Select
-                  placeholder="Wybierz promotora"
-                >
+                <Select placeholder="Wybierz promotora">
                   {this.state.promoters.map(promoter => (
-                    <Option value={promoter.firstName} key={promoter.id}>
-                      {promoter.degree + " " + promoter.firstName + " " + promoter.lastName}
+                    <Option value={promoter.id.toString()} key={promoter.id}>
+                      {promoter.degree +
+                        " " +
+                        promoter.firstName +
+                        " " +
+                        promoter.lastName}
                     </Option>
                   ))}
                 </Select>
