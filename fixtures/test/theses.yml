@@ -1,0 +1,14 @@
+fixtures:
+  - model: Thesis
+    data:
+      name: Testowy Temat 1
+      description: Testowy Temat Testowy Temat Testowy Temat Testowy Temat Testowy Temat Testowy Temat Testowy Temat Testowy Temat
+      numberOfRoles: 3
+      ispublic: true
+  - model: Thesis
+    data:
+      name: Testowy Temat 2 z 2 osobami
+      description: Testowy Temat Testowy Temat Testowy Temat Testowy Temat Testowy Temat Testowy Temat Testowy Temat Testowy Temat
+      numberOfRoles: 2
+      ispublic: true
+

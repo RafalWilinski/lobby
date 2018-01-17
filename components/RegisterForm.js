@@ -207,7 +207,7 @@ class RegistrationForm extends React.Component {
                 showSearch
                 //style={{ width: "350px" }}
                 placeholder="Wybierz umiejętność"
-				notFoundContent="Brak wyników"
+				        notFoundContent="Brak wyników"
                 optionFilterProp="children"
                 filterOption={(input, option) =>
                   option.props.children
