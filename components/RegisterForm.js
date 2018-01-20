@@ -179,86 +179,11 @@ class RegistrationForm extends React.Component {
     getFieldDecorator("keys", { initialValue: [] });
     const keys = getFieldValue("keys");
 
-<<<<<<< HEAD
-    const formItems = userSkills.map((k, index) => {
-      return (
-        <div key={k}>
-          <FormItem
-            required={true}
-            {...formItemLayout}
-            label={"Umiejętnosc"}
-            style={{ marginBottom: "10px", width: "350px" }}
-          >
-            {getFieldDecorator(`skillname[${k}]`, {
-              //validateTrigger: ["onChange", "onBlur"],
-              rules: [
-                {
-                  required: true,
-                  whitespace: true,
-                  message: "Proszę podaj umiejętność"
-                }
-              ]
-            })(
-              <Select
-                showSearch
-                //style={{ width: "350px" }}
-                placeholder="Wybierz umiejętność"
-                notFoundContent="Brak wyników"
-                optionFilterProp="children"
-                filterOption={(input, option) =>
-                  option.props.children
-                    .toLowerCase()
-                    .indexOf(input.toLowerCase()) >= 0
-                }
-              >
-                {this.state.skills.map(skill => (
-                  <Option value={skill.name} key={skill.name}>
-                    {skill.name}
-                  </Option>
-                ))}
-              </Select>
-            )}
-
-            {userSkills.length > 0 ? (
-              <Icon
-                className="dynamic-delete-button"
-                type="minus-circle-o"
-                disabled={userSkills.length === 0}
-                onClick={() => this.remove(k)}
-              />
-            ) : null}
-          </FormItem>
-
-          <FormItem
-            required={true}
-            {...formItemLayout}
-            label={"Stopień Zaawansowania"}
-            style={{ width: "350px" }}
-          >
-            {getFieldDecorator(`skillvalue[${k}]`, {
-              validateTrigger: ["onChange", "onBlur"],
-              rules: [
-                {
-                  //required: true,
-                  whitespace: true,
-                  message: "Podaj stopień zaawansowania"
-                }
-              ]
-            })(
-              <span>
-                <Rate />
-              </span>
-            )}
-          </FormItem>
-        </div>
-      );
-=======
     const formItems = keys.map((k, index) => {
       return <SkillsDescriptor 
         ref={(e) => { if(e) { this.skillDescriptor[index] = e; } } } onRemove={this.remove.bind(this, index)}
         skillName={k.skillName} priority={Number(k.priority)} key={index} index={index} form={this.props.form} 
       />;
->>>>>>> 5d2c1d24647d5923e1b9a189206f6b5533661cab
     });
 
     return (

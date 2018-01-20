@@ -1,11 +1,32 @@
 import React from "react";
-import { Layout, Menu, Input, Icon, Form, Row, Col, Button } from "antd";
+import { Layout, Menu, Input, Icon, Form, Row, Col, Button, Select } from "antd";
+import axios from "axios";
+
 import Result from "./card";
 
 const { Header, Content, Footer, Sider } = Layout;
 const FormItem = Form.Item;
 
 class SearchForm extends React.Component {
+  state = {
+    branches: [],
+    skills: []
+  }
+
+  componentDidMount() {
+    axios.get("/api/branches").then(payload => {
+      this.setState({
+        branches: payload.data.branches
+      });
+    });
+
+    axios.get("/api/skills").then(payload => {
+      this.setState({
+        skills: payload.data.skills
+      });
+    });
+  }
+
   handleSearch = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -30,16 +51,56 @@ class SearchForm extends React.Component {
           </FormItem>
         </Col>
         <Col span={6} style={{ padding: "10px" }}>
-          <FormItem label={`Kategorie`}>
-            {getFieldDecorator(`query`)(
-              <Input placeholder="Przetwarzanie..." />
+          <FormItem
+            label="Zainteresowania"
+          >
+            {getFieldDecorator("interests", {
+              rules: [
+                {
+                  message: "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
+                  type: "array"
+                }
+              ]
+            })(
+              <Select mode="multiple"  placeholder="Analiza Matematyczna" notFoundContent="Brak wyników" 
+                filterOption={(input, option) =>
+                  option.props.children
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+              }>
+                {this.state.branches.map(branch => (
+                  <Select.Option value={branch.name} key={branch.name}>
+                    {branch.name}
+                  </Select.Option>
+                ))}
+              </Select>
             )}
           </FormItem>
         </Col>
         <Col span={6} style={{ padding: "10px" }}>
-          <FormItem label={`Wymagane umiejętnosci`}>
-            {getFieldDecorator(`query`)(
-              <Input placeholder="Przetwarzanie..." />
+          <FormItem
+            label="Umiejętności"
+          >
+            {getFieldDecorator("skills", {
+              rules: [
+                {
+                  message: "Wybierz swoje umiejętności",
+                  type: "array"
+                }
+              ]
+            })(
+              <Select mode="multiple"  placeholder="C++" notFoundContent="Brak wyników" 
+                filterOption={(input, option) =>
+                  option.props.children
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+              }>
+                {this.state.skills.map(branch => (
+                  <Select.Option value={branch.name} key={branch.name}>
+                    {branch.name}
+                  </Select.Option>
+                ))}
+              </Select>
             )}
           </FormItem>
         </Col>
