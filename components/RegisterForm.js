@@ -12,8 +12,6 @@ import {
 import Link from "next/link";
 import Router from "next/router";
 import axios from "axios";
-import skills from "../consts/skills";
-import topics from "../consts/topics";
 import SkillsDescriptor from "../components/SkillDescriptor";
 
 const FormItem = Form.Item;
