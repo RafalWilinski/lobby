@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-	branchName: {
+    branchName: {
       type: DataTypes.STRING,
       primaryKey: true
     }
