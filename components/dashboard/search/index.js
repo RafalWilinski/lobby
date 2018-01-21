@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu, Input, Icon, Form, Row, Col, Button, Select } from "antd";
+import { Layout, Menu, Input, Icon, Form, Row, Col, Button, Select, Checkbox } from "antd";
 import axios from "axios";
 
 import Result from "./card";
@@ -104,6 +104,19 @@ class SearchForm extends React.Component {
             )}
           </FormItem>
         </Col>
+        <Col span={6} style={{ padding: "10px", paddingTop: '40px' }}>
+          <FormItem
+            style={{ marginBottom: 8 }}
+          >
+            {getFieldDecorator("available", {
+              valuePropName: "checked",
+            })(
+              <Checkbox>
+                Ma wolne miejsca?
+              </Checkbox>
+            )}
+          </FormItem>
+        </Col>
       </div>
     );
   }
@@ -115,10 +128,10 @@ class SearchForm extends React.Component {
         <Row>
           <Col span={24} style={{ textAlign: "right" }}>
             <Button type="primary" htmlType="submit">
-              Search
+              Szukaj
             </Button>
             <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
-              Clear
+              Wyczyść
             </Button>
           </Col>
         </Row>
