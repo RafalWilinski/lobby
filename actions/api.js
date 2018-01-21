@@ -49,7 +49,7 @@ export const updateUser = user => ({
   }
 });
 
-export const createThesis = (thesis, roles, promoterThesis) => ({
+export const createThesis = (thesis, roles) => ({
   type: "THESIS_CREATE",
   payload: {
     request: {
@@ -57,8 +57,7 @@ export const createThesis = (thesis, roles, promoterThesis) => ({
       url: "/thesis",
       data: {
         thesis,
-        roles,
-		promoterThesis
+        roles
       }
     }
   }

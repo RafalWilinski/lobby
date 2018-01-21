@@ -38,15 +38,15 @@ const create = async ctx => {
         })
       )
     );
-
+	if (ctx.request.body.thesis.promoterId !== null){
     await PromoterThesis.create({
-      ...ctx.request.body.promoterThesis,
+      promoterId: ctx.request.body.thesis.promoterId,
       thesisId: thesis.dataValues.id
     });
-
+	}
     ctx.body = {
       thesis,
-      roles,
+      roles
     };
   } catch (err) {
     console.log(err);
