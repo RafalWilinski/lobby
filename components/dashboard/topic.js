@@ -15,8 +15,7 @@ import {
 } from "antd";
 import Router from "next/router";
 import axios from "axios";
-import skills from "../../consts/skills";
-import topics from "../../consts/topics";
+
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioButton = Radio.Button;
@@ -96,17 +95,9 @@ class Topic extends React.Component {
         branches: values.relatives
       };
 
-<<<<<<< HEAD
       const promoterThesis = {
-        promoterFirstName: values.promoter,
-        promoterLastName: values.promoter,
-        promoterId: values.promoter,
-      };
-=======
-	  const promoterThesis = {
-	  	  promoterId: parseInt(values.promoter)
-	  }
->>>>>>> 5d2c1d24647d5923e1b9a189206f6b5533661cab
+          promoterId: parseInt(values.promoter)
+      }
 
       if (!err) {
         this.props.create(thesis, roles, promoterThesis);

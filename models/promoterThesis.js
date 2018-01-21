@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-	thesisId: {
+    thesisId: {
       type: DataTypes.INTEGER,
       primaryKey: true
     }
