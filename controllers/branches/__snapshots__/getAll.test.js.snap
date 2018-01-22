@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GET /branches should return 200 and array of branches 1`] = `
+Array [
+  Object {
+    "createdAt": 2018-01-17T10:49:28.146Z,
+    "name": "Przetwarzanie Rozproszone",
+    "updatedAt": 2018-01-17T10:49:28.146Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.161Z,
+    "name": "Analiza Danych",
+    "updatedAt": 2018-01-17T10:49:28.161Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.168Z,
+    "name": "Technologie Internetowe",
+    "updatedAt": 2018-01-17T10:49:28.168Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.175Z,
+    "name": "Programowanie Równoległe",
+    "updatedAt": 2018-01-17T10:49:28.175Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.181Z,
+    "name": "Badania Operacyjne",
+    "updatedAt": 2018-01-17T10:49:28.181Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.188Z,
+    "name": "Matematyka",
+    "updatedAt": 2018-01-17T10:49:28.188Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.194Z,
+    "name": "Sterowniki PLC",
+    "updatedAt": 2018-01-17T10:49:28.194Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.201Z,
+    "name": "Gry komputerowe i symulacje",
+    "updatedAt": 2018-01-17T10:49:28.201Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.207Z,
+    "name": "Programowanie Niskopoziomowe",
+    "updatedAt": 2018-01-17T10:49:28.207Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.213Z,
+    "name": "Bazy Danych",
+    "updatedAt": 2018-01-17T10:49:28.213Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.219Z,
+    "name": "Algorytmy i Struktury Danych",
+    "updatedAt": 2018-01-17T10:49:28.219Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.225Z,
+    "name": "Mikrokontrolery",
+    "updatedAt": 2018-01-17T10:49:28.225Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.232Z,
+    "name": "Automatyka i Robotyka",
+    "updatedAt": 2018-01-17T10:49:28.232Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.238Z,
+    "name": "Sieci Komputerowe",
+    "updatedAt": 2018-01-17T10:49:28.238Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.244Z,
+    "name": "Sztuczna Inteligencja",
+    "updatedAt": 2018-01-17T10:49:28.244Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.250Z,
+    "name": "Inzynieria Oprogramowania",
+    "updatedAt": 2018-01-17T10:49:28.250Z,
+  },
+]
+`;

@@ -1,3 +1,4 @@
+const { omit } = require('lodash');
 const create = require("./create");
 
 describe("POST /thesis", () => {
@@ -39,6 +40,6 @@ describe("POST /thesis", () => {
 
     await create(ctx);
 
-    expect(ctx.body).toMatchSnapshot();
+    expect(ctx.body.thesis.description).toMatchSnapshot();
   });
 });

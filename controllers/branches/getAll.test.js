@@ -8,6 +8,6 @@ describe("GET /branches", () => {
 
     await getAll(ctx);
 
-    expect(ctx.body.branches.length).toBeGreaterThan(10);
+    expect(ctx.body.branches).toMatchSnapshot();
   });
 });

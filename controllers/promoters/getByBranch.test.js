@@ -8,6 +8,6 @@ describe("GET /promoters", () => {
 
     await getByBranch(ctx);
 
-    expect(ctx.body.promoters.length).toBeGreaterThan(0);
+    expect(ctx.body.promoters).toMatchSnapshot();
   });
 });

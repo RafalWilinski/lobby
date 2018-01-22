@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GET /skills should return 200 and array of skills 1`] = `
+Array [
+  Object {
+    "createdAt": 2018-01-17T10:49:28.257Z,
+    "name": "C",
+    "updatedAt": 2018-01-17T10:49:28.257Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.264Z,
+    "name": "C++",
+    "updatedAt": 2018-01-17T10:49:28.264Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.270Z,
+    "name": "C#",
+    "updatedAt": 2018-01-17T10:49:28.270Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.277Z,
+    "name": "Python",
+    "updatedAt": 2018-01-17T10:49:28.277Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.283Z,
+    "name": "Java",
+    "updatedAt": 2018-01-17T10:49:28.283Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.289Z,
+    "name": "Javascript",
+    "updatedAt": 2018-01-17T10:49:28.289Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.295Z,
+    "name": "Assembly",
+    "updatedAt": 2018-01-17T10:49:28.295Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.301Z,
+    "name": "Arduino",
+    "updatedAt": 2018-01-17T10:49:28.301Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.308Z,
+    "name": "SQL",
+    "updatedAt": 2018-01-17T10:49:28.308Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.314Z,
+    "name": "NoSQL",
+    "updatedAt": 2018-01-17T10:49:28.314Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.321Z,
+    "name": "PHP",
+    "updatedAt": 2018-01-17T10:49:28.321Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.328Z,
+    "name": "Ruby on Rails",
+    "updatedAt": 2018-01-17T10:49:28.328Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.336Z,
+    "name": "Go",
+    "updatedAt": 2018-01-17T10:49:28.336Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.343Z,
+    "name": "Web Development",
+    "updatedAt": 2018-01-17T10:49:28.343Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.348Z,
+    "name": "Scala",
+    "updatedAt": 2018-01-17T10:49:28.348Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.354Z,
+    "name": "Node.js",
+    "updatedAt": 2018-01-17T10:49:28.354Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.360Z,
+    "name": "HTML",
+    "updatedAt": 2018-01-17T10:49:28.360Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.368Z,
+    "name": ".NET",
+    "updatedAt": 2018-01-17T10:49:28.368Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.374Z,
+    "name": "Swift",
+    "updatedAt": 2018-01-17T10:49:28.374Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.380Z,
+    "name": "Objective-C",
+    "updatedAt": 2018-01-17T10:49:28.380Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.389Z,
+    "name": "Rust",
+    "updatedAt": 2018-01-17T10:49:28.389Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.396Z,
+    "name": "Perl",
+    "updatedAt": 2018-01-17T10:49:28.396Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.403Z,
+    "name": "Matlab",
+    "updatedAt": 2018-01-17T10:49:28.403Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.410Z,
+    "name": "Latex",
+    "updatedAt": 2018-01-17T10:49:28.410Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.415Z,
+    "name": "Elixir",
+    "updatedAt": 2018-01-17T10:49:28.415Z,
+  },
+  Object {
+    "createdAt": 2018-01-17T10:49:28.423Z,
+    "name": "Ruby",
+    "updatedAt": 2018-01-17T10:49:28.423Z,
+  },
+]
+`;

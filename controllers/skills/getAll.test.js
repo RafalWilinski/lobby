@@ -8,6 +8,6 @@ describe("GET /skills", () => {
 
     await getAll(ctx);
 
-    expect(ctx.body.skills.length).toBeGreaterThan(10);
+    expect(ctx.body.skills).toMatchSnapshot();
   });
 });
