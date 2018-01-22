@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`POST /thesis should return 200 if correct thesis is provided 1`] = `
+Object {
+  "roles": Array [
+    Array [
+      Object {
+        "createdAt": 2018-01-22T20:20:15.357Z,
+        "roleId": 12,
+        "skillName": "C",
+        "updatedAt": 2018-01-22T20:20:15.357Z,
+      },
+      Object {
+        "createdAt": 2018-01-22T20:20:15.357Z,
+        "roleId": 12,
+        "skillName": "C++",
+        "updatedAt": 2018-01-22T20:20:15.357Z,
+      },
+      Object {
+        "createdAt": 2018-01-22T20:20:15.357Z,
+        "roleId": 12,
+        "skillName": "C#",
+        "updatedAt": 2018-01-22T20:20:15.357Z,
+      },
+      Object {
+        "createdAt": 2018-01-22T20:20:15.357Z,
+        "roleId": 12,
+        "skillName": "Python",
+        "updatedAt": 2018-01-22T20:20:15.357Z,
+      },
+    ],
+    Array [
+      Object {
+        "createdAt": 2018-01-22T20:20:15.365Z,
+        "roleId": 13,
+        "skillName": "Arduino",
+        "updatedAt": 2018-01-22T20:20:15.365Z,
+      },
+      Object {
+        "createdAt": 2018-01-22T20:20:15.365Z,
+        "roleId": 13,
+        "skillName": "SQL",
+        "updatedAt": 2018-01-22T20:20:15.365Z,
+      },
+      Object {
+        "createdAt": 2018-01-22T20:20:15.365Z,
+        "roleId": 13,
+        "skillName": "NoSQL",
+        "updatedAt": 2018-01-22T20:20:15.365Z,
+      },
+    ],
+  ],
+  "thesis": Object {
+    "createdAt": 2018-01-22T20:20:15.264Z,
+    "description": "Opis Opis Opis Opis Opis Opis Opis Opis Opis Opis ",
+    "id": 13,
+    "ispublic": false,
+    "name": "Testowy Temat",
+    "numberOfRoles": 2,
+    "photo": null,
+    "updatedAt": 2018-01-22T20:20:15.264Z,
+  },
+}
+`;
