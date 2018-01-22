@@ -1,7 +1,7 @@
 const getAll = require("./getAll");
 
-describe("LoginController", () => {
-  it("should return 200 if correct credentials are provided", async () => {
+describe("GET /skills", () => {
+  it("should return 200 and array of skills", async () => {
     const ctx = {
       request: {}
     };
