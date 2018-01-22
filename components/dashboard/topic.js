@@ -92,15 +92,12 @@ class Topic extends React.Component {
         name: values.name,
         description: values.description,
         ispublic: values.public === true ? true : false,
-        branches: values.relatives
+        branches: values.relatives,
+		promoterId: parseInt(values.promoter)
       };
 
-      const promoterThesis = {
-          promoterId: parseInt(values.promoter)
-      }
-
       if (!err) {
-        this.props.create(thesis, roles, promoterThesis);
+        this.props.create(thesis, roles);
       } else {
         message.error("Popraw błędy w formularzu");
       }
@@ -307,18 +304,19 @@ class Topic extends React.Component {
               {getFieldDecorator("promoter", {
                 rules: [{}]
               })(
-                <Select placeholder="Wybierz promotora">
+                <Select 
+					showSearch
+					placeholder="Wybierz promotora"
+					notFoundContent="Brak wyników" 
+					optionFilterProp="children"
+					filterOption={(input, option) =>
+						option.props.children
+						 .toLowerCase()
+						.indexOf(input.toLowerCase()) >= 0
+				}>
                   {this.state.promoters.map(promoter => (
                     <Option value={promoter.id.toString()} key={promoter.id}>
-<<<<<<< HEAD
-                      {promoter.degree +
-                        " " +
-                        promoter.firstName +
-                        " " +
-                        promoter.lastName}
-=======
                       {promoter.degree + " " + promoter.firstName + " " + promoter.lastName}
->>>>>>> 5d2c1d24647d5923e1b9a189206f6b5533661cab
                     </Option>
                   ))}
                 </Select>
