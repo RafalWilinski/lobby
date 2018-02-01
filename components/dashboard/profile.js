@@ -173,7 +173,7 @@ class Profile extends React.Component {
             <FormItem {...formItemLayout} label="O mnie" hasFeedback>
               {getFieldDecorator("description", {
                 rules: [
-                  { required: true, message: "Pare słów o sobie nie zaszkodzi" }
+                  { message: "Pare słów o sobie nie zaszkodzi" }
                 ], initialValue: this.state.user.description
               })(
                 <TextArea
