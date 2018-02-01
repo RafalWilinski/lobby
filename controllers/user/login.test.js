@@ -1,6 +1,6 @@
 const LoginController = require("./login");
 
-describe("LoginController", () => {
+describe("POST /login", () => {
   it("should return 200 if correct credentials are provided", async () => {
     const ctx = {
       request: {

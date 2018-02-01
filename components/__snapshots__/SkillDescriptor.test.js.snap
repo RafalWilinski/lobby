@@ -15,7 +15,13 @@ exports[`SkillDescriptor renders correctly 1`] = `
     >
       <div
         className="ant-form-item-control "
-      />
+      >
+        <i
+          className="anticon anticon-minus-circle-o dynamic-delete-button"
+          onClick={undefined}
+          size="large"
+        />
+      </div>
     </div>
   </div>
   <div

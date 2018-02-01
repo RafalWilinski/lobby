@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GET /promoters should return 200 and array of promoters 1`] = `
+Array [
+  Object {
+    "createdAt": null,
+    "degree": "prof",
+    "firstName": "Jerzy",
+    "id": 1,
+    "lastName": "Nawrocki",
+    "updatedAt": null,
+  },
+]
+`;

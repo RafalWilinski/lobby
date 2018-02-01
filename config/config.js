@@ -13,7 +13,10 @@ module.exports = {
     database: "lobby",
     host: "127.0.0.1",
     dialect: "postgres",
-    jwtSecret: "deadbeef"
+    jwtSecret: "deadbeef",
+    pool: {
+      max: 100
+    }
   },
   production: {
     username: "jztvkilo",
