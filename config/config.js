@@ -19,11 +19,14 @@ module.exports = {
     }
   },
   production: {
-    username: "jztvkilo",
+    username: "lobby",
     password: process.env.DB_PASSWORD,
-    database: "jztvkilo",
-    host: "baasu.db.elephantsql.com",
+    database: "lobby",
+    host: "lobby.ctzgljusbdm4.us-east-1.rds.amazonaws.com",
     dialect: "postgres",
-    jwtSecret: "deadbeef"
+    jwtSecret: "deadbeef",
+    pool: {
+      max: 100
+    }
   }
 };
