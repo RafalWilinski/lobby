@@ -353,29 +353,6 @@ class Topic extends React.Component {
               </FormItem>
             )}
 
-            <FormItem {...formItemLayout} label="Załączniki">
-              <div className="dropbox">
-                {getFieldDecorator("dragger", {
-                  valuePropName: "fileList",
-                  getValueFromEvent: this.normFile
-                })(
-                  <Upload.Dragger name="files" action="/upload.do">
-                    <p className="ant-upload-drag-icon">
-                      <Icon type="inbox" />
-                    </p>
-                    <p className="ant-upload-text">
-                      Przeciagnij pliki tutaj aby dołączyc je do tematu
-                    </p>
-                    <p className="ant-upload-hint">
-                      Mozesz wrzucic jeden lub pare plików. Moga byc to jakies
-                      rysunki podgladowe, szkice projektu, artykuly czy
-                      cokolwiek innego
-                    </p>
-                  </Upload.Dragger>
-                )}
-              </div>
-            </FormItem>
-
             <FormItem wrapperCol={{ span: 12, offset: 4 }}>
               {this.props.form.getFieldValue("roles").length < 1 && (
                 <Alert
