@@ -173,7 +173,7 @@ class Profile extends React.Component {
             <FormItem {...formItemLayout} label="O mnie" hasFeedback>
               {getFieldDecorator("description", {
                 rules: [
-                  { required: true, message: "Pare słów o sobie nie zaszkodzi" }
+                  { message: "Pare słów o sobie nie zaszkodzi" }
                 ], initialValue: this.state.user.description
               })(
                 <TextArea
@@ -224,22 +224,6 @@ class Profile extends React.Component {
                 </Button>
               </FormItem>
             )}
-
-            <FormItem {...formItemLayout} label="Zdjęcie Profilowe">
-              <div className="dropbox">
-                {getFieldDecorator("avatar", {
-                  valuePropName: "fileList",
-                  getValueFromEvent: this.normFile
-                })(
-                  <Upload.Dragger name="files" action="/upload.do">
-                    <p className="ant-upload-drag-icon">
-                      <Icon type="inbox" />
-                    </p>
-                    <p className="ant-upload-text">Wrzuc tutaj swoje zdjecie</p>
-                  </Upload.Dragger>
-                )}
-              </div>
-            </FormItem>
 
             <FormItem wrapperCol={{ span: 12, offset: 4 }}>
               <Button type="primary" htmlType="submit">
