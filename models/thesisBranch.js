@@ -11,5 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  ThesisBranch.associate = models => {
+    ThesisBranch.Thesis = ThesisBranch.belongsTo(models.Thesis, {
+      foreignKey: "thesisId"
+    });
+  };
+
   return ThesisBranch;
 };

@@ -117,3 +117,20 @@ export const getApplications = userLogin => ({
     }
   }
 });
+
+export const search = (params) => {
+  const paramArr = [];
+  Object.keys(params).map((paramName) => {
+    paramArr.push(`${paramName}=${params[paramName]}`)
+  })
+
+  return {
+    type: "SEARCH",
+    payload: {
+      request: {
+        method: "GET",
+        url: `/thesis/search?${paramArr.join('&')}`
+      }
+    }
+  }
+};

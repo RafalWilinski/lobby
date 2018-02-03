@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     Thesis.Roles = Thesis.hasMany(models.Role, {
       foreignKey: "thesisId"
     });
+
+    Thesis.Branches = Thesis.hasMany(models.ThesisBranch, {
+      foreignKey: "thesisId"
+    });
   };
 
   return Thesis;

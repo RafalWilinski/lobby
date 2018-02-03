@@ -1,18 +1,31 @@
 const Thesis = require("../../models/").Thesis;
+const ThesisBranch = require("../../models/").ThesisBranch;
+const Role = require("../../models/").Role;
+const RoleSkill = require("../../models/").RoleSkill;
 const config = require("../../config");
 const Op = require('sequelize').Op;
 
 const get = async ctx => {
+  const skills = ctx.request.query.branches ? ctx.request.query.branches.split(',') : []
   const data = await Thesis.findAll({
+    include: [
+      {
+        model: Role,
+        include: [{
+          model: RoleSkill,
+        }]
+      }, {
+        model: ThesisBranch
+      }
+    ],
     where: {
-      numberOfRoles: {
-        [Op.between]: [ctx.request.query.minRoles, ctx.request.query.maxRoles]
-      },
-      name: {
-        [Op.like]: ctx.request.query.name,
-      },
-      description: {
-        [Op.like]: ctx.request.query.description,
+      [Op.or]: {
+        name: {
+          [Op.iLike]: `%${ctx.request.query.query}%`
+        },
+        description: {
+          [Op.iLike]: `%${ctx.request.query.query}%`
+        }
       }
     }
   });

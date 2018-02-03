@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu, Input, Icon, Form, Row, Col, Button, Select, Checkbox } from "antd";
+import { Layout, Menu, Input, Icon, Form, Row, Col, Button, Select, Checkbox, Spin } from "antd";
 import axios from "axios";
 
 import Result from "./card";
@@ -25,12 +25,17 @@ class SearchForm extends React.Component {
         skills: payload.data.skills
       });
     });
+
+    this.props.search({
+      query: ''
+    });
   }
 
   handleSearch = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       console.log("Received values of form: ", values);
+      this.props.search(values);
     });
   };
 
@@ -54,7 +59,7 @@ class SearchForm extends React.Component {
           <FormItem
             label="Zainteresowania"
           >
-            {getFieldDecorator("interests", {
+            {getFieldDecorator("branches", {
               rules: [
                 {
                   message: "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
@@ -122,6 +127,7 @@ class SearchForm extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
         <Row gutter={24}>{this.getFields()}</Row>
@@ -142,16 +148,17 @@ class SearchForm extends React.Component {
 
 const WrappedAdvancedSearchForm = Form.create()(SearchForm);
 
-export default () => (
+export default (props) => (
   <Layout>
     <Header style={{ background: "#fff", padding: 0, paddingLeft: "20px" }}>
       <h1>Wyszukaj tematy</h1>
     </Header>
     <Content style={{ margin: "0 16px" }}>
-      <WrappedAdvancedSearchForm />
-      <div style={{ marginTop: "20px" }}>
-        <Result title={"Przetwarzanie obrazów za pomocą biblioteki open CV"} />
-      </div>
+      <WrappedAdvancedSearchForm {...props} />
+      
+        {
+          props.results.map(item => <Result title={item.name} description={item.description} roles={item.Roles} />)
+        }
     </Content>
   </Layout>
 );

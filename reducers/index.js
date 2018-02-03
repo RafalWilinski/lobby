@@ -6,6 +6,7 @@ import theses from "./theses";
 import createThesis from "./createThesis";
 import branches from "./branches";
 import skills from "./skills";
+import search from "./search";
 
 export default combineReducers({
   apply,
@@ -14,5 +15,6 @@ export default combineReducers({
   createThesis,
   theses,
   branches,
-  skills
+  skills,
+  search
 });
