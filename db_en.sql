@@ -1,8 +1,10 @@
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
 
 CREATE TABLE "Applications"
 (
     status VARCHAR(30) NOT NULL,
-    description VARCHAR(250),
+    description VARCHAR(2500),
     login VARCHAR(30) NOT NULL,
     "roleId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP WITH TIME ZONE,
@@ -58,7 +60,7 @@ CREATE TABLE "Theses"
     id SERIAL,
     name VARCHAR(150) NOT NULL,
     "numberOfRoles" INTEGER NOT NULL,
-    description VARCHAR(250),
+    description VARCHAR(2500),
     isPublic BOOLEAN NOT NULL,
     photo VARCHAR(250),
     "createdAt" TIMESTAMP WITH TIME ZONE,
@@ -112,8 +114,8 @@ CREATE TABLE "Roles"
 (
     id SERIAL,
     name VARCHAR(30),
-    capitan BOOLEAN NOT NULL,
-    description VARCHAR(250),
+    capitan BOOLEAN NOT NULL DEFAULT FALSE,
+    description VARCHAR(2500),
     "userLogin" VARCHAR(30),
     "thesisId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP WITH TIME ZONE,

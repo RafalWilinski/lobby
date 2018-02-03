@@ -51,8 +51,7 @@
     "app": "nodemon -w server.js -w routes -w controllers -w models",
     "seed": "node fixtures/loadFixtures.js",
     "test": "NODE_ENV=test jest",
-    "test:nightwatch": "./nightwatch/run.sh",
-    "test:seed": "node fixtures/test/loadFixtures.js"
+    "test:nightwatch": "./nightwatch/run.sh"
   },
   "author": "Rafal Wilinski",
   "license": "ISC",

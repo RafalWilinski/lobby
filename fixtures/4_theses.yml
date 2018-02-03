@@ -1,0 +1,299 @@
+fixtures:
+  - model: Thesis
+    data:
+      id: 1000
+      name: Projekt i implementacja bazy danych i repozytorium praw własności przemysłowej Politechniki Poznańskiej
+      description: Celem pracy jest projekt i implementacja bazy danych oraz repozytorium danych dotyczących informacji o wszelkich prawach własności intelektualnej tj. wynalazkach - patentach, wzorach użytkowych, wzorach przemysłowych, znakach towarowych a także układach scalonych. Baza będzie obejmowała zarówno zgłoszenia jak i prawa już przyznane. Ponadto w bazie będą gromadzone informacje o oprogramowaniu, bazach danych oraz know-how, do którego majątkowe prawa własności należą do Politechniki Poznańskiej. Gromadzone będą dane o pracownikach, którzy dokonują zgłoszeń (tu możliwa integracja z systemem ERP), ale także o twórcach spoza Uczelni i studentach, którzy zgłaszają rozwiązania wspólnie z pracownikami PP.
+      numberOfRoles: 3
+      ispublic: true
+  - model: Thesis
+    data:
+      id: 1001
+      name: Opracowanie systemu automatycznego proponowania odpowiedzi dla nowych pytań na forach Q&A
+      description: Celem pracy jest projekt i implementacja narzędzia do wyszukiwania najbardziej adekwatnych odpowiedzi udzielonych przez użytkowników na forach gromadzących społeczności zadających i odpowiadających na pytania (ang. community question answering cQA). Mając dane - (a) nowe pytanie (b) dużą kolekcję wątków zawierających pary ‘pytanie-odpowiedź’ utworzoną poprzez społeczność użytkowników portalu StackExchange, narzędzie ma automatycznie proponować najbardziej użyteczne istniejące odpowiedzi z punktu widzenia nowego pytania.
+      numberOfRoles: 4
+      ispublic: true
+  - model: Thesis
+    data:
+      id: 1002
+      name: System Kontroli Bezpieczeństwa „The Guardian”
+      description: Celem pracy jest opracowanie i wykonanie rozbudowanego systemu bezpieczeństwa dedykowanego do zastosowań w inteligentnych budynkach.
+      numberOfRoles: 2
+      ispublic: true
+  - model: Thesis
+    data:
+      id: 1003
+      name: Inteligentne terrarium
+      description: Opracowanie i realizacja terrarium z możliwością zdalnego nadzorowania warunków życiowych z wykorzystaniem systemów wbudowanych
+      numberOfRoles: 3
+      ispublic: true
+  - model: Thesis
+    data:
+      id: 1004
+      name: Budowa systemu indeksowania i wyszukiwania tradycyjnej muzyki polskiej z wykorzystaniem narzędzi Music Information Retrieval (MIR)
+      description: Celem pracy jest projekt i implementacja systemu indeksowania i wyszukiwania tradycyjnej muzyki polskiej na podstawie zawartości audio. Mając do dyspozycji kolekcję utworów ze zbiorów fonograficznych Instytutu Sztuki PAN oraz istniejące oprogramowanie otwarte do wyznaczania parametrów dźwięku, w tym częstotliwości podstawowej i deskryptorów opartych na podstawie zawartości audio, należy zbudować nowoczesne narzędzie umożliwiające analizę komputerową utworów polskiej muzyki tradycyjnej. Projekt będzie realizowany we współpracy z Poznańskim Centrum Superkomputerowo-Sieciowym
+      numberOfRoles: 2
+      ispublic: true
+  - model: Thesis
+    data:
+      id: 1005
+      name: System planowania zajęć dydaktycznych
+      description: Zaprojektowanie i implementacja systemu wspomagania planowania zajęć. Na system składać się będą; baza danych (MS SQL), aplikacja internetowa do przeglądania danych (ASP.NET) oraz aplikacja lokalna do samego planowania (.Net).
+      numberOfRoles: 3
+      ispublic: true
+  - model: Role
+    data:
+      id: 1000
+      name: Javascript Developer
+      description: To musisz umieć; Bardzo dobra znajomość JavaScript oraz TypeScript, Bardzo dobra znajomość frameworka AngularJS, Doświadczenie w programowaniu z użyciem powyższych technologii, Dobra znajomość CSS, HTML, LESS oraz frameworka Bootstrap, Znajomość zagadnień związanych z REST API
+      thesisId: 1000
+  - model: Role
+    data:
+      id: 1001
+      name: Javascript Developer
+      description: To musisz umieć; Bardzo dobra znajomość JavaScript oraz TypeScript, Bardzo dobra znajomość frameworka AngularJS, Doświadczenie w programowaniu z użyciem powyższych technologii, Dobra znajomość CSS, HTML, LESS oraz frameworka Bootstrap, Znajomość zagadnień związanych z REST API
+      thesisId: 1001
+  - model: Role
+    data:
+      id: 1002
+      name: C++ Developer
+      description: Tworzenie i rozwijanie aplikacji we wskazanych technologiach (odpowiedzialność na poziomie projektowym, programistycznym – projekt techniczny, testy, kod, dokumentacja). Aktywne uczestniczenie w poszczególnych fazach projektów (wsparcie analizy, wsparcie architektury, projektowanie i programowanie, testowanie i walidacja, wdrożenie) i usług (utrzymanie i rozwój) dla wybranych systemów, aplikacji, modułów.
+      thesisId: 1001
+  - model: Role
+    data:
+      id: 1003
+      name: C# Developer
+      description: projektowanie i tworzenie wysokiej jakości rozwiązań w oparciu o platformę MS .NET, udział w analizach, testach i wdrożeniach wytworzonych rozwiązań, współpraca z doświadczonym zespołem projektowym, wspieranie dobrej atmosfery w pracy :)
+      thesisId: 1001
+  - model: Role
+    data:
+      id: 1004
+      name: Big Data Engineer
+      description: Posiadać praktyczne doświadczenie w zarządzaniu systemami rozproszonymi i klastrami w oparciu np. o Hortonworks, Znać narzędzia do wdrażania i automatyzacji (Ansible / Puppet), Administrować Big Data Hortonworks HDP
+      thesisId: 1000
+  - model: Role
+    data:
+      id: 1005
+      name: Big Data Engineer
+      description: Posiadać praktyczne doświadczenie w zarządzaniu systemami rozproszonymi i klastrami w oparciu np. o Hortonworks, Znać narzędzia do wdrażania i automatyzacji (Ansible / Puppet), Administrować Big Data Hortonworks HDP
+      thesisId: 1000
+  - model: RoleSkill
+    data:
+      roleId: 1001
+      skillName: Javascript
+  - model: RoleSkill
+    data:
+      roleId: 1001
+      skillName: Web Development
+  - model: RoleSkill
+    data:
+      roleId: 1001
+      skillName: Node.js
+  - model: RoleSkill
+    data:
+      roleId: 1001
+      skillName: HTML
+  - model: RoleSkill
+    data:
+      roleId: 1001
+      skillName: Ruby
+  - model: RoleSkill
+    data:
+      roleId: 1000
+      skillName: Javascript
+  - model: RoleSkill
+    data:
+      roleId: 1000
+      skillName: Web Development
+  - model: RoleSkill
+    data:
+      roleId: 1000
+      skillName: Node.js
+  - model: RoleSkill
+    data:
+      roleId: 1000
+      skillName: HTML
+  - model: RoleSkill
+    data:
+      roleId: 1000
+      skillName: Ruby
+  - model: RoleSkill
+    data:
+      roleId: 1002
+      skillName: C
+  - model: RoleSkill
+    data:
+      roleId: 1002
+      skillName: C++
+  - model: RoleSkill
+    data:
+      roleId: 1002
+      skillName: C#
+  - model: RoleSkill
+    data:
+      roleId: 1002
+      skillName: Rust
+  - model: RoleSkill
+    data:
+      roleId: 1003
+      skillName: C#
+  - model: RoleSkill
+    data:
+      roleId: 1003
+      skillName: .NET
+  - model: RoleSkill
+    data:
+      roleId: 1003
+      skillName: HTML
+  - model: RoleSkill
+    data:
+      roleId: 1003
+      skillName: Web Development
+  - model: RoleSkill
+    data:
+      roleId: 1003
+      skillName: SQL
+  - model: RoleSkill
+    data:
+      roleId: 1004
+      skillName: SQL
+  - model: RoleSkill
+    data:
+      roleId: 1004
+      skillName: NoSQL
+  - model: RoleSkill
+    data:
+      roleId: 1004
+      skillName: Python
+  - model: RoleSkill
+    data:
+      roleId: 1004
+      skillName: Java
+  - model: RoleSkill
+    data:
+      roleId: 1004
+      skillName: Matlab
+  - model: RoleSkill
+    data:
+      roleId: 1004
+      skillName: Scala
+  - model: RoleSkill
+    data:
+      roleId: 1004
+      skillName: Perl
+  - model: RoleSkill
+    data:
+      roleId: 1005
+      skillName: SQL
+  - model: RoleSkill
+    data:
+      roleId: 1005
+      skillName: NoSQL
+  - model: RoleSkill
+    data:
+      roleId: 1005
+      skillName: Python
+  - model: RoleSkill
+    data:
+      roleId: 1005
+      skillName: Java
+  - model: RoleSkill
+    data:
+      roleId: 1005
+      skillName: Matlab
+  - model: RoleSkill
+    data:
+      roleId: 1005
+      skillName: Scala
+  - model: RoleSkill
+    data:
+      roleId: 1005
+      skillName: Perl
+  - model: Role
+    data:
+      id: 1006
+      name: IOT (Internet of Things) Engineer
+      description: Tworzenie systemu do inteligentnego domu
+      thesisId: 1002
+  - model: Role
+    data:
+      id: 1007
+      name: IOT (Internet of Things) Engineer
+      description: Tworzenie systemu do inteligentnego domu
+      thesisId: 1002
+  - model: RoleSkill
+    data:
+      roleId: 1006
+      skillName: Python
+  - model: RoleSkill
+    data:
+      roleId: 1006
+      skillName: C
+  - model: RoleSkill
+    data:
+      roleId: 1006
+      skillName: Assembly
+  - model: RoleSkill
+    data:
+      roleId: 1007
+      skillName: Python
+  - model: RoleSkill
+    data:
+      roleId: 1007
+      skillName: C
+  - model: RoleSkill
+    data:
+      roleId: 1007
+      skillName: Assembly
+  - model: RoleSkill
+    data:
+      roleId: 1007
+      skillName: Python
+  - model: RoleSkill
+    data:
+      roleId: 1007
+      skillName: C
+  - model: RoleSkill
+    data:
+      roleId: 1007
+      skillName: Swift
+  - model: Role
+    data:
+      id: 1008
+      name: iOS Engineer
+      description: Tworzenie aplikacji mobilnej do systemu proponowania odpowiedzi
+      thesisId: 1001
+  - model: RoleSkill
+    data:
+      roleId: 1008
+      skillName: Objective-C
+  - model: RoleSkill
+    data:
+      roleId: 1008
+      skillName: Swift
+  - model: RoleSkill
+    data:
+      roleId: 1008
+      skillName: C++
+  - model: Role
+    data:
+      id: 1009
+      name: Backend Engineer
+      description: Twoim zdaniem bedzie stworzenie API oraz logiki aplikacyjnej do systemu indeksowania muzyki
+      thesisId: 1004
+  - model: RoleSkill
+    data:
+      roleId: 1009
+      skillName: Ruby on Rails
+  - model: RoleSkill
+    data:
+      roleId: 1009
+      skillName: SQL
+  - model: RoleSkill
+    data:
+      roleId: 1009
+      skillName: Web Development
+  
+
+  
+
