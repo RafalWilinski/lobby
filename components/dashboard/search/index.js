@@ -175,6 +175,7 @@ export default props => (
           title={item.name}
           description={item.description}
           roles={item.Roles}
+          branches={item.ThesisBranches}
         />
       ))}
     </Content>
