@@ -113,7 +113,7 @@ ALTER TABLE "UserSkills" ADD CONSTRAINT userSkillPk PRIMARY KEY ( "userLogin", "
 CREATE TABLE "Roles"
 (
     id SERIAL,
-    name VARCHAR(30),
+    name VARCHAR(50),
     capitan BOOLEAN NOT NULL DEFAULT FALSE,
     description VARCHAR(2500),
     "userLogin" VARCHAR(30),
