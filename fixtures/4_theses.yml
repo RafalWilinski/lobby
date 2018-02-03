@@ -293,7 +293,60 @@ fixtures:
     data:
       roleId: 1009
       skillName: Web Development
-  
-
-  
+  - model: ThesisBranch
+    data:
+      thesisId: 1000
+      branchName: Analiza Danych
+  - model: ThesisBranch
+    data:
+      thesisId: 1000
+      branchName: Bazy Danych
+  - model: ThesisBranch
+    data:
+      thesisId: 1000
+      branchName: Technologie Internetowe
+  - model: ThesisBranch
+    data:
+      thesisId: 1001
+      branchName: Sztuczna Inteligencja
+  - model: ThesisBranch
+    data:
+      thesisId: 1001
+      branchName: Algorytmy i Struktury Danych
+  - model: ThesisBranch
+    data:
+      thesisId: 1002
+      branchName: Programowanie Niskopoziomowe
+  - model: ThesisBranch
+    data:
+      thesisId: 1002
+      branchName: Algorytmy i Struktury Danych
+  - model: ThesisBranch
+    data:
+      thesisId: 1002
+      branchName: Przetwarzanie Rozproszone
+  - model: ThesisBranch
+    data:
+      thesisId: 1003
+      branchName: Programowanie Niskopoziomowe
+  - model: ThesisBranch
+    data:
+      thesisId: 1004
+      branchName: Analiza Danych
+  - model: ThesisBranch
+    data:
+      thesisId: 1004
+      branchName: Matematyka
+  - model: ThesisBranch
+    data:
+      thesisId: 1005
+      branchName: Technologie Internetowe
+  - model: ThesisBranch
+    data:
+      thesisId: 1005
+      branchName: Gry komputerowe i symulacje
+  - model: ThesisBranch
+    data:
+      thesisId: 1005
+      branchName: Badania Operacyjne
 

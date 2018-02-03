@@ -71,7 +71,7 @@ class Topic extends React.Component {
 
   renderRole(role) {
     return (
-      <Card key={role.id} title={role.name} style={{ width: 300 }}>
+      <Card key={role.id} title={role.name} style={{ width: 300, margin: '5px' }}>
         <p style={{ marginBottom: "10px 0" }}>{role.description}</p>
         <h3 style={{ margin: "10px 0" }}>Wymagane Umiejętności:</h3>
         {role.RoleSkills.map(skill => (
@@ -102,9 +102,11 @@ class Topic extends React.Component {
           <h2 style={{ margin: "10px 0" }}>Członkowie zespołu:</h2>
           {this.props.data.Roles.filter(x => x.User).map(this.renderMate)}
           <h2 style={{ margin: "10px 0" }}>Dostępne pozycje:</h2>
-          {this.props.data.Roles.filter(x => !x.User).map(x =>
-            this.renderRole(x)
-          )}
+          <div style={{ display: "flex" }}>
+            {this.props.data.Roles.filter(x => !x.User).map(x =>
+              this.renderRole(x)
+            )}
+          </div>
         </Content>
         <ApplyModal
           visible={this.state.applyModalVisible}

@@ -1,5 +1,17 @@
 import React from "react";
-import { Layout, Menu, Input, Icon, Form, Row, Col, Button, Select, Checkbox, Spin } from "antd";
+import {
+  Layout,
+  Menu,
+  Input,
+  Icon,
+  Form,
+  Row,
+  Col,
+  Button,
+  Select,
+  Checkbox,
+  Spin
+} from "antd";
 import axios from "axios";
 
 import Result from "./card";
@@ -11,7 +23,7 @@ class SearchForm extends React.Component {
   state = {
     branches: [],
     skills: []
-  }
+  };
 
   componentDidMount() {
     axios.get("/api/branches").then(payload => {
@@ -27,7 +39,7 @@ class SearchForm extends React.Component {
     });
 
     this.props.search({
-      query: ''
+      query: ""
     });
   }
 
@@ -56,23 +68,26 @@ class SearchForm extends React.Component {
           </FormItem>
         </Col>
         <Col span={6} style={{ padding: "10px" }}>
-          <FormItem
-            label="Zainteresowania"
-          >
+          <FormItem label="Zainteresowania">
             {getFieldDecorator("branches", {
               rules: [
                 {
-                  message: "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
+                  message:
+                    "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
                   type: "array"
                 }
               ]
             })(
-              <Select mode="multiple"  placeholder="Analiza Matematyczna" notFoundContent="Brak wyników" 
+              <Select
+                mode="multiple"
+                placeholder="Analiza Matematyczna"
+                notFoundContent="Brak wyników"
                 filterOption={(input, option) =>
                   option.props.children
                     .toLowerCase()
                     .indexOf(input.toLowerCase()) >= 0
-              }>
+                }
+              >
                 {this.state.branches.map(branch => (
                   <Select.Option value={branch.name} key={branch.name}>
                     {branch.name}
@@ -83,9 +98,7 @@ class SearchForm extends React.Component {
           </FormItem>
         </Col>
         <Col span={6} style={{ padding: "10px" }}>
-          <FormItem
-            label="Umiejętności"
-          >
+          <FormItem label="Umiejętności">
             {getFieldDecorator("skills", {
               rules: [
                 {
@@ -94,12 +107,16 @@ class SearchForm extends React.Component {
                 }
               ]
             })(
-              <Select mode="multiple"  placeholder="C++" notFoundContent="Brak wyników" 
+              <Select
+                mode="multiple"
+                placeholder="C++"
+                notFoundContent="Brak wyników"
                 filterOption={(input, option) =>
                   option.props.children
                     .toLowerCase()
                     .indexOf(input.toLowerCase()) >= 0
-              }>
+                }
+              >
                 {this.state.skills.map(branch => (
                   <Select.Option value={branch.name} key={branch.name}>
                     {branch.name}
@@ -109,17 +126,11 @@ class SearchForm extends React.Component {
             )}
           </FormItem>
         </Col>
-        <Col span={6} style={{ padding: "10px", paddingTop: '40px' }}>
-          <FormItem
-            style={{ marginBottom: 8 }}
-          >
+        <Col span={6} style={{ padding: "10px", paddingTop: "40px" }}>
+          <FormItem style={{ marginBottom: 8 }}>
             {getFieldDecorator("available", {
-              valuePropName: "checked",
-            })(
-              <Checkbox>
-                Ma wolne miejsca?
-              </Checkbox>
-            )}
+              valuePropName: "checked"
+            })(<Checkbox>Ma wolne miejsca?</Checkbox>)}
           </FormItem>
         </Col>
       </div>
@@ -127,7 +138,7 @@ class SearchForm extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props);
     return (
       <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
         <Row gutter={24}>{this.getFields()}</Row>
@@ -148,17 +159,24 @@ class SearchForm extends React.Component {
 
 const WrappedAdvancedSearchForm = Form.create()(SearchForm);
 
-export default (props) => (
+export default props => (
   <Layout>
     <Header style={{ background: "#fff", padding: 0, paddingLeft: "20px" }}>
       <h1>Wyszukaj tematy</h1>
     </Header>
     <Content style={{ margin: "0 16px" }}>
       <WrappedAdvancedSearchForm {...props} />
-      
-        {
-          props.results.map(item => <Result title={item.name} description={item.description} roles={item.Roles} />)
-        }
+
+      {props.results.map(item => (
+        <Result
+          url={props.url}
+          id={item.id}
+          key={item.name}
+          title={item.name}
+          description={item.description}
+          roles={item.Roles}
+        />
+      ))}
     </Content>
   </Layout>
 );

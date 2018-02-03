@@ -2,8 +2,13 @@ import React from "react";
 import { Card, Tooltip } from "antd";
 import Avatar from "./avatar";
 
-const SearchResult = ({ title, description, roles }) => (
-  <Card title={title} style={{ width: "100%", margin: '10px 0' }}>
+const SearchResult = ({ id, title, description, roles, url }) => (
+  <Card title={title} style={{ width: "100%", margin: '10px 0' }} onClick={() => {
+      url.push({
+        pathname: `/dashboard/topic/${id}`
+      });
+    }}
+  >
     <div style={{ display: "flex" }}>
       <img
         style={{ height: "100px" }}
@@ -17,6 +22,7 @@ const SearchResult = ({ title, description, roles }) => (
               avatar="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
               name={role.userLogin ? role.userLogin : 'Pozycja Wolna!'}
               position={role.name}
+              key={`${role.name}_${role.id}`}
             />
           )}
         </div>
