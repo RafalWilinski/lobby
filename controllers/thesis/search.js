@@ -6,25 +6,32 @@ const config = require("../../config");
 const Op = require('sequelize').Op;
 
 const get = async ctx => {
-  const skills = ctx.request.query.branches ? ctx.request.query.branches.split(',') : []
+  const branches = ctx.request.query.branches ? { branchName: { [Op.in]: ctx.request.query.branches.split(',') } } : {},
+    skills = ctx.request.query.skills ? { skillName: { [Op.in]: ctx.request.query.skills.split(',') } } : {},
+    query = ctx.request.query.query ? `%${ctx.request.query.query}%` : '%',
+    available = ctx.request.query.available ? { userLogin: null } : {};
+
   const data = await Thesis.findAll({
     include: [
       {
         model: Role,
+        where: available,
         include: [{
           model: RoleSkill,
+          where: skills
         }]
       }, {
-        model: ThesisBranch
+        model: ThesisBranch,
+        where: branches
       }
     ],
     where: {
       [Op.or]: {
         name: {
-          [Op.iLike]: `%${ctx.request.query.query}%`
+          [Op.iLike]: query
         },
         description: {
-          [Op.iLike]: `%${ctx.request.query.query}%`
+          [Op.iLike]: query
         }
       }
     }

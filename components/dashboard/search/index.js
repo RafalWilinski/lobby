@@ -38,21 +38,24 @@ class SearchForm extends React.Component {
       });
     });
 
-    this.props.search({
-      query: ""
-    });
+    this.props.getMyBranches(JSON.parse(localStorage.getItem("user")).user.login);
+    this.props.getMySkills(JSON.parse(localStorage.getItem("user")).user.login);
+
+    this.handleSearch();
   }
 
   handleSearch = e => {
-    e.preventDefault();
+    e && e.preventDefault();
     this.props.form.validateFields((err, values) => {
+      Object.keys(values).forEach(key => (values[key] == null) && delete values[key]);
       console.log("Received values of form: ", values);
       this.props.search(values);
     });
   };
 
-  handleReset = () => {
+  handleReset = e => {
     this.props.form.resetFields();
+    this.handleSearch(e);
   };
 
   getFields() {
@@ -76,7 +79,7 @@ class SearchForm extends React.Component {
                     "Wybierz swoje zainteresowania albo przedmioty z których byłes/as dobry.",
                   type: "array"
                 }
-              ]
+              ], initialValue: (this.props.myBranches ? this.props.myBranches.data.map(myBranch => myBranch.branchName) : [])
             })(
               <Select
                 mode="multiple"
@@ -105,7 +108,7 @@ class SearchForm extends React.Component {
                   message: "Wybierz swoje umiejętności",
                   type: "array"
                 }
-              ]
+              ], initialValue: (this.props.mySkills ? this.props.mySkills.data.map(mySkill => mySkill.skillName) : [])
             })(
               <Select
                 mode="multiple"
