@@ -3,7 +3,7 @@ import { Card, Tooltip } from "antd";
 import Avatar from "./avatar";
 
 const SearchResult = ({ id, title, description, roles, url }) => (
-  <Card title={title} style={{ width: "100%", margin: '10px 0' }} onClick={() => {
+  <Card title={title} style={{ width: "100%", margin: '10px 0', cursor: 'pointer' }} onClick={() => {
       url.push({
         pathname: `/dashboard/topic/${id}`
       });
