@@ -5,7 +5,21 @@ const config = require("../../config");
 
 const reject = async ctx => {
   try {
-    ctx.body = {};
+    const data = await Application.update(
+      {
+        status: "Odrzucony"
+      },
+      {
+        where: {
+          roleId: ctx.params.roleId,
+          login: ctx.params.login
+        }
+      }
+    );
+
+    ctx.body = {
+      data
+    }
   } catch (err) {
     console.log(err);
 

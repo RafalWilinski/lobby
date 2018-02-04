@@ -27,6 +27,11 @@ class ThesisApplicationsModal extends React.Component {
       key: "description"
     },
     {
+      title: "Status",
+      dataIndex: "status",
+      key: "status"
+    },
+    {
       title: "Akcja",
       key: "action",
       render: (text, record) => (
@@ -73,9 +78,7 @@ class ThesisApplicationsModal extends React.Component {
         >
           <Table
             columns={this.applicationColumns}
-            dataSource={this.props.data.filter(
-             application => application.status === "APPLIED"
-            )}
+            dataSource={this.props.data}
             pagination={false}
             locale={{
               emptyText: "Brak Aplikacji"

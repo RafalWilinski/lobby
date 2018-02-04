@@ -16,7 +16,6 @@ import ThesisApplicationsModal from "../../components/ThesisApplicationsModal";
 const { Header, Content, Footer, Sider } = Layout;
 
 class Dashboard extends React.Component {
-
   handleThesisDelete = record => {
     if (window.confirm("Czy na pewno chcesz usunąć ten temat?")) {
       axios.delete(`/api/thesis/${record.id}`).then(payload => {
@@ -44,27 +43,25 @@ class Dashboard extends React.Component {
   };
 
   showThesisApplicationsModal = thesisId => {
-    this.props.getThesisApplications(thesisId)
-      .then(() => { this.setState({ thesisApplicationsModalVisible: true }); });
+    this.props.getThesisApplications(thesisId).then(() => {
+      this.setState({ thesisApplicationsModalVisible: true });
+    });
   };
 
   hideThesisApplicationsModal = () => {
     this.setState({ thesisApplicationsModalVisible: false });
-    this.props.thesisApplications = null;
   };
 
   handleApplicationRejection = record => {
-    //record przechowuje aktualną aplikacje
-    //Należy zmienić jej status w bazie na odrzucona 
-    //(co spowoduje wywalenie jej z modalu bo jest filter że pokazuje tylko aktywne)
-    this.hideThesisApplicationsModal();
+    axios
+      .post(`/api/application/${record.roleId}/${record.login}/reject`)
+      .then(() => this.showThesisApplicationsModal(record.Role.Thesis.id));
   };
 
   handleApplicationAcceptation = record => {
-    //record przechowuje aktualną aplikacje
-    //Należy zmienić jej status w bazie na zaapceptowaną oraz pozostałych aplikacji na daną rolę na odrzuconą
-    // (co spowoduje wywalenie ich z modalu bo jest filter że pokazuje tylko aktywne
-    this.hideThesisApplicationsModal();
+    axios
+      .post(`/api/application/${record.roleId}/${record.login}/accept`)
+      .then(() => this.showThesisApplicationsModal(record.Role.Thesis.id));
   };
 
   topicColumns = [
@@ -95,8 +92,8 @@ class Dashboard extends React.Component {
           <a style={{ margin: "0 10px" }} href="#">
             Edytuj
           </a>
-          <a 
-            style={{ margin: "0 10px" }} 
+          <a
+            style={{ margin: "0 10px" }}
             onClick={() => this.showThesisApplicationsModal(record.id)}
           >
             Przeglądaj aplikacje
@@ -157,7 +154,7 @@ class Dashboard extends React.Component {
           icon: <Icon type="smile-circle" style={{ color: "#108ee9" }} />
         });
       }, 100);
-    } else if(this.props.url.query.success === "register") {
+    } else if (this.props.url.query.success === "register") {
       setTimeout(() => {
         notification.open({
           message: "Sukces!",
@@ -169,7 +166,9 @@ class Dashboard extends React.Component {
     }
 
     this.props.getTheses(JSON.parse(localStorage.getItem("user")).user.login);
-    this.props.getApplications(JSON.parse(localStorage.getItem("user")).user.login);
+    this.props.getApplications(
+      JSON.parse(localStorage.getItem("user")).user.login
+    );
 
     this.setState({ thesisApplicationsModalVisible: false });
   }
@@ -181,7 +180,9 @@ class Dashboard extends React.Component {
           <h1>Witaj!</h1>
         </Header>
         <Content style={{ margin: "0 16px" }}>
-          {this.props.isLoading || !this.props.theses || !this.props.applications ? (
+          {this.props.isLoading ||
+          !this.props.theses ||
+          !this.props.applications ? (
             <Spin />
           ) : (
             <Row gutter={16}>
@@ -215,8 +216,14 @@ class Dashboard extends React.Component {
           )}
         </Content>
         <ThesisApplicationsModal
-          visible={this.state ? this.state.thesisApplicationsModalVisible : false}
-          data={this.props.thesisApplications ? this.props.thesisApplications.data : []}
+          visible={
+            this.state ? this.state.thesisApplicationsModalVisible : false
+          }
+          data={
+            this.props.thesisApplications
+              ? this.props.thesisApplications.data
+              : []
+          }
           hideModal={this.hideThesisApplicationsModal}
           rejection={this.handleApplicationRejection}
           acceptation={this.handleApplicationAcceptation}

@@ -9,7 +9,7 @@ const apply = async ctx => {
       roleId: ctx.request.body.roleId,
       login: ctx.request.body.login,
       description: ctx.request.body.description,
-      status: "APPLIED"
+      status: "Zaaplikował"
     });
 
     ctx.body = {
