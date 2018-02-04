@@ -17,7 +17,7 @@ const SearchResult = ({ id, title, description, roles, branches, url }) => (
       <div style={{ marginLeft: "20px" }}>
         <p style={{marginBottom: '10px'}}>{description}</p>
         {branches.map(branch => (
-          <Tag key={`${branch.id}-${branch.branchName}`}>
+          <Tag key={`${branch.id}_${id}_${branch.branchName}`}>
             {branch.branchName}
           </Tag>
         ))}

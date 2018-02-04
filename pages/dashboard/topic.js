@@ -71,11 +71,20 @@ class Topic extends React.Component {
 
   renderRole(role) {
     return (
-      <Card key={role.id} title={role.name} style={{ width: 300, margin: '5px' }}>
+      <Card
+        key={role.id}
+        title={role.name}
+        style={{ width: 300, margin: "5px" }}
+      >
         <p style={{ marginBottom: "10px 0" }}>{role.description}</p>
         <h3 style={{ margin: "10px 0" }}>Wymagane Umiejętności:</h3>
         {role.RoleSkills.map(skill => (
-          <Tag key={`${role.id}-${skill.name}`}>{skill.skillName}</Tag>
+          <Tag
+            key={`${role.id}_${skill.skillName}`}
+            style={{ marginTop: "5px" }}
+          >
+            {skill.skillName}
+          </Tag>
         ))}
         <Button
           type="primary"
@@ -98,12 +107,16 @@ class Topic extends React.Component {
         </Header>
         <Content style={{ margin: "20px" }}>
           <img src="" />
-          <div style={{ fontSize: "1.4em" }}>{this.props.data.description}</div>		  
-		  <h2 style={{ margin: "10px 0" }}>Promotor:</h2>
-		  <p style={{ fontSize: "1.2em" }}>{this.props.data.PromoterThesis ?
-			`${this.props.data.PromoterThesis.Promoter.degree} ${this.props.data.PromoterThesis.Promoter.firstName} ${this.props.data.PromoterThesis.Promoter.lastName}`
-			: 'brak'}</p>
-		  <h2 style={{ margin: "10px 0" }}>Członkowie zespołu:</h2>
+          <div style={{ fontSize: "1.4em" }}>{this.props.data.description}</div>
+          <h2 style={{ margin: "10px 0" }}>Promotor:</h2>
+          <p style={{ fontSize: "1.2em" }}>
+            {this.props.data.PromoterThesis
+              ? `${this.props.data.PromoterThesis.Promoter.degree} ${
+                  this.props.data.PromoterThesis.Promoter.firstName
+                } ${this.props.data.PromoterThesis.Promoter.lastName}`
+              : "Brak"}
+          </p>
+          <h2 style={{ margin: "10px 0" }}>Członkowie zespołu:</h2>
           {this.props.data.Roles.filter(x => x.User).map(this.renderMate)}
           <h2 style={{ margin: "10px 0" }}>Dostępne pozycje:</h2>
           <div style={{ display: "flex" }}>

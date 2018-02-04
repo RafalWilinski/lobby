@@ -85,7 +85,7 @@ class Dashboard extends React.Component {
       title: "Akcja",
       key: "action",
       render: (text, record) => (
-        <span key={text}>
+        <span rowKey={text}>
           <a
             style={{ margin: "0 10px" }}
             onClick={() => this.handleThesisDelete(record)}
@@ -132,7 +132,7 @@ class Dashboard extends React.Component {
       title: "Akcja",
       key: "action",
       render: (text, record) => (
-        <span key={text}>
+        <span rowKey={text}>
           <a
             style={{ margin: "0 10px" }}
             onClick={() => this.handleApplicationWithdrawal(record)}
