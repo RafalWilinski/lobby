@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     Thesis.Branches = Thesis.hasMany(models.ThesisBranch, {
       foreignKey: "thesisId"
     });
+
+	Thesis.Promoters = Thesis.hasOne(models.PromoterThesis, {
+      foreignKey: "thesisId"
+    });
   };
 
   return Thesis;

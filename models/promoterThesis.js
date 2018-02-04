@@ -11,5 +11,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  PromoterThesis.associate = models => {
+    PromoterThesis.Promoter = PromoterThesis.hasOne(models.Promoter, {
+      foreignKey: "id"
+    });
+	 
+};
+
   return PromoterThesis;
 };

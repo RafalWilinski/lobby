@@ -98,8 +98,12 @@ class Topic extends React.Component {
         </Header>
         <Content style={{ margin: "20px" }}>
           <img src="" />
-          <div style={{ fontSize: "1.4em" }}>{this.props.data.description}</div>
-          <h2 style={{ margin: "10px 0" }}>Członkowie zespołu:</h2>
+          <div style={{ fontSize: "1.4em" }}>{this.props.data.description}</div>		  
+		  <h2 style={{ margin: "10px 0" }}>Promotor:</h2>
+		  <p style={{ fontSize: "1.2em" }}>{this.props.data.PromoterThesis ?
+			`${this.props.data.PromoterThesis.Promoter.degree} ${this.props.data.PromoterThesis.Promoter.firstName} ${this.props.data.PromoterThesis.Promoter.lastName}`
+			: 'brak'}</p>
+		  <h2 style={{ margin: "10px 0" }}>Członkowie zespołu:</h2>
           {this.props.data.Roles.filter(x => x.User).map(this.renderMate)}
           <h2 style={{ margin: "10px 0" }}>Dostępne pozycje:</h2>
           <div style={{ display: "flex" }}>
