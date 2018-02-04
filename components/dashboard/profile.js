@@ -101,7 +101,7 @@ class Profile extends React.Component {
 
   add = () => {
     const newKey = {skillName: '', priority: 1};
-    const { form } = this.props;
+    const { form, pageType } = this.props;
     const keys = form.getFieldValue("keys");
     const nextKeys = keys.concat(newKey);
     form.setFieldsValue({
@@ -135,7 +135,7 @@ class Profile extends React.Component {
     const formItems = keys.map((k, index) => {
       return <SkillsDescriptor 
         ref={(e) => { if(e) { this.skillDescriptor[index] = e; } } } onRemove={this.remove.bind(this, index)}
-        skillName={k.skillName} priority={Number(k.priority)} key={index} index={index} form={this.props.form} 
+        skillName={k.skillName} priority={Number(k.priority)} key={index} index={index} pageType={0} form={this.props.form} 
       />;
     });
 

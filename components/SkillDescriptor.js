@@ -32,7 +32,7 @@ class SkillDescriptor extends React.Component {
   };
 
   render() {
-    const { skillName, priority, index } = this.props;
+    const { skillName, priority, index, pageType } = this.props;
     const { getFieldDecorator, getFieldValue } = this.props.form;
 
     const formItemLayout = {
@@ -53,13 +53,31 @@ class SkillDescriptor extends React.Component {
       }
     };
 
+	const formItemLayout1 = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 8 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 16 }
+      }
+    };
+
+	const formItemLayoutWithOutLabel1 = {
+      wrapperCol: {
+        xs: { span: 24, offset: 0 },
+        sm: { span: 16, offset: 8 }
+      }
+    };
+
     return (
       <div>
         <FormItem
           required={true}
-          {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-          label={index === 0 ? "Umiejętnosc" : ""}
-          style={{ marginBottom: "10px" }}
+          {...(pageType === 0 ? (index === 0 ? formItemLayout : formItemLayoutWithOutLabel) : (index === 0 ? formItemLayout1 : formItemLayoutWithOutLabel1))}
+          label={index === 0 ? "Umiejętność" : ""}
+		  style={{width : (pageType === 0 ? "" : "350px"), marginBottom: "10px"}}
         >
           {getFieldDecorator(`skill-name-${index}`, {
             validateTrigger: ["onChange", "onBlur"],
@@ -73,7 +91,7 @@ class SkillDescriptor extends React.Component {
           })(
             <Select onChange={this.handleSkillNameChange}
               showSearch
-              style={{ width: 200 }}
+              style={{width : (pageType === 0 ? 200 : 221)}}
               placeholder="Wybierz umiejętność"
               notFoundContent="Brak wyników" 
               optionFilterProp="children"
@@ -96,8 +114,9 @@ class SkillDescriptor extends React.Component {
         </FormItem>
         <FormItem
           required={true}
-          {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-          label={index === 0 ? "Stopien Zaawansowania" : ""}
+          {...(pageType === 0 ? (index === 0 ? formItemLayout : formItemLayoutWithOutLabel) : (index === 0 ? formItemLayout1 : formItemLayoutWithOutLabel1))}
+          label={index === 0 ? "Stopień Zaawansowania" : ""}
+		  style={{width : (pageType === 0 ? "" : "490px"), marginBottom: "10px"}}
         >
           {getFieldDecorator(`skill-value-${index}`, {
             validateTrigger: ["onChange", "onBlur"],

@@ -136,7 +136,7 @@ class RegistrationForm extends React.Component {
       formItemLayoutWithOutLabel
     } = this.props.form;
     const { autoCompleteResult } = this.state;
-    const { key, index } = this.props;
+    const { key, index, pageType } = this.props;
 
     const headItemLayout = {
       labelCol: {
@@ -180,7 +180,7 @@ class RegistrationForm extends React.Component {
     const formItems = keys.map((k, index) => {
       return <SkillsDescriptor 
         ref={(e) => { if(e) { this.skillDescriptor[index] = e; } } } onRemove={this.remove.bind(this, index)}
-        skillName={k.skillName} priority={Number(k.priority)} key={index} index={index} form={this.props.form} 
+        skillName={k.skillName} priority={Number(k.priority)} key={index} index={index} pageType={1} form={this.props.form}
       />;
     });
 
@@ -250,7 +250,7 @@ class RegistrationForm extends React.Component {
               },
               {
                 required: true,
-                message: "Proszę wprowadz email"
+                message: "Proszę wprowadź email"
               }
             ]
           })(<Input />)}
@@ -265,7 +265,7 @@ class RegistrationForm extends React.Component {
             rules: [
               {
                 required: true,
-                message: "Wprowadz hasło"
+                message: "Wprowadź hasło"
               },
               {
                 validator: this.checkConfirm
@@ -276,14 +276,14 @@ class RegistrationForm extends React.Component {
         <FormItem
           {...formItemLayout}
           style={{ width: "350px" }}
-          label="Potwierdz hasło"
+          label="Potwierdź hasło"
           hasFeedback
         >
           {getFieldDecorator("confirm", {
             rules: [
               {
                 required: true,
-                message: "Potwierdz hasło!"
+                message: "Potwierdź hasło!"
               },
               {
                 validator: this.checkPassword
@@ -321,7 +321,7 @@ class RegistrationForm extends React.Component {
         </FormItem>
 
         <FormItem {...headItemLayout}>
-          <h2 align="center">Twoje umiejętnosci</h2>
+          <h2 align="center">Twoje umiejętności</h2>
           <h4 align="center">Pokaz w czym jestes dobry!</h4>
         </FormItem>
         {formItems}
@@ -329,7 +329,7 @@ class RegistrationForm extends React.Component {
         {
           <FormItem {...tailFormItemLayout} style={{ width: "350px" }}>
             <Button type="dashed" onClick={this.add} style={{ width: "100%" }}>
-              <Icon type="plus" /> Dodaj Umiejetnosc
+              <Icon type="plus" /> Dodaj Umiejetność
             </Button>
           </FormItem>
         }
