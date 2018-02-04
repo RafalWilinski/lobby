@@ -15,6 +15,7 @@ const accept = require("../controllers/application/accept");
 const reject = require("../controllers/application/reject");
 const withdraw = require("../controllers/application/withdraw");
 const getApplicationsByUserLogin = require("../controllers/application/getByUserLogin");
+const getApplicationsByThesisId = require("../controllers/application/getByThesisId");
 
 const getSkills = require("../controllers/skills/getAll");
 const getSkillsUserLogin = require("../controllers/skills/getByUserLogin");
@@ -36,6 +37,7 @@ API.post("/login", login)
   .delete("/application/:roleId/:login/withdraw", withdraw)
   .delete("/thesis/:id", deleteThesisById)
   .get("/thesis/search", search)
+  .get("/thesis/applications", getApplicationsByThesisId)
   .get("/thesis/:id", getThesisById)
   .get("/user/theses", getThesisByUserLogin)
   .get("/user/applications", getApplicationsByUserLogin)
