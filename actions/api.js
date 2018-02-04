@@ -118,6 +118,16 @@ export const getApplications = userLogin => ({
   }
 });
 
+export const getThesisApplications = thesisId => ({
+  type: "GET_THESIS_APPLICATIONS",
+  payload: {
+    request: {
+      method: "GET",
+      url: `/thesis/applications?thesisId=${thesisId}`
+    }
+  }
+});
+
 export const search = (params) => {
   const paramArr = [];
   Object.keys(params).map((paramName) => {

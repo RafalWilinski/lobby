@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import user from "./user";
 import apply from "./apply";
 import applications from "./applications";
+import thesisApplications from "./thesisApplications";
 import theses from "./theses";
 import createThesis from "./createThesis";
 import branches from "./branches";
@@ -13,6 +14,7 @@ export default combineReducers({
   applications,
   user,
   createThesis,
+  thesisApplications,
   theses,
   branches,
   skills,
