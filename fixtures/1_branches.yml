@@ -47,4 +47,49 @@ fixtures:
   - model: Branch
     data:
       name: Inzynieria Oprogramowania
+  - model: Branch
+    data:
+      name: Grafika Komputerowa
+  - model: Branch
+    data:
+      name: Aplikacje Mobilne
+  - model: Branch
+    data:
+      name: Systemy ERP
+  - model: Branch
+    data:
+      name: Internet Przedmiotów
+  - model: Branch
+    data:
+      name: Systemy Chmurowe
+  - model: Branch
+    data:
+      name: Systemy Wbudowane
+  - model: Branch
+    data:
+      name: Systemy Wizyjne
+  - model: Branch
+    data:
+      name: Systemy informatyczne w zarządzaniu
+  - model: Branch
+    data:
+      name: Inzynieria Oprogramowania
+  - model: Branch
+    data:
+      name: Mikrosystemy Informatyczne
+  - model: Branch
+    data:
+      name: Gry i technologie internetowe
+  - model: Branch
+    data:
+      name: Bioinformatyka
+  - model: Branch
+    data:
+      name: Metody Ilościowe
+  - model: Branch
+    data:
+      name: Bezpieczenstwo systemów informatycznych
+  - model: Branch
+    data:
+      name: Zarządzanie projektami informatycznymi
 

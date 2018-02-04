@@ -77,3 +77,75 @@ fixtures:
   - model: Skill
     data:
       name: Ruby
+  - model: Skill
+    data:
+      name: CSS
+  - model: Skill
+    data:
+      name: Kotlin
+  - model: Skill
+    data:
+      name: SCADA
+  - model: Skill
+    data:
+      name: jQuery
+  - model: Skill
+    data:
+      name: ASP.NET
+  - model: Skill
+    data:
+      name: Django
+  - model: Skill
+    data:
+      name: Hadoop
+  - model: Skill
+    data:
+      name: AWS
+  - model: Skill
+    data:
+      name: Docker
+  - model: Skill
+    data:
+      name: Linux
+  - model: Skill
+    data:
+      name: Redis
+  - model: Skill
+    data:
+      name: Redhat
+  - model: Skill
+    data:
+      name: Tensorflow
+  - model: Skill
+    data:
+      name: OpenCV
+  - model: Skill
+    data:
+      name: Delphi
+  - model: Skill
+    data:
+      name: R
+  - model: Skill
+    data:
+      name: Basic
+  - model: Skill
+    data:
+      name: Shell
+  - model: Skill
+    data:
+      name: Prolog
+  - model: Skill
+    data:
+      name: Lisp
+  - model: Skill
+    data:
+      name: Haskell
+  - model: Skill
+    data:
+      name: Cisco
+  - model: Skill
+    data:
+      name: VBA
+  - model: Skill
+    data:
+      name: Salesforce
