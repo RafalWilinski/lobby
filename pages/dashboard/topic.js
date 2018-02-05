@@ -64,7 +64,7 @@ class Topic extends React.Component {
         key={role.id}
         position={role.name}
         name={`${role.User.firstName} ${role.User.lastName}`}
-        avatar="http://www.downesvets.co.uk/wp-content/uploads/2015/07/kitten-package1.png"
+        avatar="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
       />
     );
   }
