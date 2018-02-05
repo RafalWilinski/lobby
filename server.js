@@ -45,11 +45,11 @@ app.prepare().then(() => {
   });
 
   router.get("/dashboard/topic/create", async ctx => {
-    await app.render(ctx.req, ctx.res, "/dashboard/createTopic", ctx.query);
+    await app.render(ctx.req, ctx.res, "/dashboard/topic/create", ctx.query);
     ctx.respond = false;
   });
 
-  router.get("/dashboard/topic/:id", async ctx => {
+  router.get("/dashboard/topic/:id+", async ctx => {
     await app.render(ctx.req, ctx.res, "/dashboard/topic", ctx.query);
     ctx.respond = false;
   });

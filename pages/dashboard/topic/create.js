@@ -1,12 +1,12 @@
 import React from "react";
 import withRedux from "next-redux-wrapper";
 
-import DashboardWrapper from "../../components/DashboardWrapper";
-import Head from "../../components/Head.js";
-import HWCenterWrapper from "../../components/HVCenterWrapper";
-import Topic from "../../components/dashboard/topic";
-import { initStore } from "../../store";
-import { createThesis } from "../../actions/api";
+import DashboardWrapper from "../../../components/DashboardWrapper";
+import Head from "../../../components/Head.js";
+import HWCenterWrapper from "../../../components/HVCenterWrapper";
+import Topic from "../../../components/dashboard/topic";
+import { initStore } from "../../../store";
+import { createThesis } from "../../../actions/api";
 
 const mapStateToProps = state => ({
   isLoading: state.createThesis.isLoading,
