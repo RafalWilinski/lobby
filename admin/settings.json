@@ -1513,7 +1513,11 @@
                 "name": "ispublic",
                 "verbose": "ispublic",
                 "control": {
-                    "text": true
+                    "radio": true,
+                    "options": [
+                        "true",
+                        "false"
+                    ]
                 },
                 "type": "char",
                 "allowNull": false,
