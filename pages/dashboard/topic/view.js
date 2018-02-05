@@ -3,14 +3,14 @@ import withRedux from "next-redux-wrapper";
 import { Layout, Spin, Button, Tag, Card } from "antd";
 import axios from "axios";
 
-import { initStore } from "../../store";
-import { apply } from "../../actions/api";
+import { initStore } from "../../../store";
+import { apply } from "../../../actions/api";
 
-import Avatar from "../../components/dashboard/search/avatar";
-import DashboardWrapper from "../../components/DashboardWrapper";
-import Head from "../../components/Head.js";
-import HWCenterWrapper from "../../components/HVCenterWrapper";
-import ApplyModal from "../../components/ApplyModal";
+import Avatar from "../../../components/dashboard/search/avatar";
+import DashboardWrapper from "../../../components/DashboardWrapper";
+import Head from "../../../components/Head.js";
+import HWCenterWrapper from "../../../components/HVCenterWrapper";
+import ApplyModal from "../../../components/ApplyModal";
 
 const { Header, Content } = Layout;
 
@@ -29,11 +29,16 @@ class Topic extends React.Component {
     selectedRole: null
   };
 
-  static async getInitialProps({ req, pathname }) {
-    const id = req.url.split(pathname)[1].substring(1);
-    const { data } = await axios.get(`http://localhost:3000/api/thesis/${id}`);
+  static async getInitialProps(props) {
+    if (props.req) {
+      const id = props.req.url.split('/')[3];
+      console.log(id);
+      const { data } = await axios.get(`http://localhost:3000/api/thesis/${id}`);
 
-    return data;
+      return data;
+    } else {
+      return axios.get(`http://localhost:3000/api/thesis/${props.query.id}`);
+    }
   }
 
   componentWillReceiveProps(nextProps) {

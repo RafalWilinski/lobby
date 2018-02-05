@@ -49,8 +49,8 @@ app.prepare().then(() => {
     ctx.respond = false;
   });
 
-  router.get("/dashboard/topic/:id+", async ctx => {
-    await app.render(ctx.req, ctx.res, "/dashboard/topic", ctx.query);
+  router.get("/dashboard/topic/*", async ctx => {
+    await app.render(ctx.req, ctx.res, "/dashboard/topic/view", ctx.query);
     ctx.respond = false;
   });
 

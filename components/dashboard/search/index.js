@@ -141,7 +141,6 @@ class SearchForm extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
         <Row gutter={24}>{this.getFields()}</Row>
